@@ -4,6 +4,10 @@ body {
   line-height: 1.5;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h1,
 h2,
 h3,
@@ -32,4 +36,36 @@ a {
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+
+  @media (375px<=width) {
+    max-width: var(--mobile);
+  }
+
+  @media (768px<=width) {
+    max-width: var(--tablet);
+    padding: 0 32px;
+  }
+
+  @media (1440px<=width) {
+    max-width: var(--desktop);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
 }
