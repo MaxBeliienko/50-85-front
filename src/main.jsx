@@ -5,7 +5,7 @@ import 'modern-normalize';
 import App from './App.jsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 // import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
