@@ -1,5 +1,3 @@
-import Icon from './components/Icon';
-
 function App() {
   return <></>;
 }
