@@ -1,0 +1,108 @@
+.modal {
+  width: 100%;
+  padding: 40px 20px;
+}
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+}
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  margin-top: 16px;
+  margin-bottom: 28px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.confirmBtn {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+
+  border-radius: 30px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  max-width: 304px;
+  background: #9be1a0;
+  border: none;
+  cursor: pointer;
+}
+.confirmBtn:hover,
+.confirmBtn:focus {
+  background: #87d28d;
+}
+.cancelBtn {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgba(50, 63, 71, 0.3);
+
+  border-radius: 30px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  max-width: 304px;
+  background: #f0eff4;
+  border: none;
+  cursor: pointer;
+}
+.cancelBtn:hover,
+.cancelBtn:focus {
+  color: #87d28d;
+  border: 1px solid #87d28d;
+  background: transparent;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 40px;
+  }
+  .title {
+    font-size: 28px;
+    line-height: 1.14286;
+  }
+  .text {
+    font-size: 18px;
+    line-height: 1.33333;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .confirmBtn {
+    font-size: 16px;
+    line-height: 1.5;
+
+    padding: 18px 59px;
+  }
+  .cancelBtn {
+    font-size: 16px;
+    line-height: 1.5;
+
+    padding: 18px 59px;
+  }
+}
+@media screen and (min-width: 1440px) {
+}

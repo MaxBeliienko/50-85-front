@@ -65,7 +65,7 @@ closeModal={closeModal}
 buttonTop={20}
 buttonRight={20}
 >
-  <ChildrenModal> </ChildrenModal>
+  <DeleteWaterModal> </DeleteWaterModal>
 </Modal>;
 
 */
