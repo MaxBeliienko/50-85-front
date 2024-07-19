@@ -1,5 +1,11 @@
 function App() {
-  return <></>;
+  return (
+    <>
+      <div className="container">
+        {/* поки не впевнений чи це потрібно саме тут */}
+      </div>
+    </>
+  );
 }
 
 export default App;
