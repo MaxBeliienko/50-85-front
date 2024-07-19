@@ -1,6 +1,7 @@
 import css from './Calendar.module.css';
 
-const Calendar = ({ year, month, currentDay }) => {
+// додати ще 1 пропс currentDay
+const Calendar = ({ year, month }) => {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
