@@ -4,6 +4,8 @@ import css from './Calendar.module.css';
 const Calendar = ({ year, month, currentDay, waterQuantity }) => {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  console.log(waterQuantity);
+
   console.log(currentDay);
   // if (currentDay) {
   //   return <button className={css.calendarday}></button>

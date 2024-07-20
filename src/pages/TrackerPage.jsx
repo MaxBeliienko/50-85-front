@@ -4,15 +4,8 @@ import { useState } from 'react';
 
 const TrackerPage = () => {
   const [dailyNorma, setDailyNorma] = useState(1);
-  const [waterQuantity, setWaterQuantity] = useState(0);
 
-  const addWater = () => {
-    setWaterQuantity(prevState => prevState + 0.25);
-  };
-
-  const decreaseWater = () => {
-    setWaterQuantity(prevState => prevState - 0.25);
-  };
+  const [waterQuantity, setWaterQuantity] = useState(0.5);
 
   return (
     <div className={css.container}>
