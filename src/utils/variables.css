@@ -3,4 +3,10 @@
   --mobile: 375px;
   --tablet: 768px;
   --desktop: 1440px;
+  /* colors */
+  --light-gray: #f0eff4;
+  --white: #ffffff;
+  --black: #2f2f2f;
+  --light-black: #323f47;
+  --light-green: #9be1a0;
 }

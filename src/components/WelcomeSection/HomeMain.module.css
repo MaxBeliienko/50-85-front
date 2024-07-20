@@ -1,0 +1,142 @@
+.mainWrapper {
+  border-radius: 30px;
+  border: none;
+  background-color: var(--light-gray);
+  width: 100%;
+  height: 411px;
+  padding: 24px 16px;
+}
+
+.sectionWrap {
+  margin-top: 74px;
+}
+.subtitle {
+  margin-bottom: 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.28571;
+  letter-spacing: 0.06em;
+  color: var(--black);
+}
+
+.title {
+  font-family: inherit;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--light-black);
+  margin-bottom: 32px;
+}
+
+.button {
+  border-radius: 30px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--light-black);
+  display: inline-block;
+}
+
+.tryButton {
+  padding: 14px 19px;
+  background-color: var(--light-green);
+  margin-right: 10px;
+  width: 116px;
+  height: 46px;
+  border: 0px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tryButton:hover {
+  background-color: #87d28d;
+}
+
+.signButton {
+  border: 1px solid var(--light-black);
+  padding: 14px 27px;
+  width: 104px;
+  height: 46px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signButton:hover {
+  color: #87d28d;
+  border: #87d28d 1px solid;
+}
+
+@media (min-width: 768px) {
+  .mainWrapper {
+    width: 100%;
+    height: 494px;
+    padding: 32px;
+  }
+
+  .sectionWrap {
+    margin: 50px 0 0 32px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .title {
+    font-size: 64px;
+    line-height: 1.09375;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .tryButton {
+    margin-right: 16px;
+    padding: 18px 40px;
+    width: 169px;
+    height: 60px;
+  }
+
+  .signButton {
+    padding: 18px 39px;
+    width: 135px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mainWrapper {
+    max-width: 672px;
+    height: 736px;
+  }
+
+  .sectionWrap {
+    margin: 132px 0 0 32px;
+  }
+
+  .title {
+    font-size: 80px;
+    line-height: 0.95;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .tryButton {
+    margin-right: 16px;
+    padding: 18px 40px;
+    width: 169px;
+    height: 60px;
+  }
+
+  .signButton {
+    padding: 18px 39px;
+    width: 135px;
+    height: 60px;
+  }
+}

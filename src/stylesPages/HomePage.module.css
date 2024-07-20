@@ -1,0 +1,13 @@
+.homePageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 1440px) {
+  .homePageWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+}
