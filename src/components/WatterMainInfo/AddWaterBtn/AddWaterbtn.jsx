@@ -1,13 +1,16 @@
 import css from './AddWaterBtn.module.css';
-import Icons from '../../../assets/sprite.svg';
+import Iconsvg from '../../Icon';
 
 const AddWaterBtn = ({ onAddWater }) => {
   return (
     <div className={css.buttonContainer}>
       <button className={css.addWaterBtn} onClick={onAddWater}>
-        <svg width="16" height="16" className={css.icon}>
-          <use href={`${Icons}#plus`}></use>
-        </svg>
+        <Iconsvg
+          width={16}
+          height={16}
+          iconName="add-water"
+          styles={css.icon}
+        />
         Add water
       </button>
     </div>

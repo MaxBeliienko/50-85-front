@@ -32,7 +32,7 @@
 
 .progress {
   height: 100%;
-  background-color: #76c7c0;
+  background-color: #9be1a0;
   border-radius: 9px 0 0 9px;
 }
 
@@ -49,4 +49,39 @@
   font-size: 10px;
   line-height: 100%;
   color: rgba(47, 47, 47, 0.6);
+}
+
+@media (min-width: 768px) {
+  .waterProgressBar {
+    padding: 20px;
+    width: 295px;
+    height: 106px;
+    margin-bottom: 26px;
+  }
+
+  .today {
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .progressContainer {
+    width: 255px;
+    height: 8px;
+  }
+
+  .labels {
+    width: 255px;
+    height: 23px;
+  }
+
+  .label {
+    font-size: 12px;
+    line-height: 187%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .label {
+    font-size: 12px;
+  }
 }

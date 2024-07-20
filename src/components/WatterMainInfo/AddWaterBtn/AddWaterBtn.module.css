@@ -26,8 +26,38 @@
   text-align: center;
 }
 
+/* .addWaterBtn:active {
+  color: #9be1a0;
+}
+
+.addWaterBtn:hover {
+  color: #9be1a0;
+} */
+
 .icon {
   width: 16px;
   height: 16px;
   fill: currentColor;
+}
+
+@media (min-width: 768px) {
+  .addWaterBtn {
+    padding: 18px 30px;
+    width: 178px;
+    height: 60px;
+    margin-top: 26px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .addWaterBtn {
+    margin-top: 56px;
+  }
 }

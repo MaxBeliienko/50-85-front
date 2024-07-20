@@ -32,3 +32,31 @@
   line-height: 100%;
   color: #323f47;
 }
+
+@media (min-width: 768px) {
+  .dailyNorma {
+    padding: 14px 18px;
+    width: 129px;
+    height: 78px;
+    margin: 101px 43px 87px 0;
+  }
+
+  .waterDailyNorma {
+    gap: 4px;
+    width: 93px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 187%;
+  }
+
+  .highlight {
+    font-size: 15px;
+    line-height: 149%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .dailyNorma {
+    margin: 101px 290px 215px 32px;
+  }
+}
