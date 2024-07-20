@@ -8,6 +8,7 @@ import NotFound from './components/notFound/NotFound';
 // import PrivateRoute from './components/PrivateRoute';
 // import RestrictedRoute from './components/RestrictedRoute';
 
+
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 
