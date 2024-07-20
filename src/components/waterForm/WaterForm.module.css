@@ -1,0 +1,102 @@
+.biggerText {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #323f47;
+
+  margin-bottom: 8px;
+}
+.smallerText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.amount {
+  display: flex;
+  gap: 8px;
+}
+.waterBtn {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.amountValue {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #fff;
+
+  border-radius: 30px;
+  padding: 11px 20px;
+  background: #323f47;
+}
+.input {
+  width: 100%;
+  margin-bottom: 24px;
+
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  outline: none;
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+.saveBtn {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+
+  border: none;
+  border-radius: 30px;
+  padding: 14px 40px;
+  cursor: pointer;
+
+  background: #9be1a0;
+}
+.saveBtn:hover,
+.saveBtn:focus {
+  background: #87d28d;
+}
+
+@media screen and (min-width: 768px) {
+  .biggerText {
+    font-size: 18px;
+    line-height: 1.33333;
+  }
+  .smallerText {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .amountValue {
+    font-size: 15px;
+    line-height: 1.49333;
+  }
+  .input {
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .saveBtn {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+  }
+}
