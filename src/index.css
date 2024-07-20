@@ -1,3 +1,5 @@
+@import url('./utils/variables.css');
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
@@ -41,7 +43,6 @@ a {
 .container {
   margin: 0 auto;
   width: 100%;
-  padding: 0 16px;
 
   @media (375px<=width) {
     max-width: var(--mobile);
@@ -49,7 +50,6 @@ a {
 
   @media (768px<=width) {
     max-width: var(--tablet);
-    padding: 0 32px;
   }
 
   @media (1440px<=width) {
