@@ -1,4 +1,3 @@
-import React from 'react';
 import css from './WaterProgressBar.module.css';
 
 const WaterProgressBar = ({ consumed, dailyNorma }) => {

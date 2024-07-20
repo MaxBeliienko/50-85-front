@@ -1,4 +1,3 @@
-import React from 'react';
 import css from './AddWaterBtn.module.css';
 import Icons from '../../../assets/sprite.svg';
 
