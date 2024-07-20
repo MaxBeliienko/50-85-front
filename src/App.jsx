@@ -11,7 +11,6 @@ import NotFound from './components/notFound/NotFound';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 
-
 function App() {
   return (
     <>
