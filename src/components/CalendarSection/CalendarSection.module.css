@@ -9,4 +9,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 28px;
+}
+.blockcalendar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.left {
+  width:8px;
+  height: 12px;
+
+}
+.right {
+  width:8px;
+  height: 12px;
+}
+.arrow {
+  border: none;
+  outline: none;
 }

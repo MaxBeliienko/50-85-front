@@ -2,6 +2,7 @@
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
+import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 // import PrivateRoute from './components/PrivateRoute';
 // import RestrictedRoute from './components/RestrictedRoute';
 
@@ -45,6 +46,7 @@ function App() {
           <Route path="/tracker" element={<div>TrackerPage</div>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        
       </SharedLayout>
     </>
   );

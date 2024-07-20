@@ -17,6 +17,12 @@
   background-color: white;
 }
 
+li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .calendarday {
   border: none;
   outline: none;
