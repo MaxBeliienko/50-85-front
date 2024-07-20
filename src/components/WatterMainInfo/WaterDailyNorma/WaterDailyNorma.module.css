@@ -1,0 +1,62 @@
+.dailyNorma {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 52px;
+  border-radius: 15px;
+  padding: 12px;
+  width: 102px;
+  height: 54px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  margin: 78px 185px 49px 0;
+}
+.waterDailyNorma {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  width: 78px;
+  height: 30px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.highlight {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #323f47;
+}
+
+@media (min-width: 768px) {
+  .dailyNorma {
+    padding: 14px 18px;
+    width: 129px;
+    height: 78px;
+    margin: 101px 43px 87px 0;
+  }
+
+  .waterDailyNorma {
+    gap: 4px;
+    width: 93px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 187%;
+  }
+
+  .highlight {
+    font-size: 15px;
+    line-height: 149%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .dailyNorma {
+    margin: 101px 290px 215px 32px;
+  }
+}

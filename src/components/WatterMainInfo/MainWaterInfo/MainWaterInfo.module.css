@@ -1,0 +1,53 @@
+.mainWaterInfo {
+  position: relative;
+  border-radius: 30px;
+  width: 343px;
+  height: 415px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-color: #9be1a0;
+  margin: 16px;
+  padding: 24px 16px 32px 16px;
+}
+
+.waterImage {
+  position: absolute;
+  width: 262px;
+  height: 335px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .mainWaterInfo {
+    width: 704px;
+    height: 578px;
+    margin: 32px;
+    padding: 32px;
+  }
+
+  .waterImage {
+    width: 374px;
+    height: 477px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mainWaterInfo {
+    width: 672px;
+    height: 736px;
+    padding-bottom: 40px;
+  }
+
+  .waterImage {
+    width: 472px;
+    height: 604px;
+  }
+}

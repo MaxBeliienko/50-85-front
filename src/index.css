@@ -1,5 +1,21 @@
 @import url('./utils/variables.css');
 
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/src/public/fonts/Gilroy-Regular.woff2') format('woff2'),
+    url('/src/public/fonts/Gilroy-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/src/public/fonts/Gilroy-Bold.woff2') format('woff2'),
+    url('/src/public/fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
@@ -44,14 +60,12 @@ a {
   margin: 0 auto;
   width: 100%;
 
-
   @media (375px<=width) {
     max-width: var(--mobile);
   }
 
   @media (768px<=width) {
     max-width: var(--tablet);
-
   }
 
   @media (1440px<=width) {
