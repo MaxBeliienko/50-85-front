@@ -1,8 +1,7 @@
 import Calendar from '../Calendar/Calendar';
 import { useState, useEffect } from 'react';
 import css from './CalendarSection.module.css';
-import icon from '../Icon.jsx';
-import Icon from '../Icon.jsx';
+import Iconsvg from '../Icon';
 
 const CalendarSection = () => {
   const [currentDate, setCurrentDate] = useState({
@@ -11,7 +10,20 @@ const CalendarSection = () => {
     day: null,
   });
 
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   useEffect(() => {
     const today = new Date();
@@ -21,14 +33,11 @@ const CalendarSection = () => {
       month: today.getMonth(),
       day: today.getDate(),
     });
-
   }, []);
   const handleNextMonth = () => {
-    setCurrentDate(
-      ...currentDate.month + 1
-    )
-    console.log(currentDate.month)
-  }
+    setCurrentDate(...(currentDate.month + 1));
+    console.log(currentDate.month);
+  };
   // const handlePreviesMonth = () => {
   //
   // }
@@ -39,11 +48,13 @@ const CalendarSection = () => {
         <h2>Month</h2>
         <div className={css.blockcalendar}>
           <button className={css.arrow}>
-            <Icon iconName={"left"} styles={css.left}/>
+            <Iconsvg iconName={'left'} styles={css.left} />
           </button>
-          <p>{monthNames[currentDate.month]}, {currentDate.year}</p>
+          <p>
+            {monthNames[currentDate.month]}, {currentDate.year}
+          </p>
           <button className={css.arrow} onClick={handleNextMonth}>
-            <Icon iconName={"right"} styles={css.right}/>
+            <Iconsvg iconName={'right'} styles={css.right} />
           </button>
         </div>
       </div>
