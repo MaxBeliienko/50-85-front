@@ -139,13 +139,13 @@
   }
 
   .responsiveImage.customer1 {
-    content: url('50-85-front/src/public/images/customers/customerPC1.png');
+    content: url('../../public/images/customers/customerPC1.png');
   }
   .responsiveImage.customer2 {
-    content: url('50-85-front/src/public/images/customers/customerPC2.png');
+    content: url('../../public/images/customers/customerPC2.png');
   }
   .responsiveImage.customer3 {
-    content: url('50-85-front/src/public/images/customers/customerPC3.png');
+    content: url('../../public/images/customers/customerPC3.png');
   }
 
   .customersWrapper {
