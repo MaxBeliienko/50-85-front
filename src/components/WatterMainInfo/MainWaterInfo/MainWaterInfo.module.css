@@ -24,3 +24,30 @@
   position: relative;
   z-index: 1;
 }
+
+@media (min-width: 768px) {
+  .mainWaterInfo {
+    width: 704px;
+    height: 578px;
+    margin: 32px;
+    padding: 32px;
+  }
+
+  .waterImage {
+    width: 374px;
+    height: 477px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mainWaterInfo {
+    width: 672px;
+    height: 736px;
+    padding-bottom: 40px;
+  }
+
+  .waterImage {
+    width: 472px;
+    height: 604px;
+  }
+}
