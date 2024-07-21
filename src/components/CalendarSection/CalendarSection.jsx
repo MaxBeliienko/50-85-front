@@ -1,29 +1,29 @@
 import Calendar from '../Calendar/Calendar';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import css from './CalendarSection.module.css';
 import Iconsvg from '../Icon';
 
-const CalendarSection = ({ waterQuantity }) => {
-  const [currentDate, setCurrentDate] = useState({
-    year: null,
-    month: null,
-    day: null,
-  });
+const CalendarSection = ({ waterQuantity, currentDate, monthNames }) => {
+  // const [currentDate, setCurrentDate] = useState({
+  //   year: null,
+  //   month: null,
+  //   day: null,
+  // });
 
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  // const monthNames = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December',
+  // ];
 
   useEffect(() => {
     const today = new Date();
@@ -60,6 +60,7 @@ const CalendarSection = ({ waterQuantity }) => {
       })
   }
 
+
   return (
     <>
       <div className={css.title}>
@@ -71,11 +72,13 @@ const CalendarSection = ({ waterQuantity }) => {
           <p>
             {monthNames[currentDate.month]}, {currentDate.year}
           </p>
+
           <button className={css.btn} onClick={handleNextMonth}>
             <Iconsvg iconName={'right'} width={4.5} height={9}  styles={css.btn}/>
           </button>
           <button className={css.btn}>
             <Iconsvg iconName={'schedule'} styles={css.schedule}  height={24} width={24}/>
+
           </button>
         </div>
       </div>
