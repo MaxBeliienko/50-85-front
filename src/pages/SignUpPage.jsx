@@ -1,13 +1,12 @@
 import AdvantagesSection from '../components/AdvantagesSection/AdvantagesSection';
-import SignInForm from '../components/SignInForm/SignInForm';
+import SignUpForm from '../components/SignUpForm/SignUpForm';
+import styles from '../stylesPages/SignUpPage.module.css';
 
-import styles from '../stylesPages/SignInPage.module.css';
-
-const SignInPage = () => {
+const SignUpPage = () => {
   return (
-    <div className={styles.signInPageWrapper}>
+    <div className={styles.signUpPageWrapper}>
       <div className={styles.formWrapper}>
-        <SignInForm />
+        <SignUpForm />
       </div>
       <div className={styles.disabled}>
         <AdvantagesSection />
@@ -16,4 +15,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
 import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 // import PrivateRoute from './components/PrivateRoute';
 // import RestrictedRoute from './components/RestrictedRoute';
@@ -45,7 +46,7 @@ function App() {
             }
           /> */}
 
-          <Route path="/signup" element={<div>SignUpPage</div>} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/tracker" element={<TrackerPage />} />
           <Route path="*" element={<NotFound />} />

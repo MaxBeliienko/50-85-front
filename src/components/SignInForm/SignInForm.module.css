@@ -1,3 +1,9 @@
+.signinWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .mainText {
   font-family: inherit;
   font-weight: 700;
@@ -36,7 +42,6 @@
   max-width: 311px;
   max-height: 50px;
   outline: none;
-  margin-bottom: 16px;
 }
 
 .error {
@@ -47,7 +52,7 @@
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: var(--light-red);
-  top: 80px;
+  top: 75px;
 }
 
 .submitBtn {
@@ -84,4 +89,59 @@
   font-weight: 700;
   color: var(--light-black);
   text-decoration: underline;
+}
+
+.eyeIcon {
+  position: absolute;
+  top: 40px;
+  right: 17px;
+}
+
+@media (min-width: 768px) {
+  .mainText {
+    margin-top: 225px;
+    font-size: 36px;
+    line-height: 1.05556;
+  }
+
+  .labelText {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .formGroup {
+    margin-bottom: 20px;
+  }
+
+  .inputField {
+    max-width: 436px;
+    max-height: 56px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .error {
+    top: 90px;
+  }
+
+  .submitBtn {
+    margin: 12px 0 16px;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 191px;
+    width: 436px;
+    height: 60px;
+  }
+
+  .dontHaveAcc {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .eyeIcon {
+    top: 50px;
+  }
+}
+
+@media (min-width: 1440px) {
 }
