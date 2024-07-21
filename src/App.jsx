@@ -2,14 +2,14 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 // import PrivateRoute from './components/PrivateRoute';
 // import RestrictedRoute from './components/RestrictedRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 
 function App() {
   return (
