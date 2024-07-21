@@ -14,18 +14,22 @@
 .blockcalendar {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
 }
-.left {
-  width:8px;
-  height: 12px;
 
-}
-.right {
-  width:8px;
-  height: 12px;
-}
-.arrow {
+.btn {
   border: none;
   outline: none;
+  cursor: pointer;
+
+  svg {
+    width: 8px;
+    height: 12px;
+  }
+
+  .schedule {
+    width: 20px;
+    height: 20px;
+    margin-left: 16px;
+  }
 }

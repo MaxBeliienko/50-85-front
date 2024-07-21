@@ -1,0 +1,34 @@
+.signInPageWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.formWrapper {
+  border-radius: 30px;
+  border: none;
+  background-color: var(--light-gray);
+  width: 100%;
+  height: 780px;
+  padding: 24px 16px;
+}
+
+.disabled {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .formWrapper {
+    padding: 32px 32px;
+    height: 960px;
+  }
+}
+@media (min-width: 1440px) {
+  .formWrapper {
+    width: 672px;
+    height: 736px;
+  }
+  .disabled {
+    display: block;
+  }
+}

@@ -6,17 +6,17 @@ const AdvantagesSection = () => {
       <div className={styles.customersWrapper}>
         <img
           className={`${styles.customer1} ${styles.responsiveImage}`}
-          src="50-85-front/src/public/images/customers/customer1.png"
+          src="../../public/images/customers/customer1.png"
           alt="customer1"
         />
         <img
           className={`${styles.customer2} ${styles.responsiveImage}`}
-          src="50-85-front/src/public/images/customers/customer2.png"
+          src="../../public/images/customers/customer2.png"
           alt="customer2"
         />
         <img
           className={`${styles.customer3} ${styles.responsiveImage}`}
-          src="50-85-front/src/public/images/customers/customer3.png"
+          src="../../public/images/customers/customer3.png"
           alt="customer3"
         />
         <p className={styles.customerText}>
