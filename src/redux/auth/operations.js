@@ -19,7 +19,7 @@ const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   }
 };
 
-export const register = createAsyncThunk(
+export const registerUser = createAsyncThunk(
   'auth/register',
   asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/register', user);
