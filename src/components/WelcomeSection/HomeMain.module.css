@@ -46,12 +46,12 @@
   margin-right: 10px;
   width: 116px;
   height: 46px;
-  border: 0px;
+  border: none;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tryButton:hover {
-  background-color: #87d28d;
+  background-color: var(--hover-light-green);
 }
 
 .signButton {
@@ -64,8 +64,8 @@
 }
 
 .signButton:hover {
-  color: #87d28d;
-  border: #87d28d 1px solid;
+  color: var(--hover-light-green);
+  border: var(--hover-light-green) 1px solid;
 }
 
 @media (min-width: 768px) {

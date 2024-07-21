@@ -10,6 +10,8 @@ import NotFound from './components/notFound/NotFound';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 
 function App() {
   return (
@@ -46,8 +48,8 @@ function App() {
             }
           /> */}
 
-          <Route path="/signup" element={<div>SignUpPage</div>} />
-          <Route path="/signin" element={<div>SignInPage</div>} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
           <Route path="/tracker" element={<TrackerPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
