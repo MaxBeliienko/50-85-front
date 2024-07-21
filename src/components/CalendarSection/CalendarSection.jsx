@@ -69,6 +69,7 @@ const CalendarSection = ({ waterQuantity }) => {
         />
       ) : (
         <p>Loading...</p>
+        
       )}
     </>
   );
