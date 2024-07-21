@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import css from './CalendarSection.module.css';
 import Iconsvg from '../Icon';
 
-const CalendarSection = () => {
+const CalendarSection = ({ waterQuantity }) => {
   const [currentDate, setCurrentDate] = useState({
     year: null,
     month: null,
@@ -43,18 +43,19 @@ const CalendarSection = () => {
   // }
 
   return (
-    <div className={css.container}>
+    <>
       <div className={css.title}>
         <h2>Month</h2>
         <div className={css.blockcalendar}>
-          <button className={css.arrow}>
-            <Iconsvg iconName={'left'} styles={css.left} />
+          <button className={css.btn}>
+            <Iconsvg iconName={'left'} />
           </button>
           <p>
             {monthNames[currentDate.month]}, {currentDate.year}
           </p>
-          <button className={css.arrow} onClick={handleNextMonth}>
-            <Iconsvg iconName={'right'} styles={css.right} />
+          <button className={css.btn} onClick={handleNextMonth}>
+            <Iconsvg iconName={'right'} />
+            <Iconsvg iconName={'schedule'} styles={css.schedule} />
           </button>
         </div>
       </div>
@@ -64,11 +65,12 @@ const CalendarSection = () => {
           year={currentDate.year}
           month={currentDate.month}
           currentDay={currentDate.day}
+          waterQuantity={waterQuantity}
         />
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </>
   );
 };
 

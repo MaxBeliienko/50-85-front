@@ -2,6 +2,8 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
+// import PrivateRoute from './components/PrivateRoute';
+// import RestrictedRoute from './components/RestrictedRoute';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 // import PrivateRoute from './components/PrivateRoute';
 // import RestrictedRoute from './components/RestrictedRoute';
