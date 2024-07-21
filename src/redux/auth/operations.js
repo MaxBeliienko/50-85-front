@@ -21,7 +21,7 @@ const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
 
 export const register = createAsyncThunk(
   'auth/register',
-  asyncThunkWrapper(async (user, thunkApi) => {
+  asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/register', user);
     setAuthHeader(data.token);
     return data;
@@ -30,7 +30,7 @@ export const register = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   'auth/login',
-  asyncThunkWrapper(async (user, thunkApi) => {
+  asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/login', user);
     setAuthHeader(data.token);
     return data;
@@ -39,7 +39,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk(
   'auth/logout',
-  asyncThunkWrapper(async (_, thunkApi) => {
+  asyncThunkWrapper(async () => {
     await axios.post('/users/logout');
     clearAuthHeader();
   })
