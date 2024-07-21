@@ -32,14 +32,6 @@ const TrackerPage = () => {
     day: null,
   });
 
-  // const handleChangeDate = newdate => {
-  //   setCurrentDate({
-  //     year: newdate.getFullYear(),
-  //     month: newdate.getMonth(),
-  //     day: newdate.getDate(),
-  //   });
-  // };
-
   useEffect(() => {
     const today = new Date();
 
@@ -49,6 +41,32 @@ const TrackerPage = () => {
       day: today.getDate(),
     });
   }, []);
+
+  const handleNextMonth = () => {
+    setCurrentDate(prevState => {
+      const nextMonth = (prevState.month + 1) % 12;
+      const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
+
+      return {
+        year: nextYear,
+        month: nextMonth,
+        day: 1,
+      };
+    });
+  };
+  const handlePreviousMonth = () => {
+    setCurrentDate(prevState => {
+      const previousMonth = (prevState.month - 1 + 12) % 12;
+      const previousYear =
+        prevState.year + Math.floor((prevState.month - 1) / 12);
+
+      return {
+        year: previousYear,
+        month: previousMonth,
+        day: 1,
+      };
+    });
+  };
 
   return (
     <div className={css.container}>
@@ -63,6 +81,8 @@ const TrackerPage = () => {
         waterQuantity={volume}
         currentDate={currentDate}
         monthNames={monthNames}
+        handleNextMonth={handleNextMonth}
+        handlePreviousMonth={handlePreviousMonth}
       />
     </div>
   );
