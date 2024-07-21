@@ -1,43 +1,34 @@
 import Calendar from '../Calendar/Calendar';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import css from './CalendarSection.module.css';
 import Iconsvg from '../Icon';
 
-const CalendarSection = ({ waterQuantity }) => {
-  const [currentDate, setCurrentDate] = useState({
-    year: null,
-    month: null,
-    day: null,
-  });
+const CalendarSection = ({ waterQuantity, currentDate, monthNames }) => {
+  // const [currentDate, setCurrentDate] = useState({
+  //   year: null,
+  //   month: null,
+  //   day: null,
+  // });
 
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  // const monthNames = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December',
+  // ];
 
-  useEffect(() => {
-    const today = new Date();
-
-    setCurrentDate({
-      year: today.getFullYear(),
-      month: today.getMonth(),
-      day: today.getDate(),
-    });
-  }, []);
-  const handleNextMonth = () => {
-    setCurrentDate(...(currentDate.month + 1));
-    console.log(currentDate.month);
-  };
+  // const handleNextMonth = () => {
+  //   setCurrentDate(...(currentDate.month + 1));
+  //   console.log(currentDate.month);
+  // };
   // const handlePreviesMonth = () => {
   //
   // }
@@ -53,7 +44,7 @@ const CalendarSection = ({ waterQuantity }) => {
           <p>
             {monthNames[currentDate.month]}, {currentDate.year}
           </p>
-          <button className={css.btn} onClick={handleNextMonth}>
+          <button className={css.btn}>
             <Iconsvg iconName={'right'} />
             <Iconsvg iconName={'schedule'} styles={css.schedule} />
           </button>

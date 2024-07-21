@@ -1,0 +1,52 @@
+.container {
+  border-radius: 15px;
+  padding: 20px;
+  width: 192px;
+  height: 86px;
+  background-color: white;
+  backdrop-filter: blur(33.599998474121094px);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.svg {
+  width: 32px;
+  height: 36px;
+}
+
+.text {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.49;
+
+  span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.87;
+    color: rgba(47, 47, 47, 0.6);
+  }
+}
