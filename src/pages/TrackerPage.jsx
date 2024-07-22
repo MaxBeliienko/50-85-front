@@ -32,14 +32,21 @@ const TrackerPage = () => {
     day: null,
   });
 
+  const [initialDate, setInitialDate] = useState({
+    year: null,
+    month: null,
+    day: null,
+  })
+
   useEffect(() => {
     const today = new Date();
-
-    setCurrentDate({
+    const initial = {
       year: today.getFullYear(),
       month: today.getMonth(),
       day: today.getDate(),
-    });
+    }
+    setCurrentDate(initial);
+    setInitialDate(initial)
   }, []);
 
   const handleNextMonth = () => {
@@ -47,11 +54,17 @@ const TrackerPage = () => {
       const nextMonth = (prevState.month + 1) % 12;
       const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
 
-      return {
-        year: nextYear,
-        month: nextMonth,
-        day: 1,
-      };
+      if (nextYear === initialDate.year && nextMonth === initialDate.month) {
+        return {
+          ...initialDate
+        };
+      } else {
+        return {
+          year: nextYear,
+          month: nextMonth,
+          day: 1,
+        };
+      }
     });
   };
   const handlePreviousMonth = () => {
@@ -60,11 +73,17 @@ const TrackerPage = () => {
       const previousYear =
         prevState.year + Math.floor((prevState.month - 1) / 12);
 
-      return {
-        year: previousYear,
-        month: previousMonth,
-        day: 1,
-      };
+      if (previousYear === initialDate.year && previousMonth === initialDate.month) {
+        return {
+          ...initialDate
+        };
+      } else {
+        return {
+          year: previousYear,
+          month: previousMonth,
+          day: 1,
+        };
+      }
     });
   };
 
