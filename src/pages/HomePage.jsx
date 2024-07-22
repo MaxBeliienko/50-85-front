@@ -12,9 +12,9 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   const date = { year: '2024', month: '07', day: '07' };
-  useEffect(() => {
-    dispatch(fetchDailyWater(date));
-  }, [dispatch, date]);
+  // useEffect(() => {
+  //   dispatch(fetchDailyWater(date));
+  // }, [dispatch, date]);
 
   return (
     <div className={styles.homePageWrapper}>
