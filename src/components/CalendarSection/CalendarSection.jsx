@@ -1,5 +1,4 @@
 import Calendar from '../Calendar/Calendar';
-// import { useState, useEffect } from 'react';
 import css from './CalendarSection.module.css';
 import Iconsvg from '../Icon';
 
@@ -10,22 +9,6 @@ const CalendarSection = ({
   handlePreviousMonth,
   handleNextMonth,
 }) => {
-  // const [currentDate, setCurrentDate] = useState({
-  //   year: null,
-  //   month: null,
-  //   day: null,
-  // });
-
-  // useEffect(() => {
-  //   const today = new Date();
-
-  //   setCurrentDate({
-  //     year: today.getFullYear(),
-  //     month: today.getMonth(),
-  //     day: today.getDate(),
-  //   });
-  // }, []);
-
   return (
     <>
       <div className={css.title}>
