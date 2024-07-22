@@ -59,9 +59,9 @@ const waterSlice = createSlice({
       .addCase(logOut.fulfilled, state => {
         state.items = [];
         state.error = null;
-        state.isLoading = false;
+        state.loading = false;
       });
   },
 });
 
-export const contactsReducer = waterSlice.reducer;
+export const waterReducer = waterSlice.reducer;
