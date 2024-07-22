@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Iconsvg from '../Icon';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../redux/auth/operations';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -16,6 +18,8 @@ const validationSchema = Yup.object().shape({
 const SignInForm = () => {
   const emailFieldId = useId();
   const pwdFieldId = useId();
+
+  const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -37,7 +41,8 @@ const SignInForm = () => {
   });
 
   const onSubmit = data => {
-    alert(JSON.stringify(data));
+    const { email, password } = data;
+    dispatch(logIn({ email, password }));
   };
 
   return (
