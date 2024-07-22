@@ -1,3 +1,6 @@
+.textDanger {
+  color: rgba(255, 0, 0, 0.518);
+}
 .biggerText {
   font-weight: 700;
   font-size: 16px;
