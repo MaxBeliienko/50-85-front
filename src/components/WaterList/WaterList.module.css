@@ -1,0 +1,57 @@
+.topcontainer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+
+.btncontainer {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  background-color: #9be1a0;
+  cursor: pointer;
+
+  svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #87d28d;
+}
+
+.text {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 32px;
+  margin-bottom: 72px;
+}
