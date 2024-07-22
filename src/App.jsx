@@ -4,6 +4,7 @@ import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
 import PrivateRoute from './components/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute';
+import { Toaster } from 'react-hot-toast';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -14,6 +15,7 @@ const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 function App() {
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
       <SharedLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -4,7 +4,6 @@ import styles from '../stylesPages/HomePage.module.css';
 import { Audio } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading } from '../redux/water/selectors';
-import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { fetchDailyWater } from '../redux/water/operations';
 
@@ -31,7 +30,6 @@ const HomePage = () => {
           wrapperClass
         />
       )}
-      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
