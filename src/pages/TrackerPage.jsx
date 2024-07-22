@@ -36,7 +36,7 @@ const TrackerPage = () => {
     year: null,
     month: null,
     day: null,
-  })
+  });
 
   useEffect(() => {
     const today = new Date();
@@ -44,9 +44,9 @@ const TrackerPage = () => {
       year: today.getFullYear(),
       month: today.getMonth(),
       day: today.getDate(),
-    }
+    };
     setCurrentDate(initial);
-    setInitialDate(initial)
+    setInitialDate(initial);
   }, []);
 
   const handleNextMonth = () => {
@@ -56,7 +56,7 @@ const TrackerPage = () => {
 
       if (nextYear === initialDate.year && nextMonth === initialDate.month) {
         return {
-          ...initialDate
+          ...initialDate,
         };
       } else {
         return {
@@ -73,9 +73,12 @@ const TrackerPage = () => {
       const previousYear =
         prevState.year + Math.floor((prevState.month - 1) / 12);
 
-      if (previousYear === initialDate.year && previousMonth === initialDate.month) {
+      if (
+        previousYear === initialDate.year &&
+        previousMonth === initialDate.month
+      ) {
         return {
-          ...initialDate
+          ...initialDate,
         };
       } else {
         return {
@@ -89,20 +92,21 @@ const TrackerPage = () => {
 
   return (
     <div className={css.container}>
-      Tracker Page
       <MainWaterInfo />
-      <WaterList
-        waterlist={data}
-        currentDate={currentDate}
-        monthNames={monthNames}
-      />
-      <CalendarSection
-        waterQuantity={volume}
-        currentDate={currentDate}
-        monthNames={monthNames}
-        handleNextMonth={handleNextMonth}
-        handlePreviousMonth={handlePreviousMonth}
-      />
+      <div className={css.waterCalendarcontainer}>
+        <WaterList
+          waterlist={data}
+          currentDate={currentDate}
+          monthNames={monthNames}
+        />
+        <CalendarSection
+          waterQuantity={volume}
+          currentDate={currentDate}
+          monthNames={monthNames}
+          handleNextMonth={handleNextMonth}
+          handlePreviousMonth={handlePreviousMonth}
+        />
+      </div>
     </div>
   );
 };

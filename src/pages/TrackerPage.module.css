@@ -1,7 +1,18 @@
 .container {
+  min-width: 343px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.waterCalendarcontainer {
   background-color: #f0eff4;
   padding: 40px 20px;
-  width: 343px;
+  min-width: 343px;
+  width: 100%;
+  box-sizing: border-box;
   border-radius: 30px;
 }
 
@@ -9,10 +20,22 @@
   .container {
     width: 704px;
   }
+  .waterCalendarcontainer {
+    min-width: 704px;
+    height: 738px;
+    padding: 32px;
+  }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .container {
-    width: 672px;
+    min-width: 1440px;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .waterCalendarcontainer {
+    max-width: 672px;
+    height: 736px;
   }
 }
