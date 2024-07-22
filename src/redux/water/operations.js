@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export const fetchMonthWater = createAsyncThunk(
   'water/month',
-  async (_, thunkAPI) => {
+  async (date, thunkAPI) => {
     try {
-      const res = await axios.get('/water/month');
+      const res = await axios.get('/water/month', { params: { date } });
       console.log(res.data);
       return res.data;
     } catch (error) {
@@ -16,9 +16,9 @@ export const fetchMonthWater = createAsyncThunk(
 
 export const fetchDailyWater = createAsyncThunk(
   'water/daily',
-  async (_, thunkAPI) => {
+  async (date, thunkAPI) => {
     try {
-      const res = await axios.get('/water/daily');
+      const res = await axios.get('/water/daily', { params: { date } });
       console.log(res.data);
       return res.data;
     } catch (error) {

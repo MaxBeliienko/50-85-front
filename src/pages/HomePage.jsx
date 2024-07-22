@@ -6,15 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectLoading } from '../redux/water/selectors';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
-import { fetchMonthWater } from '../redux/water/operations';
+import { fetchDailyWater } from '../redux/water/operations';
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
-
+  const date = { year: '2024', month: '07', day: '07' };
   useEffect(() => {
-    dispatch(fetchMonthWater());
-  }, [dispatch]);
+    dispatch(fetchDailyWater(date));
+  }, [dispatch, date]);
 
   return (
     <div className={styles.homePageWrapper}>
