@@ -2,11 +2,9 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
-// import PrivateRoute from './components/PrivateRoute';
-// import RestrictedRoute from './components/RestrictedRoute';
+import PrivateRoute from './components/PrivateRoute';
+import RestrictedRoute from './components/RestrictedRoute';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
-// import PrivateRoute from './components/PrivateRoute';
-// import RestrictedRoute from './components/RestrictedRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
@@ -20,12 +18,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           {/* Це частина з налаштованою маршрутизацією по Private і Restricted route. Наразі залишаю її закоментованою, так як ще не готові елементи стану щоб все це працювало. Знизу залишаю робочу версію без налаштувань Private і Restricted route. Коли все буде готово, її видалимо. Імпорти які поки що не використовуються також закоментовані. */}
-          {/* <Route
+          <Route
             path="/signup"
             element={
               <RestrictedRoute
                 redirectTo="/tracker"
-                component={<div>SignUpPage</div>}
+                component={<SignUpPage />}
               />
             }
           />
@@ -34,23 +32,16 @@ function App() {
             element={
               <RestrictedRoute
                 redirectTo="/tracker"
-                component={<div>SignInPage</div>}
+                component={<SignInPage />}
               />
             }
           />
           <Route
             path="/tracker"
             element={
-              <PrivateRoute
-                redirectTo="/signin"
-                component={<div>TrackerPage</div>}
-              />
+              <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
-          /> */}
-
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/tracker" element={<TrackerPage />} />
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </SharedLayout>
