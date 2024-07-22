@@ -1,4 +1,3 @@
-import React from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import css from './WaterProgressBar.module.css';
