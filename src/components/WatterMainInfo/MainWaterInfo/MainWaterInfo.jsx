@@ -14,8 +14,9 @@ import bottle2d from '../../../public/images/bottle/bottle2d.png';
 const MainWaterInfo = () => {
   const [consumed, setConsumed] = useState(0);
   const dailyNorma = 1.5;
+
   const addWater = () => {
-    setConsumed(prev => prev + 250);
+    setConsumed(prev => Math.min(prev + 0.1 * dailyNorma, dailyNorma));
   };
 
   return (
