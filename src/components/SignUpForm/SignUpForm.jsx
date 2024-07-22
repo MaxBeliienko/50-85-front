@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Iconsvg from '../Icon';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../redux/auth/operations.js';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -23,6 +25,8 @@ const SignUpForm = () => {
   const emailFieldId = useId();
   const pwdFieldId = useId();
   const pwdCheckId = useId();
+
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevState => !prevState);
@@ -48,7 +52,7 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { email, password } = data;
-    alert(JSON.stringify({ email, password }));
+    dispatch(registerUser({ email, password }));
   };
 
   return (
@@ -127,7 +131,7 @@ const SignUpForm = () => {
           </button>
         </form>
         <p className={styles.dontHaveAcc}>
-          Already have an account?
+          Already have an account?{' '}
           <NavLink to="/signin" className={styles.navigate}>
             Sign In
           </NavLink>
