@@ -42,8 +42,8 @@ function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        <Route path="*" element={<NotFound />} />
       </SharedLayout>
     </>
   );
