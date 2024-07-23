@@ -9,6 +9,7 @@ import Logo from '../Logo/Logo';
 import Iconsvg from '../Icon';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -40,9 +41,17 @@ const SignInForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = data => {
-    const { email, password } = data;
-    dispatch(logIn({ email, password }));
+  const onSubmit = async data => {
+    try {
+      const { email, password } = data;
+      const response = await dispatch(logIn({ email, password }));
+
+      if (response.error) {
+        toast.error(response.payload.response.data.message || 'Login failed');
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+    }
   };
 
   return (
