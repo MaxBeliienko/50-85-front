@@ -11,11 +11,11 @@ import WaterModal from '../waterModal/WaterModal';
 const WaterItem = ({ waterItem }) => {
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    console.log(waterItem.id);
-    dispatch(deleteWater(waterItem.id));
-    toast.success('Successfully delet');
-  };
+  // const handleDelete = () => {
+  //   console.log(waterItem.id);
+  //   dispatch(deleteWater(waterItem.id));
+  //   toast.success('Successfully delet');
+  // };
 
   const handleEdit = () => {
     console.log(waterItem.id);
