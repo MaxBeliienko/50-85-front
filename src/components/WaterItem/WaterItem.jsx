@@ -1,21 +1,21 @@
 import css from './WaterItem.module.css';
 import Iconsvg from '../Icon';
-import { useDispatch } from 'react-redux';
-import { deleteWater } from '../../redux/water/operations';
-import toast from 'react-hot-toast';
+// import { useDispatch } from 'react-redux';
+// import { deleteWater } from '../../redux/water/operations';
+// import toast from 'react-hot-toast';
 import Modal from '../Modal';
 import { useState } from 'react';
 import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
 
 const WaterItem = ({ waterItem }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    console.log(waterItem.id);
-    dispatch(deleteWater(waterItem.id));
-    toast.success('Successfully delet');
-  };
+  // const handleDelete = () => {
+  //   console.log(waterItem.id);
+  //   dispatch(deleteWater(waterItem.id));
+  //   toast.success('Successfully delet');
+  // };
 
   const handleEdit = () => {
     console.log(waterItem.id);
