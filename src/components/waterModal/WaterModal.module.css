@@ -2,6 +2,7 @@
   width: 100%;
   padding: 40px 20px;
 }
+
 .title {
   font-weight: 700;
   font-size: 20px;
@@ -11,6 +12,7 @@
   margin-bottom: 24px;
   max-width: 248px;
 }
+
 @media screen and (min-width: 768px) {
   .modal {
     padding: 40px;

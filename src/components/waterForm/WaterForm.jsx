@@ -4,23 +4,25 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Iconsvg from '../Icon';
 import styles from './WaterForm.module.css';
+import toast from 'react-hot-toast';
 
 const timeSchema = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const validationSchema = Yup.object().shape({
-  volume: Yup.number().min(0).max(5000).integer(),
+  volume: Yup.number().min(0).max(5000).integer().required('Required'),
   time: Yup.string()
     .matches(timeSchema, 'Time must be in hh:mm format')
     .required('Required'),
 });
 
-const WaterForm = () => {
+const WaterForm = ({ onSubmit }) => {
   const [waterAmount, setWaterAmount] = useState(50);
 
   const getTime = () => {
     const currentDate = new Date();
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
-    return `${hours}:${minutes}`;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${hours}:${formattedMinutes}`;
   };
 
   const {
@@ -48,15 +50,20 @@ const WaterForm = () => {
     setWaterAmount(prevWaterAmount => Math.min(prevWaterAmount + 50, 5000));
   };
 
-  const handleRegistration = data => console.log(data);
-
   const handleWater = e => {
     const { value } = e.target;
     if (value === '') {
       setWaterAmount(0);
     } else {
       if (parseInt(value) > 5000 || parseInt(value) < 0) {
-        console.log('Amount of water could be from interwal [0,5000]');
+        toast('Amount of water could be from interwal [0,5000]', {
+          duration: 2000,
+          style: {
+            margin: '60px',
+            background: '#323f47',
+            color: '#ffffff',
+          },
+        });
       } else {
         setWaterAmount(parseInt(value));
       }
@@ -96,28 +103,32 @@ const WaterForm = () => {
           />
         </button>
       </div>
-      <form onSubmit={handleSubmit(handleRegistration)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <p className={styles.smallerText}>Recording time:</p>
-        <input
-          type="text"
-          name="time"
-          {...register('time')}
-          className={styles.input}
-        />
-        <small className={styles.textDanger}>
-          {errors?.time && errors.time.message}
-        </small>
+        <div className={styles.inputWithDanger}>
+          <input
+            type="text"
+            name="time"
+            {...register('time')}
+            className={styles.input}
+          />
+          <small className={styles.textDanger}>
+            {errors?.time && errors.time.message}
+          </small>
+        </div>
         <p className={styles.biggerText}>Enter the value of the water used:</p>
-        <input
-          name="volume"
-          {...register('volume')}
-          value={waterAmount}
-          onChange={handleWater}
-          className={styles.input}
-        />
-        <small className={styles.textDanger}>
-          {errors?.volume && errors.volume.message}
-        </small>
+        <div className={styles.inputWithDanger}>
+          <input
+            name="volume"
+            {...register('volume')}
+            value={waterAmount}
+            onChange={handleWater}
+            className={styles.input}
+          />
+          <small className={styles.textDanger}>
+            {errors?.volume && errors.volume.message}
+          </small>
+        </div>
         <button type="submit" className={styles.saveBtn}>
           Save
         </button>
