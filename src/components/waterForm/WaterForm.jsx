@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Iconsvg from '../Icon';
 import styles from './WaterForm.module.css';
+import toast from 'react-hot-toast';
 
 const timeSchema = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const validationSchema = Yup.object().shape({
@@ -51,7 +52,22 @@ const WaterForm = ({ onSubmit }) => {
 
   const handleWater = e => {
     const { value } = e.target;
-    setWaterAmount(value === '' ? 0 : parseInt(value));
+    if (value === '') {
+      setWaterAmount(0);
+    } else {
+      if (parseInt(value) > 5000 || parseInt(value) < 0) {
+        toast('Amount of water could be from interwal [0,5000]', {
+          duration: 2000,
+          style: {
+            margin: '60px',
+            background: '#323f47',
+            color: '#ffffff',
+          },
+        });
+      } else {
+        setWaterAmount(parseInt(value));
+      }
+    }
   };
 
   return (
@@ -89,26 +105,30 @@ const WaterForm = ({ onSubmit }) => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className={styles.smallerText}>Recording time:</p>
-        <input
-          type="text"
-          name="time"
-          {...register('time')}
-          className={styles.input}
-        />
-        <small className={styles.textDanger}>
-          {errors?.time && errors.time.message}
-        </small>
+        <div className={styles.inputWithDanger}>
+          <input
+            type="text"
+            name="time"
+            {...register('time')}
+            className={styles.input}
+          />
+          <small className={styles.textDanger}>
+            {errors?.time && errors.time.message}
+          </small>
+        </div>
         <p className={styles.biggerText}>Enter the value of the water used:</p>
-        <input
-          name="volume"
-          {...register('volume')}
-          value={waterAmount}
-          onChange={handleWater}
-          className={styles.input}
-        />
-        <small className={styles.textDanger}>
-          {errors?.volume && errors.volume.message}
-        </small>
+        <div className={styles.inputWithDanger}>
+          <input
+            name="volume"
+            {...register('volume')}
+            value={waterAmount}
+            onChange={handleWater}
+            className={styles.input}
+          />
+          <small className={styles.textDanger}>
+            {errors?.volume && errors.volume.message}
+          </small>
+        </div>
         <button type="submit" className={styles.saveBtn}>
           Save
         </button>

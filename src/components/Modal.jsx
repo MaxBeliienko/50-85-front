@@ -6,6 +6,8 @@ ReactModal.setAppElement('#root');
 const Modal = ({ showModal, closeModal, buttonTop, buttonRight, children }) => {
   const customStyles = {
     overlay: {
+      position: 'absolute',
+      zIndex: '1000',
       backgroundColor: 'rgba(0, 0, 0, 0.1)',
     },
     content: {

@@ -11,6 +11,7 @@ import bottle1t from '../../../public/images/bottle/bottle1t.png';
 import bottle2t from '../../../public/images/bottle/bottle2t.png';
 import bottle1d from '../../../public/images/bottle/bottle1d.png';
 import bottle2d from '../../../public/images/bottle/bottle2d.png';
+import Modal from '../../Modal.jsx';
 
 const MainWaterInfo = () => {
   const [consumed, setConsumed] = useState(0);
@@ -26,28 +27,31 @@ const MainWaterInfo = () => {
   };
 
   return (
-    <div className={css.mainWaterInfo}>
-      <img
-        src={bottle1}
-        srcSet={`${bottle1} 1x, ${bottle2} 2x, ${bottle1t} 1x, ${bottle2t} 2x, ${bottle1d} 1x, ${bottle2d} 2x`}
-        alt="Water"
-        className={css.waterImage}
-        loading="lazy"
-      />
-      <Logo />
-      <div className={css.content}>
-        <WaterDailyNorma dailyNorma={dailyNorma} />
-        <WaterProgressBar consumed={consumed} dailyNorma={dailyNorma} />
-        <AddWaterBtn onAddWater={openModal} />
-      </div>
-      {isModalOpen && (
-        <WaterModal
-          operationType="add"
-          onAddWater={addWater}
-          onClose={closeModal}
+    <>
+      <div className={css.mainWaterInfo}>
+        <img
+          src={bottle1}
+          srcSet={`${bottle1} 1x, ${bottle2} 2x, ${bottle1t} 1x, ${bottle2t} 2x, ${bottle1d} 1x, ${bottle2d} 2x`}
+          alt="Water"
+          className={css.waterImage}
+          loading="lazy"
         />
-      )}
-    </div>
+        <Logo />
+        <div className={css.content}>
+          <WaterDailyNorma dailyNorma={dailyNorma} />
+          <WaterProgressBar consumed={consumed} dailyNorma={dailyNorma} />
+          <AddWaterBtn onAddWater={openModal} />
+        </div>
+      </div>
+      <Modal
+        showModal={isModalOpen}
+        closeModal={closeModal}
+        buttonTop={20}
+        buttonRight={20}
+      >
+        <WaterModal operationType="add" onAddWater={addWater} />
+      </Modal>
+    </>
   );
 };
 
