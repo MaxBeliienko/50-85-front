@@ -30,7 +30,7 @@
   background-color: #9be1a0;
   cursor: pointer;
 
-  svg {
+  .icon {
     width: 10px;
     height: 10px;
   }

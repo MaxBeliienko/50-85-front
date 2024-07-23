@@ -1,7 +1,28 @@
-.modal {
+/* CSS стилі */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 40px 20px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
+.modal {
+  background: white;
+  position: fixed;
+  padding: 40px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  border-radius: 15px;
+  width: 375px;
+  min-height: 490px;
+}
+
 .title {
   font-weight: 700;
   font-size: 20px;
@@ -10,14 +31,41 @@
   color: #323f47;
   margin-bottom: 24px;
   max-width: 248px;
+  max-width: 100%;
 }
+
 @media screen and (min-width: 768px) {
+  .modalOverlay {
+    min-width: 768px;
+  }
+
   .modal {
     padding: 40px;
+    min-width: 518px;
+    min-height: 555px;
+    gap: 24px;
   }
   .title {
     font-size: 28px;
     line-height: 1.14286;
     max-width: 347px;
   }
+}
+
+@media screen and (min-width: 1440px) {
+  .modalOverlay {
+    min-width: 1440px;
+    height: 800px;
+  }
+}
+
+.closeBtn {
+  background: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #323f47;
+  margin-top: 20px;
 }

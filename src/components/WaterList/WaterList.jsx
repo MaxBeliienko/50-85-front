@@ -11,7 +11,12 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
         </h2>
         <div className={css.btncontainer}>
           <button className={css.btn}>
-            <Iconsvg iconName="add-water" />
+            <Iconsvg
+              width={10}
+              height={10}
+              iconName="add-water"
+              styles={css.icon}
+            />
           </button>
           <p className={css.text}>Add water</p>
         </div>

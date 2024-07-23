@@ -26,6 +26,11 @@
   }
 }
 
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
 .btn {
   border: none;
   outline: none;

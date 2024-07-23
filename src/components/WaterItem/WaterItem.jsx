@@ -5,7 +5,12 @@ const WaterItem = ({ waterItem }) => {
   console.log(waterItem);
   return (
     <div className={css.container}>
-      <Iconsvg iconName={'water-glass'} styles={css.svg} />
+      <Iconsvg
+        width={16}
+        height={16}
+        iconName={'water-glass'}
+        styles={css.icon}
+      />
       <div className={css.data}>
         <p className={css.text}>{waterItem.volume} ml</p>
         <p className={css.text}>
@@ -14,10 +19,20 @@ const WaterItem = ({ waterItem }) => {
       </div>
       <div className={css.btns}>
         <button className={css.btn}>
-          <Iconsvg iconName={'pencil'} />
+          <Iconsvg
+            width={16}
+            height={16}
+            iconName={'pencil'}
+            styles={css.icon}
+          />
         </button>
         <button className={css.btn}>
-          <Iconsvg iconName={'trash'} />
+          <Iconsvg
+            width={16}
+            height={16}
+            iconName={'trash'}
+            styles={css.icon}
+          />
         </button>
       </div>
     </div>
