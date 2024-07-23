@@ -7,20 +7,21 @@ import styles from './WaterForm.module.css';
 
 const timeSchema = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const validationSchema = Yup.object().shape({
-  volume: Yup.number().min(0).max(5000).integer(),
+  volume: Yup.number().min(0).max(5000).integer().required('Required'),
   time: Yup.string()
     .matches(timeSchema, 'Time must be in hh:mm format')
     .required('Required'),
 });
 
-const WaterForm = () => {
+const WaterForm = ({ onSubmit }) => {
   const [waterAmount, setWaterAmount] = useState(50);
 
   const getTime = () => {
     const currentDate = new Date();
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
-    return `${hours}:${minutes}`;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${hours}:${formattedMinutes}`;
   };
 
   const {
@@ -48,19 +49,9 @@ const WaterForm = () => {
     setWaterAmount(prevWaterAmount => Math.min(prevWaterAmount + 50, 5000));
   };
 
-  const handleRegistration = data => console.log(data);
-
   const handleWater = e => {
     const { value } = e.target;
-    if (value === '') {
-      setWaterAmount(0);
-    } else {
-      if (parseInt(value) > 5000 || parseInt(value) < 0) {
-        console.log('Amount of water could be from interwal [0,5000]');
-      } else {
-        setWaterAmount(parseInt(value));
-      }
-    }
+    setWaterAmount(value === '' ? 0 : parseInt(value));
   };
 
   return (
@@ -96,7 +87,7 @@ const WaterForm = () => {
           />
         </button>
       </div>
-      <form onSubmit={handleSubmit(handleRegistration)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <p className={styles.smallerText}>Recording time:</p>
         <input
           type="text"

@@ -28,10 +28,20 @@ const WaterItem = ({ waterItem }) => {
       </div>
       <div className={css.btns}>
         <button className={css.btn}>
-          <Iconsvg iconName={'pencil'} />
+          <Iconsvg
+            width={16}
+            height={16}
+            iconName={'pencil'}
+            styles={css.icon}
+          />
         </button>
-        <button className={css.btn} onClick={handleDelete}>
-          <Iconsvg iconName={'trash'} />
+    <button className={css.btn} onClick={handleDelete}>
+          <Iconsvg
+            width={16}
+            height={16}
+            iconName={'trash'}
+            styles={css.icon}
+          /> 
         </button>
       </div>
     </div>

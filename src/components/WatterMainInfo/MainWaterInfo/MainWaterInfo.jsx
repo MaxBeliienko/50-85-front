@@ -2,6 +2,7 @@ import { useState } from 'react';
 import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma.jsx';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar.jsx';
 import AddWaterBtn from '../AddWaterBtn/AddWaterbtn.jsx';
+import WaterModal from '../../waterModal/WaterModal.jsx';
 import css from './MainWaterInfo.module.css';
 import Logo from '../../Logo/Logo.jsx';
 import bottle1 from '../../../public/images/bottle/bottle1.png';
@@ -13,10 +14,15 @@ import bottle2d from '../../../public/images/bottle/bottle2d.png';
 
 const MainWaterInfo = () => {
   const [consumed, setConsumed] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dailyNorma = 1.5;
 
-  const addWater = () => {
-    setConsumed(prev => Math.min(prev + 0.1 * dailyNorma, dailyNorma));
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const addWater = amount => {
+    setConsumed(prev => Math.min(prev + amount, dailyNorma));
+    closeModal();
   };
 
   return (
@@ -32,8 +38,15 @@ const MainWaterInfo = () => {
       <div className={css.content}>
         <WaterDailyNorma dailyNorma={dailyNorma} />
         <WaterProgressBar consumed={consumed} dailyNorma={dailyNorma} />
-        <AddWaterBtn onAddWater={addWater} />
+        <AddWaterBtn onAddWater={openModal} />
       </div>
+      {isModalOpen && (
+        <WaterModal
+          operationType="add"
+          onAddWater={addWater}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };
