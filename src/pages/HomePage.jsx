@@ -1,7 +1,7 @@
 import AdvantagesSection from '../components/AdvantagesSection/AdvantagesSection';
 import WelcomeSection from '../components/WelcomeSection/WelcomeSection';
 import styles from '../stylesPages/HomePage.module.css';
-import { Audio } from 'react-loader-spinner';
+// import { Audio } from 'react-loader-spinner';
 // import { useSelector } from 'react-redux';
 // import { selectLoading } from '../redux/water/selectors';
 // import { useEffect } from 'react';
