@@ -8,6 +8,7 @@ const CalendarSection = ({
   monthNames,
   handlePreviousMonth,
   handleNextMonth,
+  onChangeDate,
 }) => {
   return (
     <>
@@ -51,6 +52,7 @@ const CalendarSection = ({
           month={currentDate.month}
           currentDay={currentDate.day}
           waterQuantity={waterQuantity}
+          onChangeDate={onChangeDate}
         />
       ) : (
         <p>Loading...</p>

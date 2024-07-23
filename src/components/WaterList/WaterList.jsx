@@ -2,26 +2,24 @@ import { useEffect, useState } from 'react';
 import Iconsvg from '../Icon';
 import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
-import { useSearchParams } from 'react-router-dom';
 import { selectError, selectLoading } from '../../redux/water/selectors';
 import { fetchDailyWater } from '../../redux/water/operations';
 import toast from 'react-hot-toast';
 
-const WaterList = ({ currentDate, monthNames }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchYear = searchParams.get('year');
-  const searchMonth = searchParams.get('month');
-  const searchDay = searchParams.get('day');
-
+const WaterList = ({ currentDate, monthNames, searchDate }) => {
   const [waterlist, setWaterlist] = useState([]);
 
   useEffect(() => {
-    if (!searchYear || !searchMonth || !searchDay) return;
+    if (!searchDate.year || !searchDate.month || !searchDate.day) return;
     const fetchData = async () => {
       try {
         selectError(false);
         selectLoading(true);
-        const data = await fetchDailyWater(searchYear, searchMonth, searchDay);
+        const data = await fetchDailyWater(
+          searchDate.year,
+          searchDate.month,
+          searchDate.day
+        );
         setWaterlist(data);
       } catch (error) {
         selectError(error);
@@ -31,7 +29,7 @@ const WaterList = ({ currentDate, monthNames }) => {
       }
     };
     fetchData();
-  }, [searchYear, searchMonth, searchDay]);
+  }, [searchDate.year, searchDate.month, searchDate.day]);
 
   return (
     <div className={css.container}>
