@@ -11,10 +11,9 @@ import { Audio } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
 const TrackerPage = () => {
-  const volume = 50;
   const data = [
-    { volume: 250, time: '7-00' },
-    { volume: 250, time: '11-00' },
+    { volume: 250, time: '7-00', id: '001' },
+    { volume: 250, time: '11-00', id: '002' },
   ];
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -143,6 +142,7 @@ const TrackerPage = () => {
           wrapperClass
         />
       )}
+
       <MainWaterInfo />
       <div className={css.waterCalendarcontainer}>
         <UserButton />
@@ -153,7 +153,7 @@ const TrackerPage = () => {
           searchDate={searchDate}
         />
         <CalendarSection
-          waterQuantity={volume}
+          waterQuantity={50}
           currentDate={currentDate}
           monthNames={monthNames}
           handleNextMonth={handleNextMonth}
