@@ -1,15 +1,16 @@
+import { useDispatch } from 'react-redux';
 import css from './Calendar.module.css';
+import { fetchMonthWater } from '../../redux/water/operations';
+import { useEffect } from 'react';
 
-// додати ще 1 пропс currentDay
-const Calendar = ({ year, month, currentDay, waterQuantity }) => {
+const Calendar = ({ year, month, currentDay, waterQuantity, onChangeDate }) => {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  console.log(waterQuantity);
+  const dispatch = useDispatch();
 
-  console.log(currentDay);
-  // if (currentDay) {
-  //   return <button className={css.calendarday}></button>
-  // }
+  useEffect(() => {
+    dispatch(fetchMonthWater({ year, month }));
+  }, [dispatch, year, month]);
 
   return (
     <ul className={css.calendar}>
@@ -18,10 +19,11 @@ const Calendar = ({ year, month, currentDay, waterQuantity }) => {
           <button
             className={day === currentDay ? css.currentday : css.calendarday}
             disabled={day > currentDay}
+            onClick={() => onChangeDate(year, month + 1, day)}
           >
             {day}
           </button>
-          <p className={day < currentDay ? css.percent : css.hidden}>
+          <p className={day <= currentDay ? css.percent : css.hidden}>
             {waterQuantity}%
           </p>
         </li>

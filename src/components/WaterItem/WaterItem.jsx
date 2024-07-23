@@ -1,15 +1,24 @@
 import css from './WaterItem.module.css';
 import Iconsvg from '../Icon';
+import { useDispatch } from 'react-redux';
+import { deleteWater } from '../../redux/water/operations';
+import toast from 'react-hot-toast';
 
 const WaterItem = ({ waterItem }) => {
-  console.log(waterItem);
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteWater(waterItem._id));
+    toast.success('Successfully delet');
+  };
+
   return (
     <div className={css.container}>
       <Iconsvg
-        width={16}
-        height={16}
         iconName={'water-glass'}
-        styles={css.icon}
+        styles={css.svg}
+        width={32}
+        height={36}
       />
       <div className={css.data}>
         <p className={css.text}>{waterItem.volume} ml</p>
@@ -26,13 +35,13 @@ const WaterItem = ({ waterItem }) => {
             styles={css.icon}
           />
         </button>
-        <button className={css.btn}>
+    <button className={css.btn} onClick={handleDelete}>
           <Iconsvg
             width={16}
             height={16}
             iconName={'trash'}
             styles={css.icon}
-          />
+          /> 
         </button>
       </div>
     </div>
