@@ -7,14 +7,8 @@ import { selectLoading } from '../redux/water/selectors';
 // import { useEffect } from 'react';
 // import { fetchDailyWater } from '../redux/water/operations';
 
-const HomePage = () => {
-  // const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  // const date = { year: '2024', month: '07', day: '07' };
-  // useEffect(() => {
-  //   dispatch(fetchDailyWater(date));
-  // }, [dispatch, date]);
 
+const HomePage = () => {
   return (
     <div className={styles.homePageWrapper}>
       <WelcomeSection />
