@@ -1,0 +1,23 @@
+.modal {
+  width: 100%;
+  padding: 40px 20px;
+}
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  margin-bottom: 24px;
+  max-width: 248px;
+}
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 40px;
+  }
+  .title {
+    font-size: 28px;
+    line-height: 1.14286;
+    max-width: 347px;
+  }
+}

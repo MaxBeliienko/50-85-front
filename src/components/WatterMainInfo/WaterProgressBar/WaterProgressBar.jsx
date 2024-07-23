@@ -1,13 +1,54 @@
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import css from './WaterProgressBar.module.css';
 
 const WaterProgressBar = ({ consumed, dailyNorma }) => {
   const progress = (consumed / dailyNorma) * 100;
 
+  const sliderStyle = {
+    margin: '0',
+    padding: '0',
+    height: '8px',
+    width: '100%',
+  };
+
+  const trackStyle = {
+    backgroundColor: '#9be1a0',
+    height: 8,
+    borderRadius: 9,
+    padding: 0,
+  };
+
+  const railStyle = {
+    backgroundColor: '#f0eff4',
+    height: 8,
+    borderRadius: 9,
+  };
+
+  const handleStyle = {
+    borderColor: '#9be1a0',
+    backgroundColor: '#fff',
+    height: 16,
+    width: 16,
+    marginLeft: 0,
+    marginTop: -4,
+    borderRadius: '100%',
+    zIndex: 2,
+    boxShadow: 'none',
+  };
+
   return (
     <div className={css.waterProgressBar}>
       <div className={css.today}>Today</div>
       <div className={css.progressContainer}>
-        <div className={css.progress} style={{ width: `${progress}%` }}></div>
+        <Slider
+          value={progress}
+          trackStyle={trackStyle}
+          railStyle={railStyle}
+          handleStyle={handleStyle}
+          style={sliderStyle}
+          disabled
+        />
       </div>
       <div className={css.labels}>
         <span className={css.label}>0%</span>

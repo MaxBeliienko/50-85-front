@@ -65,7 +65,7 @@ closeModal={closeModal}
 buttonTop={20}
 buttonRight={20}
 >
-  <DeleteWaterModal> </DeleteWaterModal>
+  <WaterModal operationType="add" />
 </Modal>;
 
 */
