@@ -94,8 +94,8 @@ const TrackerPage = () => {
   return (
     <div className={css.container}>
       <MainWaterInfo />
-      <UserButton />
       <div className={css.waterCalendarcontainer}>
+        <UserButton />
         <WaterList
           waterlist={data}
           currentDate={currentDate}
