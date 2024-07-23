@@ -1,6 +1,7 @@
 import css from './TrackerPage.module.css';
 import CalendarSection from '../components/CalendarSection/CalendarSection';
 import MainWaterInfo from '../components/WatterMainInfo/MainWaterInfo/MainWaterInfo';
+import UserButton from '../components/WaterDetailedInfo/UserPanel/UserPanel';
 import WaterList from '../components/WaterList/WaterList';
 import { useEffect, useState } from 'react';
 
@@ -94,6 +95,7 @@ const TrackerPage = () => {
     <div className={css.container}>
       <MainWaterInfo />
       <div className={css.waterCalendarcontainer}>
+        <UserButton />
         <WaterList
           waterlist={data}
           currentDate={currentDate}
