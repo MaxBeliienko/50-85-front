@@ -11,14 +11,14 @@ const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
 
 export const getUserProfile = createAsyncThunk(
   'users/user-profile',
-  asyncThunkWrapper(async user => {
-    const { data } = await axios.get('/users/user-profile', user);
+  asyncThunkWrapper(async id => {
+    const { data } = await axios.get('/users/user-profile', id);
     return data;
   })
 );
 
 export const updateUserProfile = createAsyncThunk(
-  'users/user-profile',
+  'users/user-update',
   asyncThunkWrapper(async user => {
     const { data } = await axios.patch('/users/user-profile', user);
     return data;

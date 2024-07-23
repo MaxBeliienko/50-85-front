@@ -21,6 +21,8 @@ const initialState = {
     gender: 'female',
     dailyRequirement: null,
   },
+  loading: false,
+  error: null,
 };
 
 const userSlice = createSlice({
@@ -29,19 +31,17 @@ const userSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUserProfile.pending, handlePending)
-      .addCase(getUserProfile.fulfilled, (state, payload) => {
-        state.user = { payload };
+      .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
         state.loading = false;
         state.error = null;
-        state.isLoggedIn = true;
       })
       .addCase(getUserProfile.rejected, handleRejected)
       .addCase(updateUserProfile.pending, handlePending)
-      .addCase(updateUserProfile.fulfilled, (state, payload) => {
-        state.user = { ...state, payload };
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload };
         state.loading = false;
         state.error = null;
-        state.isLoggedIn = true;
       });
   },
 });
