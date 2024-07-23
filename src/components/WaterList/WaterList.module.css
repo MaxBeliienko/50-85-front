@@ -29,16 +29,20 @@
   height: 30px;
   background-color: #9be1a0;
   cursor: pointer;
+}
 
-  svg {
-    width: 10px;
-    height: 10px;
-  }
+.svg {
+  stroke-width: 1.5px;
+  stroke: black;
 }
 
 .btn:hover,
 .btn:focus {
-  background-color: #87d28d;
+  background-color: #323f47;
+
+  .svg {
+    stroke: white;
+  }
 }
 
 .text {
