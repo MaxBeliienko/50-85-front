@@ -1,13 +1,13 @@
-import { useState } from "react";
-import ImageUploading from "react-images-uploading";
-import Iconsvg from "../../../../../Icon";
-import styles from "./CustomImageUploading.module.css";
+import { useState } from 'react';
+import ImageUploading from 'react-images-uploading';
+import Iconsvg from '../../../../../Icon';
+import styles from './CustomImageUploading.module.css';
 
 const CustomImageUploading = () => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
 
-  const onChange = (imageList) => {
+  const onChange = imageList => {
     setImages(imageList);
   };
 
@@ -18,7 +18,7 @@ const CustomImageUploading = () => {
         onChange={onChange}
         maxNumber={maxNumber}
         dataURLKey="data_url"
-        acceptType={["jpg", "jpeg", "png"]}
+        acceptType={['jpg', 'jpeg', 'png']}
       >
         {({
           imageList,
@@ -32,7 +32,11 @@ const CustomImageUploading = () => {
             <div className={styles.imagePreview}>
               {imageList.length > 0 ? (
                 <div className={styles.imagePreview}>
-                  <img src={imageList[0]["data_url"]} alt="Avatar" />
+                  <img
+                    className={styles.avatar}
+                    src={imageList[0]['data_url']}
+                    alt="Avatar"
+                  />
                   <div className={styles.imageItemBtnWrapper}>
                     <button
                       onClick={() => onImageUpdate(0)}
@@ -46,17 +50,17 @@ const CustomImageUploading = () => {
                     >
                       Remove
                     </button>
-                  </div>{" "}
+                  </div>{' '}
                 </div>
               ) : (
                 <div className={styles.uploadImageBox} {...dragProps}>
                   <div className={styles.imagePlaceholder} {...dragProps}></div>
                   <button
-                    style={isDragging ? { color: "red" } : undefined}
+                    style={isDragging ? { color: 'red' } : undefined}
                     className={styles.uploadImageButton}
                     onClick={onImageUpload}
                   >
-                    <Iconsvg width={16} height={16} iconName={"log-out"} />
+                    <Iconsvg width={16} height={16} iconName={'log-out'} />
                     Upload a photo
                   </button>
                 </div>
