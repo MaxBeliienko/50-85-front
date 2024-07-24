@@ -18,12 +18,12 @@ const authSlice = createSlice({
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, state => {
