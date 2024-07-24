@@ -10,6 +10,7 @@ import Iconsvg from '../Icon';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../redux/auth/operations.js';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -65,21 +66,22 @@ const SignUpForm = () => {
     }
   };
 
+  const { t } = useTranslation();
   return (
     <>
       <Logo />
       <div className={styles.signUpWrapper}>
-        <p className={styles.mainText}>Sign Up</p>
+        <p className={styles.mainText}>{t('description.signUp.MainHeader')}</p>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formGroup}>
             <label htmlFor={emailFieldId} className={styles.labelText}>
-              Email
+              {t('description.signUp.EmailLabel')}
             </label>
             <input
               id={emailFieldId}
               {...register('email')}
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('description.signUp.EmailPlaceholder')}
               className={`${styles.inputField} ${
                 errors.email ? 'loginError' : ''
               }`}
@@ -90,13 +92,13 @@ const SignUpForm = () => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor={pwdFieldId} className={styles.labelText}>
-              Password
+              {t('description.signUp.PwdLabel')}
             </label>
             <input
               id={pwdFieldId}
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
-              placeholder="Enter your password"
+              placeholder={t('description.signUp.PwdPlaceholder')}
               className={`${styles.inputField} ${
                 errors.password ? 'loginError' : ''
               }`}
@@ -114,13 +116,13 @@ const SignUpForm = () => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor={pwdCheckId} className={styles.labelText}>
-              Repeat password
+              {t('description.signUp.PwdLabel')}
             </label>
             <input
               id={pwdCheckId}
               {...register('passwordCheck')}
               type={showPasswordCheck ? 'text' : 'password'}
-              placeholder="Repeat password"
+              placeholder={t('description.signUp.RepeatPwdPlaceholder')}
               className={`${styles.inputField} ${
                 errors.passwordCheck ? 'loginError' : ''
               }`}
@@ -137,13 +139,13 @@ const SignUpForm = () => {
             )}
           </div>
           <button type="submit" className={styles.submitBtn}>
-            Sign Up
+            {t('description.signUp.MainButton')}
           </button>
         </form>
         <p className={styles.dontHaveAcc}>
-          Already have an account?{' '}
+          {t('description.signUp.AllreadyHaveAcc')}
           <NavLink to="/signin" className={styles.navigate}>
-            Sign In
+            {t('description.signUp.SignInLink')}
           </NavLink>
         </p>
       </div>

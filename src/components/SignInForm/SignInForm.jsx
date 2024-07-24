@@ -10,6 +10,7 @@ import Iconsvg from '../Icon';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -53,22 +54,23 @@ const SignInForm = () => {
       toast.error('Something went wrong');
     }
   };
+  const { t } = useTranslation();
 
   return (
     <>
       <Logo />
       <div className={styles.signinWrapper}>
-        <p className={styles.mainText}>Sign In</p>
+        <p className={styles.mainText}>{t('description.signIn.MainHeader')}</p>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formGroup}>
             <label htmlFor={emailFieldId} className={styles.labelText}>
-              Email
+              {t('description.signIn.EmailLabel')}
             </label>
             <input
               id={emailFieldId}
               {...register('email')}
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('description.signIn.EmailPlaceholder')}
               className={`${styles.inputField} ${
                 errors.email ? 'loginError' : ''
               }`}
@@ -79,13 +81,13 @@ const SignInForm = () => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor={pwdFieldId} className={styles.labelText}>
-              Password
+              {t('description.signIn.PwdLabel')}
             </label>
             <input
               id={pwdFieldId}
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
-              placeholder="Enter your password"
+              placeholder={t('description.signIn.PwdPlaceholder')}
               className={`${styles.inputField} ${
                 errors.password ? 'loginError' : ''
               }`}
@@ -102,13 +104,13 @@ const SignInForm = () => {
             )}
           </div>
           <button type="submit" className={styles.submitBtn}>
-            Sign In
+            {t('description.signIn.MainButton')}
           </button>
         </form>
         <p className={styles.dontHaveAcc}>
-          Don`t have an account?{' '}
+          {t('description.signIn.AllreadyHaveAcc')}
           <NavLink to="/signup" className={styles.navigate}>
-            Sign Up
+            {t('description.signIn.SignInLink')}
           </NavLink>
         </p>
       </div>

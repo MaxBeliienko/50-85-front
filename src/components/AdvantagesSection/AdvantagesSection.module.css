@@ -30,7 +30,7 @@
 .customersWrapper {
   background-color: var(--white);
   border-radius: 30px;
-  width: 160px;
+  width: 168px;
   height: 48px;
   position: relative;
   position: absolute;
@@ -63,7 +63,7 @@
   font-size: 12px;
   line-height: 1.16667;
   color: var(--black);
-  width: 67px;
+  width: 87px;
   height: 28px;
   position: absolute;
   margin: 10px 0 0 79px;
@@ -79,7 +79,7 @@
   flex-wrap: wrap;
   position: absolute;
   top: 265px;
-  left: 159px;
+  left: 129px;
   gap: 4px;
 }
 
@@ -143,13 +143,13 @@
   }
 
   .responsiveImage.customer1 {
-    content: url('../../public/images/customers/customerPC1.png');
+    content: url('../../../public/customers/customerPC1.png');
   }
   .responsiveImage.customer2 {
-    content: url('../../public/images/customers/customerPC2.png');
+    content: url('../../../public/customers/customerPC2.png');
   }
   .responsiveImage.customer3 {
-    content: url('../../public/images/customers/customerPC3.png');
+    content: url('../../../public/customers/customerPC3.png');
   }
 
   .customersWrapper {
@@ -172,7 +172,7 @@
   .customerText {
     font-size: 15px;
     line-height: 1.49333;
-    width: 90px;
+    width: 105px;
     height: 45px;
     left: 50px;
   }
@@ -182,7 +182,7 @@
     gap: 10px;
     position: absolute;
     top: 336px;
-    left: 430px;
+    left: 390px;
   }
 
   .hashtags {
@@ -213,7 +213,7 @@
 
   .hashtagsWrapper {
     top: 594px;
-    left: 393px;
+    left: 355px;
   }
 
   .customersWrapper {
