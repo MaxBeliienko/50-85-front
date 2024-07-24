@@ -8,6 +8,7 @@ import RestrictedRoute from './components/RestrictedRoute';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from './redux/auth/operations';
+// import { selectIsRefreshing } from './redux/auth/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
@@ -16,6 +17,7 @@ const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 
 function App() {
   const dispatch = useDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -26,7 +28,12 @@ function App() {
       <Toaster position="top-right" reverseOrder={false} />
       <SharedLayout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <RestrictedRoute redirectTo="/tracker" component={<HomePage />} />
+            }
+          />
           <Route
             path="/signup"
             element={
