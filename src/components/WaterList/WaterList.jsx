@@ -43,17 +43,20 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
             ? 'Today'
             : `${currentDate.day}, ${monthNames[currentDate.month]}`}
         </h2>
-        <div className={css.btncontainer}>
-          <button className={css.btn} onClick={openModal}>
-            <Iconsvg
-              iconName="add-water"
-              width={16}
-              height={16}
-              styles={css.svg}
-            />
-          </button>
-          <p className={css.text}>Add water</p>
-        </div>
+
+        {isToday && (
+          <div className={css.btncontainer}>
+            <button className={css.btn} onClick={openModal}>
+              <Iconsvg
+                iconName="add-water"
+                width={16}
+                height={16}
+                styles={css.svg}
+              />
+            </button>
+            <p className={css.text}>Add water</p>
+          </div>
+        )}
       </div>
 
       <ul className={css.list}>

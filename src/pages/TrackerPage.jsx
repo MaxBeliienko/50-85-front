@@ -15,6 +15,36 @@ const TrackerPage = () => {
     { volume: 250, time: '7-00', id: '001' },
     { volume: 250, time: '11-00', id: '002' },
   ];
+  const value = 50;
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
+
+  const [currentDate, setCurrentDate] = useState({
+    year: null,
+    month: null,
+    day: null,
+  });
+
+  const [initialDate, setInitialDate] = useState({
+    year: null,
+    month: null,
+    day: null,
+  });
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -33,36 +63,6 @@ const TrackerPage = () => {
     setSearchParams({ year, month });
   };
 
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  const [currentDate, setCurrentDate] = useState({
-    year: null,
-    month: null,
-    day: null,
-  });
-
-  const [initialDate, setInitialDate] = useState({
-    year: null,
-    month: null,
-    day: null,
-  });
-
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-
   useEffect(() => {
     const today = new Date();
     const initial = {
@@ -75,17 +75,6 @@ const TrackerPage = () => {
     setInitialDate(initial);
     dispatch(fetchMonthWater(initial.year, initial.month));
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const initial = {
-  //     year: today.getFullYear(),
-  //     month: today.getMonth(),
-  //     day: today.getDate(),
-  //   };
-  //   setCurrentDate(initial);
-  //   setInitialDate(initial);
-  // }, []);
 
   const handleNextMonth = () => {
     setCurrentDate(prevState => {
@@ -156,7 +145,7 @@ const TrackerPage = () => {
           searchDate={searchDate}
         />
         <CalendarSection
-          waterQuantity={50}
+          waterQuantity={value}
           currentDate={currentDate}
           monthNames={monthNames}
           handleNextMonth={handleNextMonth}
