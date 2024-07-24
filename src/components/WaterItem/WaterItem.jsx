@@ -1,22 +1,11 @@
 import css from './WaterItem.module.css';
 import Iconsvg from '../Icon';
-// import { useDispatch } from 'react-redux';
-// import { deleteWater } from '../../redux/water/operations';
-// import toast from 'react-hot-toast';
 import Modal from '../Modal';
 import { useState } from 'react';
 import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
 
 const WaterItem = ({ waterItem }) => {
-  // const dispatch = useDispatch();
-
-  // const handleDelete = () => {
-  //   console.log(waterItem.id);
-  //   dispatch(deleteWater(waterItem.id));
-  //   toast.success('Successfully delet');
-  // };
-
   const handleEdit = () => {
     console.log(waterItem.id);
     // open modal edit water
@@ -46,7 +35,7 @@ const WaterItem = ({ waterItem }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <DeleteWaterModal closeModal={closeModal} />
+        <DeleteWaterModal closeModal={closeModal} id={waterItem.id} />
       </Modal>
       <Modal
         showModal={showEditModal}
@@ -54,11 +43,10 @@ const WaterItem = ({ waterItem }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        {' '}
         <WaterModal
           operationType={'edit'}
           onEditWater={handleEdit}
-          onClose={closeModal}
+          onCloseModal={closeShowEditModal}
         />
       </Modal>
       <div className={css.container}>

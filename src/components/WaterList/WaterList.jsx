@@ -7,16 +7,12 @@ import WaterModal from '../waterModal/WaterModal';
 
 const WaterList = ({ waterlist, currentDate, monthNames }) => {
   const [showModal, setShowModal] = useState(false);
+
   const openModal = () => {
     setShowModal(true);
   };
   const closeModal = () => {
     setShowModal(false);
-  };
-
-  const handleAdd = () => {
-    console.log('add');
-    // open modal edit water
   };
 
   return (
@@ -27,11 +23,7 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal
-          operationType={'add'}
-          onAddWater={handleAdd}
-          onClose={closeModal}
-        />
+        <WaterModal operationType={'add'} onCloseModal={closeModal} />
       </Modal>
       <div className={css.topcontainer}>
         <h2 className={css.title}>
