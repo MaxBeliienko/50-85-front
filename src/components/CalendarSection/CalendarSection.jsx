@@ -50,7 +50,7 @@ const CalendarSection = ({
         <Calendar
           year={currentDate.year}
           month={currentDate.month}
-          currentDay={currentDate.day}
+          currentDate={currentDate}
           waterQuantity={waterQuantity}
           onChangeDate={onChangeDate}
         />

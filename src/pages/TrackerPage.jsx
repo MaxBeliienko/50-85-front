@@ -26,6 +26,7 @@ const TrackerPage = () => {
 
   const onChangeDate = (year, month, day) => {
     setSearchParams({ year, month, day });
+    setInitialDate({ year, month: month - 1, day });
   };
 
   const onChangeMonth = (year, month) => {
@@ -90,8 +91,8 @@ const TrackerPage = () => {
     setCurrentDate(prevState => {
       const nextMonth = (prevState.month + 1) % 12;
       const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
-      onChangeMonth(nextYear, nextMonth + 1);
-
+      onChangeMonth(nextYear, nextMonth);
+      onChangeDate(nextYear, nextMonth + 1, 1);
       if (nextYear === initialDate.year && nextMonth === initialDate.month) {
         return {
           ...initialDate,
@@ -111,7 +112,9 @@ const TrackerPage = () => {
       const previousMonth = (prevState.month - 1 + 12) % 12;
       const previousYear =
         prevState.year + Math.floor((prevState.month - 1) / 12);
-      onChangeMonth(previousYear, previousMonth + 1);
+      onChangeMonth(previousYear, previousMonth);
+      onChangeDate(previousYear, previousMonth + 1, 1);
+
       if (
         previousYear === initialDate.year &&
         previousMonth === initialDate.month
@@ -148,7 +151,7 @@ const TrackerPage = () => {
         <UserButton />
         <WaterList
           waterlist={data}
-          currentDate={currentDate}
+          currentDate={initialDate}
           monthNames={monthNames}
           searchDate={searchDate}
         />

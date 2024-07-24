@@ -15,6 +15,18 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
     setShowModal(false);
   };
 
+  const today = new Date();
+  const initial = {
+    year: today.getFullYear(),
+    month: today.getMonth(),
+    day: today.getDate(),
+  };
+
+  const isToday =
+    initial.day === currentDate.day &&
+    initial.month === currentDate.month &&
+    initial.year === currentDate.year;
+
   return (
     <div className={css.container}>
       <Modal
@@ -27,7 +39,9 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
       </Modal>
       <div className={css.topcontainer}>
         <h2 className={css.title}>
-          {currentDate.day}, {monthNames[currentDate.month]}
+          {isToday
+            ? 'Today'
+            : `${currentDate.day}, ${monthNames[currentDate.month]}`}
         </h2>
         <div className={css.btncontainer}>
           <button className={css.btn} onClick={openModal}>
