@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'https://aquatrack-backend.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  console.log('Token set in localStorage:', token);
 };
 
 const clearAuthHeader = () => {
@@ -34,7 +35,7 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/register', user);
-    setAuthHeader(data.accessToken);
+    setAuthHeader(data.data.accessToken);
     return data;
   })
 );
@@ -43,7 +44,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/login', user);
-    setAuthHeader(data.accessToken);
+    setAuthHeader(data.data.accessToken);
     return data;
   })
 );
@@ -60,11 +61,12 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   asyncThunkWrapper(async (_, thunkApi) => {
     const state = thunkApi.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken =
+      state.auth.token || localStorage.getItem('accessToken');
 
     if (!persistedToken) {
-      // const refreshResult = await thunkApi.dispatch(refreshUser());
-      const refreshResult = await axios.post('/users/refresh-token');
+      const refreshResult = await thunkApi.dispatch(refreshUser());
+      // const refreshResult = await axios.post('/users/refresh-token');
 
       if (refreshResult.error) {
         return thunkApi.rejectWithValue(refreshResult.error.message);
