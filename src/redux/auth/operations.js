@@ -5,7 +5,6 @@ axios.defaults.baseURL = 'https://aquatrack-backend.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  console.log('Token set in localStorage:', token);
 };
 
 const clearAuthHeader = () => {
@@ -66,7 +65,6 @@ export const refreshUser = createAsyncThunk(
 
     if (!persistedToken) {
       const refreshResult = await thunkApi.dispatch(refreshUser());
-      // const refreshResult = await axios.post('/users/refresh-token');
 
       if (refreshResult.error) {
         return thunkApi.rejectWithValue(refreshResult.error.message);
