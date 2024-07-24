@@ -34,7 +34,7 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/register', user);
-    setAuthHeader(data.token);
+    setAuthHeader(data.accessToken);
     return data;
   })
 );
@@ -43,7 +43,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   asyncThunkWrapper(async user => {
     const { data } = await axios.post('/users/login', user);
-    setAuthHeader(data.token);
+    setAuthHeader(data.accessToken);
     return data;
   })
 );
