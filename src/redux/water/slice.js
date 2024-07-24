@@ -19,7 +19,8 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    items: [],
+    dailyWater: [],
+    monthWater: [],
     loading: false,
     error: null,
   },
@@ -29,35 +30,36 @@ const waterSlice = createSlice({
       .addCase(fetchMonthWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.monthWater = action.payload;
       })
       .addCase(fetchMonthWater.rejected, handleRejected)
       .addCase(fetchDailyWater.pending, handlePending)
       .addCase(fetchDailyWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.dailyWater = action.payload;
       })
       .addCase(fetchDailyWater.rejected, handleRejected)
       .addCase(addWater.pending, handlePending)
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.dailyWater.push(action.payload);
       })
       .addCase(addWater.rejected, handleRejected)
       .addCase(deleteWater.pending, handlePending)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const index = state.items.findIndex(
-          task => task.id === action.payload.id
+        const index = state.dailyWater.findIndex(
+          water => water.id === action.payload.id
         );
-        state.items.splice(index, 1);
+        state.dailyWater.splice(index, 1);
       })
       .addCase(deleteWater.rejected, handleRejected)
       .addCase(logOut.fulfilled, state => {
-        state.items = [];
+        state.dailyWater = [];
+        state.monthWater = [];
         state.error = null;
         state.loading = false;
       });

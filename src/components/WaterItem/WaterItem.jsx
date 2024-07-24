@@ -47,6 +47,7 @@ const WaterItem = ({ waterItem }) => {
           operationType={'edit'}
           onEditWater={handleEdit}
           onCloseModal={closeShowEditModal}
+          id={waterItem.id}
         />
       </Modal>
       <div className={css.container}>
