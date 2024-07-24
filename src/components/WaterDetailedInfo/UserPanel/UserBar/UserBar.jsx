@@ -4,6 +4,7 @@ import Iconsvg from '../../../Icon';
 import { selectUserProfile } from '../../../../redux/user/selectors';
 import { useSelector } from 'react-redux';
 import LogOutModal from '../../../LogOutModal';
+import Modal from '../../../Modal';
 
 const UserBar = () => {
   const userBar = useSelector(selectUserProfile);
@@ -21,10 +22,10 @@ const UserBar = () => {
     setIsLogOutModalOpen(false);
   };
   const onClosePopup = useCallback(e => {
-      const elem = e.target.closest("[data-popup]");
-      console.log(elem);
-      if (elem) return;
-      console.log("hello");
+    const elem = e.target.closest('[data-popup]');
+    console.log(elem);
+    if (elem) return;
+    console.log('hello');
     setIsPopupOpen(false);
   }, []);
   const arrowClass = !isPopupOpen ? '' : 'rotate-arrow';
@@ -91,7 +92,14 @@ const UserBar = () => {
           </div>
         )}
       </div>
-      {isLogOutModalOpen && <LogOutModal closeModal={closeLogOutModal} />}
+      <Modal
+        showModal={isLogOutModalOpen}
+        closeModal={closeLogOutModal}
+        buttonTop={20}
+        buttonRight={20}
+      >
+        <LogOutModal closeModal={closeLogOutModal} />
+      </Modal>
     </>
   );
 };
