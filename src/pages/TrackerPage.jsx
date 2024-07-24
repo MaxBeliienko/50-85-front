@@ -15,23 +15,7 @@ const TrackerPage = () => {
     { volume: 250, time: '7-00', id: '001' },
     { volume: 250, time: '11-00', id: '002' },
   ];
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const searchDate = {
-    year: searchParams.get('year'),
-    month: searchParams.get('month'),
-    day: searchParams.get('day'),
-  };
-
-  const onChangeDate = (year, month, day) => {
-    setSearchParams({ year, month, day });
-  };
-
-  const onChangeMonth = (year, month) => {
-    setSearchParams({ year, month });
-  };
-
+  const value = 50;
   const monthNames = [
     'January',
     'February',
@@ -47,6 +31,9 @@ const TrackerPage = () => {
     'December',
   ];
 
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
+
   const [currentDate, setCurrentDate] = useState({
     year: null,
     month: null,
@@ -59,8 +46,22 @@ const TrackerPage = () => {
     day: null,
   });
 
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchDate = {
+    year: searchParams.get('year'),
+    month: searchParams.get('month'),
+    day: searchParams.get('day'),
+  };
+
+  const onChangeDate = (year, month, day) => {
+    setSearchParams({ year, month, day });
+    setInitialDate({ year, month: month - 1, day });
+  };
+
+  const onChangeMonth = (year, month) => {
+    setSearchParams({ year, month });
+  };
 
   useEffect(() => {
     const today = new Date();
@@ -75,23 +76,12 @@ const TrackerPage = () => {
     dispatch(fetchMonthWater(initial.year, initial.month));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const initial = {
-  //     year: today.getFullYear(),
-  //     month: today.getMonth(),
-  //     day: today.getDate(),
-  //   };
-  //   setCurrentDate(initial);
-  //   setInitialDate(initial);
-  // }, []);
-
   const handleNextMonth = () => {
     setCurrentDate(prevState => {
       const nextMonth = (prevState.month + 1) % 12;
       const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
-      onChangeMonth(nextYear, nextMonth + 1);
-
+      onChangeMonth(nextYear, nextMonth);
+      onChangeDate(nextYear, nextMonth + 1, 1);
       if (nextYear === initialDate.year && nextMonth === initialDate.month) {
         return {
           ...initialDate,
@@ -111,7 +101,9 @@ const TrackerPage = () => {
       const previousMonth = (prevState.month - 1 + 12) % 12;
       const previousYear =
         prevState.year + Math.floor((prevState.month - 1) / 12);
-      onChangeMonth(previousYear, previousMonth + 1);
+      onChangeMonth(previousYear, previousMonth);
+      onChangeDate(previousYear, previousMonth + 1, 1);
+
       if (
         previousYear === initialDate.year &&
         previousMonth === initialDate.month
@@ -148,12 +140,12 @@ const TrackerPage = () => {
         <UserButton />
         <WaterList
           waterlist={data}
-          currentDate={currentDate}
+          currentDate={initialDate}
           monthNames={monthNames}
           searchDate={searchDate}
         />
         <CalendarSection
-          waterQuantity={50}
+          waterQuantity={value}
           currentDate={currentDate}
           monthNames={monthNames}
           handleNextMonth={handleNextMonth}
