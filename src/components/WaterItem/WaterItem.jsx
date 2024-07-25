@@ -6,10 +6,7 @@ import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
 
 const WaterItem = ({ waterItem }) => {
-  const handleEdit = () => {
-    console.log(waterItem.id);
-    // open modal edit water
-  };
+  console.log(waterItem._id);
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
@@ -35,7 +32,7 @@ const WaterItem = ({ waterItem }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <DeleteWaterModal closeModal={closeModal} id={waterItem.id} />
+        <DeleteWaterModal closeModal={closeModal} id={waterItem._id} />
       </Modal>
       <Modal
         showModal={showEditModal}
@@ -45,9 +42,8 @@ const WaterItem = ({ waterItem }) => {
       >
         <WaterModal
           operationType={'edit'}
-          onEditWater={handleEdit}
           onCloseModal={closeShowEditModal}
-          id={waterItem.id}
+          waterItem={waterItem}
         />
       </Modal>
       <div className={css.container}>

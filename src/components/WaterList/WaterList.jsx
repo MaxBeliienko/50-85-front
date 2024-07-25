@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../redux/water/selectors';
 
-
 const WaterList = ({ currentDate, monthNames }) => {
   const [showModal, setShowModal] = useState(false);
   const dailyWaterArray = useSelector(selectDailyWater);
@@ -19,7 +18,6 @@ const WaterList = ({ currentDate, monthNames }) => {
   const closeModal = () => {
     setShowModal(false);
   };
-
 
   const { t } = useTranslation();
   const today = new Date();
@@ -33,7 +31,6 @@ const WaterList = ({ currentDate, monthNames }) => {
     initial.day === currentDate.day &&
     initial.month === currentDate.month &&
     initial.year === currentDate.year;
-
 
   return (
     <div className={css.container}>
@@ -67,7 +64,7 @@ const WaterList = ({ currentDate, monthNames }) => {
       <ul className={css.list}>
         {dailyWaterArray.map(wateritem => {
           return (
-            <li key={wateritem.id} className={css.item}>
+            <li key={wateritem._id} className={css.item}>
               <WaterItem waterItem={wateritem} />
             </li>
           );
