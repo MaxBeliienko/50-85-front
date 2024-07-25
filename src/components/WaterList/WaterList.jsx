@@ -5,9 +5,13 @@ import css from './WaterList.module.css';
 import Modal from '../Modal';
 import WaterModal from '../waterModal/WaterModal';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { selectDailyWater } from '../../redux/water/selectors';
 
-const WaterList = ({ waterlist, currentDate, monthNames }) => {
+
+const WaterList = ({ currentDate, monthNames }) => {
   const [showModal, setShowModal] = useState(false);
+  const dailyWaterArray = useSelector(selectDailyWater);
 
   const openModal = () => {
     setShowModal(true);
@@ -16,7 +20,21 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
     setShowModal(false);
   };
 
+
   const { t } = useTranslation();
+  const today = new Date();
+  const initial = {
+    year: today.getFullYear(),
+    month: today.getMonth(),
+    day: today.getDate(),
+  };
+
+  const isToday =
+    initial.day === currentDate.day &&
+    initial.month === currentDate.month &&
+    initial.year === currentDate.year;
+
+
   return (
     <div className={css.container}>
       <Modal
@@ -29,7 +47,9 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
       </Modal>
       <div className={css.topcontainer}>
         <h2 className={css.title}>
-          {currentDate.day}, {monthNames[currentDate.month]}
+          {isToday
+            ? 'Today'
+            : `${currentDate.day}, ${monthNames[currentDate.month]}`}
         </h2>
         <div className={css.btncontainer}>
           <button className={css.btn} onClick={openModal}>
@@ -45,7 +65,7 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
       </div>
 
       <ul className={css.list}>
-        {waterlist.map(wateritem => {
+        {dailyWaterArray.map(wateritem => {
           return (
             <li key={wateritem.id} className={css.item}>
               <WaterItem waterItem={wateritem} />

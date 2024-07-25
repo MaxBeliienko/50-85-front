@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom/client';
 import 'modern-normalize';
 import App from './App.jsx';
 import './index.css';
+import { PersistGate } from 'redux-persist/integration/react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store, persistor } from './redux/store';
 
 import './localization/i18n.js';
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <BrowserRouter>
         <HelmetProvider>
-          <App />
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
         </HelmetProvider>
       </BrowserRouter>
     </Provider>

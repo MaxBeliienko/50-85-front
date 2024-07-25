@@ -6,36 +6,50 @@ import { useSelector } from 'react-redux';
 import LogOutModal from '../../../LogOutModal';
 import Modal from '../../../Modal';
 import { useTranslation } from 'react-i18next';
+import UserSettingsModal from "./components/UserSettingsModal/UserSettingsModal";
+
 
 const UserBar = () => {
   const userBar = useSelector(selectUserProfile);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
+  const [isUserSettingsModalOpen, setIsUserSettingsModalOpen] = useState(false);
+
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
-  const UserSettingsModal = () => {};
+
+  const openUserSettingsModal = () => {
+    setIsUserSettingsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeUserSettingsModal = () => {
+    setIsUserSettingsModalOpen(false);
+    document.body.style.overflow = "auto";
+  };
+
   const openLogOutModal = () => {
     setIsLogOutModalOpen(true);
   };
   const closeLogOutModal = () => {
     setIsLogOutModalOpen(false);
   };
-  const onClosePopup = useCallback(e => {
-    const elem = e.target.closest('[data-popup]');
+  const onClosePopup = useCallback((e) => {
+    const elem = e.target.closest("[data-popup]");
     console.log(elem);
     if (elem) return;
-    console.log('hello');
+    console.log("hello");
     setIsPopupOpen(false);
   }, []);
-  const arrowClass = !isPopupOpen ? '' : 'rotate-arrow';
+  const arrowClass = !isPopupOpen ? "" : "rotate-arrow";
   useEffect(() => {
     console.log(isPopupOpen);
     if (isPopupOpen) {
-      document.addEventListener('click', onClosePopup);
+      document.addEventListener("click", onClosePopup);
     } else {
-      document.removeEventListener('click', onClosePopup);
+      document.removeEventListener("click", onClosePopup);
     }
   }, [isPopupOpen]);
 
@@ -45,12 +59,12 @@ const UserBar = () => {
       <div className={css.userButtonContainer} data-popup="true">
         <button className={css.userButton} onClick={togglePopup}>
           <div className={css.buttonContainer}>
-            <span className={css.userName}>{userBar.name || 'User'}</span>
+            <span className={css.userName}>{userBar.name || "User"}</span>
 
             <img
               src={
                 userBar.avatar ||
-                'https://cdn-icons-png.flaticon.com/512/6596/6596121.png'
+                "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
               }
               className={css.userPhoto}
             />
@@ -70,7 +84,7 @@ const UserBar = () => {
             <div className={css.popupMenuWrap}>
               <button
                 className={css.popupMenuButton}
-                onClick={UserSettingsModal}
+                onClick={openUserSettingsModal}
               >
                 <Iconsvg
                   width={16}
@@ -86,7 +100,7 @@ const UserBar = () => {
                 <Iconsvg
                   width={16}
                   height={16}
-                  iconName={'log-out'}
+                  iconName={"log-out"}
                   styles={css.svg}
                 />
                 {t('description.userBar.logOutText')}
@@ -103,6 +117,10 @@ const UserBar = () => {
       >
         <LogOutModal closeModal={closeLogOutModal} />
       </Modal>
+      <UserSettingsModal
+        showModal={isUserSettingsModalOpen}
+        closeModal={closeUserSettingsModal}
+      />
     </>
   );
 };

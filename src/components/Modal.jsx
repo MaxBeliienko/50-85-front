@@ -5,11 +5,6 @@ ReactModal.setAppElement('#root');
 
 const Modal = ({ showModal, closeModal, buttonTop, buttonRight, children }) => {
   const customStyles = {
-    overlay: {
-      position: 'absolute',
-      zIndex: '1000',
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    },
     content: {
       top: '50%',
       left: '50%',
@@ -20,8 +15,14 @@ const Modal = ({ showModal, closeModal, buttonTop, buttonRight, children }) => {
       border: 'none',
       borderRadius: '15px',
       padding: '0',
+      zIndex: 1001,
+    },
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      zIndex: 1000,
     },
   };
+
   const buttonStyle = {
     backgroundColor: 'transparent',
     padding: '0',
@@ -55,9 +56,11 @@ export default Modal;
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
+     document.body.style.overflow = 'hidden';
   };
   const closeModal = () => {
     setShowModal(false);
+     document.body.style.overflow = 'auto';
   };
 
   

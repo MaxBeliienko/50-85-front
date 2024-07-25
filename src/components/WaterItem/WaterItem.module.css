@@ -9,6 +9,7 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .data {
