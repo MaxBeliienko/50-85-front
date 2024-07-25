@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const WaterForm = ({ onSubmit }) => {
+const WaterForm = ({ submit }) => {
   const [waterAmount, setWaterAmount] = useState(50);
 
   const getTime = () => {
@@ -103,7 +103,7 @@ const WaterForm = ({ onSubmit }) => {
           />
         </button>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <p className={styles.smallerText}>Recording time:</p>
         <div className={styles.inputWithDanger}>
           <input

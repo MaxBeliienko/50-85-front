@@ -4,21 +4,27 @@ import { useDispatch } from 'react-redux';
 import { addWater, editWater } from '../../redux/water/operations';
 import toast from 'react-hot-toast';
 
-const WaterModal = ({ operationType, onCloseModal }) => {
+const WaterModal = ({ operationType, onCloseModal, id }) => {
   let title;
+
   const dispatch = useDispatch();
 
   if (operationType === 'add') title = 'Add water';
   if (operationType === 'edit') title = 'Edit the entered amount of water';
 
   const handleSubmit = data => {
+    const volume = Number(data.volume);
+    const time = data.time;
+
     if (operationType === 'add') {
-      dispatch(addWater(data.volume / 1000, data.time));
+      console.log('add', volume, time);
+      dispatch(addWater({ volume, time }));
       toast.success('Successfully add');
       onCloseModal();
     }
     if (operationType === 'edit') {
-      dispatch(editWater(data.volume / 1000, data.time));
+      console.log('edit', id, volume, time);
+      dispatch(editWater(id, volume, time));
       toast.success('Successfully edit');
       onCloseModal();
     }
@@ -27,7 +33,7 @@ const WaterModal = ({ operationType, onCloseModal }) => {
   return (
     <div className={styles.modal}>
       <h6 className={styles.title}>{title}</h6>
-      <WaterForm operationType={operationType} onSubmit={handleSubmit} />
+      <WaterForm operationType={operationType} submit={handleSubmit} />
     </div>
   );
 };
