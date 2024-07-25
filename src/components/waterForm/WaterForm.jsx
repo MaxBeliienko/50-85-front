@@ -108,7 +108,7 @@ const WaterForm = ({ submit }) => {
           />
         </button>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <p className={styles.smallerText}>
           {t('description.waterForm.recordingTime')}
         </p>
