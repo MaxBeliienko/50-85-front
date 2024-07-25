@@ -33,6 +33,7 @@ export const addWater = createAsyncThunk(
   'water/addWater',
   async ({ volume, time }, thunkAPI) => {
     try {
+      console.log('operations', volume, time);
       const response = await axios.post('/water', { volume, time });
       return response.data;
     } catch (e) {
