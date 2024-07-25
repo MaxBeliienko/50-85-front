@@ -7,7 +7,7 @@ export const fetchMonthWater = createAsyncThunk(
     try {
       const res = await axios.get('/water/month', { params: { year, month } });
       console.log(res.data);
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -17,12 +17,13 @@ export const fetchMonthWater = createAsyncThunk(
 export const fetchDailyWater = createAsyncThunk(
   'water/daily',
   async ({ year, month, day }, thunkAPI) => {
+    console.log('daily operatioms', year, month, day);
     try {
       const res = await axios.get('/water/daily', {
         params: { year, month, day },
       });
       console.log(res.data);
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

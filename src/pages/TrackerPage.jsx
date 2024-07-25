@@ -6,15 +6,13 @@ import WaterList from '../components/WaterList/WaterList';
 import { useEffect, useState } from 'react';
 import { selectLoading } from '../redux/water/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMonthWater } from '../redux/water/operations';
+import { fetchDailyWater, fetchMonthWater } from '../redux/water/operations';
 import { Audio } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
 const TrackerPage = () => {
-  const data = [
-    { volume: 250, time: '7-00', id: '001' },
-    { volume: 250, time: '11-00', id: '002' },
-  ];
+  const dispatch = useDispatch();
+
   const value = 50;
   const monthNames = [
     'January',
@@ -31,22 +29,30 @@ const TrackerPage = () => {
     'December',
   ];
 
-  const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
+  const today = {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    day: new Date().getDate(),
+  };
 
   const [currentDate, setCurrentDate] = useState({
-    year: null,
-    month: null,
-    day: null,
+    year: today.year,
+    month: today.month,
+    day: today.day,
   });
 
   const [initialDate, setInitialDate] = useState({
-    year: null,
-    month: null,
-    day: null,
+    year: today.year,
+    month: today.month,
+    day: today.day,
   });
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({
+    year: today.year,
+    month: today.month,
+    day: today.day,
+  });
 
   const searchDate = {
     year: searchParams.get('year'),
@@ -63,8 +69,29 @@ const TrackerPage = () => {
     setSearchParams({ year, month });
   };
 
+  function formatNumber(str) {
+    // Преобразуем строку в число (если нужно)
+    let num = parseInt(str, 10);
+    // Преобразуем число обратно в строку и добавляем ведущий ноль, если необходимо
+    let formattedNum = num.toString().padStart(2, '0');
+    return formattedNum;
+  }
+
   useEffect(() => {
+    console.log(
+      searchDate.year,
+      formatNumber(searchDate.month),
+      formatNumber(searchDate.day)
+    );
+    dispatch(
+      fetchDailyWater({
+        year: searchDate.year,
+        month: formatNumber(searchDate.month),
+        day: formatNumber(searchDate.day),
+      })
+    );
     const today = new Date();
+
     const initial = {
       year: today.getFullYear(),
       month: today.getMonth(),
@@ -73,8 +100,8 @@ const TrackerPage = () => {
 
     setCurrentDate(initial);
     setInitialDate(initial);
-    dispatch(fetchMonthWater(initial.year, initial.month));
-  }, [dispatch]);
+    // dispatch(fetchMonthWater(initial.year, initial.month));
+  }, [dispatch, searchDate.year, searchDate.month, searchDate.day]);
 
   const handleNextMonth = () => {
     setCurrentDate(prevState => {
@@ -139,7 +166,6 @@ const TrackerPage = () => {
       <div className={css.waterCalendarcontainer}>
         <UserButton />
         <WaterList
-          waterlist={data}
           currentDate={initialDate}
           monthNames={monthNames}
           searchDate={searchDate}

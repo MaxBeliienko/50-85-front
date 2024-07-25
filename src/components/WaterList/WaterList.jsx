@@ -4,9 +4,12 @@ import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 import Modal from '../Modal';
 import WaterModal from '../waterModal/WaterModal';
+import { useSelector } from 'react-redux';
+import { selectDailyWater } from '../../redux/water/selectors';
 
-const WaterList = ({ waterlist, currentDate, monthNames }) => {
+const WaterList = ({ currentDate, monthNames }) => {
   const [showModal, setShowModal] = useState(false);
+  const dailyWaterArray = useSelector(selectDailyWater);
 
   const openModal = () => {
     setShowModal(true);
@@ -60,7 +63,7 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
       </div>
 
       <ul className={css.list}>
-        {waterlist.map(wateritem => {
+        {dailyWaterArray.map(wateritem => {
           return (
             <li key={wateritem.id} className={css.item}>
               <WaterItem waterItem={wateritem} />
