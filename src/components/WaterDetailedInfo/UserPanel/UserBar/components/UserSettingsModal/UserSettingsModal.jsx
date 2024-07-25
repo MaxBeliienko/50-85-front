@@ -76,7 +76,10 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
     >
       <div className={styles.settingsModal}>
         <p className={styles.settingsModalTitle}>Settings</p>
-        <CustomImageUploading onImageChange={handleImageChange} />
+        <CustomImageUploading
+          imageUrl={formState.photo}
+          onImageChange={handleImageChange}
+        />
         <div className={styles.settingsForm}>
           <div className={styles.gridItem}>
             <div className={styles.formGroup}>

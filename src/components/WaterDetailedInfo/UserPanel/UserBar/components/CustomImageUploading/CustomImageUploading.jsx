@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import Iconsvg from "../../../../../Icon";
 import styles from "./CustomImageUploading.module.css";
 import axios from "axios";
 
-const CustomImageUploading = ({ onImageChange }) => {
+const CustomImageUploading = ({ onImageChange, initialPhoto }) => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
+
+  useEffect(() => {
+    if (initialPhoto) {
+      setImages([{ data_url: initialPhoto }]);
+    }
+  }, [initialPhoto]);
 
   const onChange = async (imageList) => {
     setImages(imageList);
