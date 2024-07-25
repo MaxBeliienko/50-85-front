@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Iconsvg from '../Icon';
 import styles from './WaterForm.module.css';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const timeSchema = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const validationSchema = Yup.object().shape({
@@ -69,11 +70,15 @@ const WaterForm = ({ submit }) => {
       }
     }
   };
-
+  const { t } = useTranslation();
   return (
     <>
-      <p className={styles.biggerText}>Choose a value:</p>
-      <p className={styles.smallerText}>Amount of water:</p>
+      <p className={styles.biggerText}>
+        {t('description.waterForm.chooseValue')}
+      </p>
+      <p className={styles.smallerText}>
+        {t('description.waterForm.amountWater')}
+      </p>
       <div className={styles.amount}>
         <button
           type="button"
@@ -103,8 +108,11 @@ const WaterForm = ({ submit }) => {
           />
         </button>
       </div>
-      <form onSubmit={handleSubmit(submit)}>
-        <p className={styles.smallerText}>Recording time:</p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <p className={styles.smallerText}>
+          {t('description.waterForm.recordingTime')}
+        </p>
+
         <div className={styles.inputWithDanger}>
           <input
             type="text"
@@ -116,7 +124,9 @@ const WaterForm = ({ submit }) => {
             {errors?.time && errors.time.message}
           </small>
         </div>
-        <p className={styles.biggerText}>Enter the value of the water used:</p>
+        <p className={styles.biggerText}>
+          {t('description.waterForm.usedWater')}
+        </p>
         <div className={styles.inputWithDanger}>
           <input
             name="volume"
@@ -130,7 +140,7 @@ const WaterForm = ({ submit }) => {
           </small>
         </div>
         <button type="submit" className={styles.saveBtn}>
-          Save
+          {t('description.waterForm.saveBtn')}
         </button>
       </form>
     </>

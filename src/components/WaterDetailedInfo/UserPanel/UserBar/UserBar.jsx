@@ -1,11 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
-import css from "./UserBar.module.css";
-import Iconsvg from "../../../Icon";
-import { selectUserProfile } from "../../../../redux/user/selectors";
-import { useSelector } from "react-redux";
-import LogOutModal from "../../../LogOutModal";
-import Modal from "../../../Modal";
+import { useCallback, useEffect, useState } from 'react';
+import css from './UserBar.module.css';
+import Iconsvg from '../../../Icon';
+import { selectUserProfile } from '../../../../redux/user/selectors';
+import { useSelector } from 'react-redux';
+import LogOutModal from '../../../LogOutModal';
+import Modal from '../../../Modal';
+import { useTranslation } from 'react-i18next';
 import UserSettingsModal from "./components/UserSettingsModal/UserSettingsModal";
+
 
 const UserBar = () => {
   const userBar = useSelector(selectUserProfile);
@@ -50,6 +52,8 @@ const UserBar = () => {
       document.removeEventListener("click", onClosePopup);
     }
   }, [isPopupOpen]);
+
+  const { t } = useTranslation();
   return (
     <>
       <div className={css.userButtonContainer} data-popup="true">
@@ -88,7 +92,7 @@ const UserBar = () => {
                   iconName="settings"
                   styles={css.svg}
                 />
-                Settings
+                {t('description.userBar.setingsText')}
               </button>
             </div>
             <div className={css.popupMenuContainer}>
@@ -99,7 +103,7 @@ const UserBar = () => {
                   iconName={"log-out"}
                   styles={css.svg}
                 />
-                Logout
+                {t('description.userBar.logOutText')}
               </button>
             </div>
           </div>

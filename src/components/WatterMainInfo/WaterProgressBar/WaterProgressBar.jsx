@@ -1,6 +1,7 @@
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import css from './WaterProgressBar.module.css';
+import { useTranslation } from 'react-i18next';
 
 const WaterProgressBar = ({ consumed, dailyNorma }) => {
   const progress = (consumed / dailyNorma) * 100;
@@ -36,10 +37,10 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
     zIndex: 2,
     boxShadow: 'none',
   };
-
+  const { t } = useTranslation();
   return (
     <div className={css.waterProgressBar}>
-      <div className={css.today}>Today</div>
+      <div className={css.today}>{t('description.tracker.todayText')}</div>
       <div className={css.progressContainer}>
         <Slider
           value={progress}
