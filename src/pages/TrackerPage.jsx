@@ -6,7 +6,7 @@ import WaterList from '../components/WaterList/WaterList';
 import { useEffect, useState } from 'react';
 import { selectLoading } from '../redux/water/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDailyWater, fetchMonthWater } from '../redux/water/operations';
+import { fetchDailyWater } from '../redux/water/operations';
 import { Audio } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
