@@ -3,37 +3,35 @@ import css from './Calendar.module.css';
 import { fetchMonthWater } from '../../redux/water/operations';
 import { useEffect } from 'react';
 
-const Calendar = ({
-  year,
-  month,
-  currentDate,
-  waterQuantity,
-  onChangeDate,
-}) => {
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
+const Calendar = ({ today, currentDate, onChangeDate }) => {
+  const daysInMonth = new Date(
+    currentDate.year,
+    currentDate.month + 1,
+    0
+  ).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMonthWater({ year, month }));
-  }, [dispatch, year, month]);
+    dispatch(
+      fetchMonthWater({ year: currentDate.year, month: currentDate.month })
+    );
+  }, [dispatch, currentDate.year, currentDate.month]);
 
   return (
     <ul className={css.calendar}>
       {daysArray.map(day => (
         <li key={day}>
           <button
-            className={
-              day === currentDate.day ? css.currentday : css.calendarday
+            className={day === today.day ? css.currentday : css.calendarday}
+            disabled={day > today.day}
+            onClick={() =>
+              onChangeDate(currentDate.year, currentDate.month + 1, day)
             }
-            disabled={day > currentDate.day}
-            onClick={() => onChangeDate(year, month + 1, day)}
           >
             {day}
           </button>
-          <p className={day <= currentDate.day ? css.percent : css.hidden}>
-            {waterQuantity}%
-          </p>
+          <p className={css.percent}>50%</p>
         </li>
       ))}
     </ul>
@@ -41,6 +39,3 @@ const Calendar = ({
 };
 
 export default Calendar;
-
-// className={css.btn}
-// className={`day === currentDay ? 'current-day' : 'calendar-day'`}
