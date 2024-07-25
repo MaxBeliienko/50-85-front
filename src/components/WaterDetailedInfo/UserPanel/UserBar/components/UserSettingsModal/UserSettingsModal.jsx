@@ -50,8 +50,20 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
     }));
   };
 
+  const handleImageChange = (imageUrl) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      photo: imageUrl,
+    }));
+  };
+
   const handleSave = () => {
-    dispatch(updateUserProfile(formState));
+    const { ...otherData } = formState;
+    const payload = {
+      ...otherData,
+    };
+
+    dispatch(updateUserProfile(payload));
   };
 
   return (
@@ -64,7 +76,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
     >
       <div className={styles.settingsModal}>
         <p className={styles.settingsModalTitle}>Settings</p>
-        <CustomImageUploading />
+        <CustomImageUploading onImageChange={handleImageChange} />
         <div className={styles.settingsForm}>
           <div className={styles.gridItem}>
             <div className={styles.formGroup}>
@@ -75,9 +87,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 <label>
                   <input
                     type="radio"
-                    value="woman"
+                    value="female"
                     name="gender"
-                    checked={formState.gender === "woman"}
+                    checked={formState.gender === "female"}
                     onChange={handleChange}
                   />
                   Woman
@@ -85,9 +97,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 <label>
                   <input
                     type="radio"
-                    value="man"
+                    value="male"
                     name="gender"
-                    checked={formState.gender === "man"}
+                    checked={formState.gender === "male"}
                     onChange={handleChange}
                   />
                   Man
@@ -102,7 +114,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 type="text"
                 id="name"
                 name="name"
-                value={formState.name}
+                value={formState.name || ""}
                 onChange={handleChange}
               />
             </div>
@@ -165,7 +177,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 type="text"
                 id="sportsTime"
                 name="activityLevel"
-                value={formState.activityLevel}
+                value={formState.activityLevel || ""}
                 onChange={handleChange}
               />
             </div>
