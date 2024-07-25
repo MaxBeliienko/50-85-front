@@ -6,14 +6,13 @@ import WaterList from '../components/WaterList/WaterList';
 import { useEffect, useState } from 'react';
 import { selectLoading } from '../redux/water/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDailyWater } from '../redux/water/operations';
+import { fetchDailyWater, fetchMonthWater } from '../redux/water/operations';
 import { Audio } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
 const TrackerPage = () => {
   const dispatch = useDispatch();
 
-  const value = 50;
   const monthNames = [
     'January',
     'February',
@@ -100,7 +99,12 @@ const TrackerPage = () => {
 
     setCurrentDate(initial);
     setInitialDate(initial);
-    // dispatch(fetchMonthWater(initial.year, initial.month));
+    dispatch(
+      fetchMonthWater({
+        year: searchDate.year,
+        month: formatNumber(searchDate.month),
+      })
+    );
   }, [dispatch, searchDate.year, searchDate.month, searchDate.day]);
 
   const handleNextMonth = () => {
@@ -171,7 +175,7 @@ const TrackerPage = () => {
           searchDate={searchDate}
         />
         <CalendarSection
-          waterQuantity={value}
+          waterQuantity={65}
           currentDate={currentDate}
           monthNames={monthNames}
           handleNextMonth={handleNextMonth}
