@@ -1,6 +1,7 @@
 import Calendar from '../Calendar/Calendar';
 import css from './CalendarSection.module.css';
 import Iconsvg from '../Icon';
+import { useTranslation } from 'react-i18next';
 
 const CalendarSection = ({
   waterQuantity,
@@ -10,10 +11,12 @@ const CalendarSection = ({
   handleNextMonth,
   onChangeDate,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className={css.title}>
-        <h2>Month</h2>
+        <h2>{t('description.calendar.monthText')}</h2>
         <div className={css.blockcalendar}>
           <button className={css.btn} onClick={handlePreviousMonth}>
             <Iconsvg

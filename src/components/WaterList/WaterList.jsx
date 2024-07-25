@@ -4,6 +4,7 @@ import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 import Modal from '../Modal';
 import WaterModal from '../waterModal/WaterModal';
+import { useTranslation } from 'react-i18next';
 
 const WaterList = ({ waterlist, currentDate, monthNames }) => {
   const [showModal, setShowModal] = useState(false);
@@ -15,6 +16,7 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
     setShowModal(false);
   };
 
+  const { t } = useTranslation();
   return (
     <div className={css.container}>
       <Modal
@@ -38,7 +40,7 @@ const WaterList = ({ waterlist, currentDate, monthNames }) => {
               styles={css.svg}
             />
           </button>
-          <p className={css.text}>Add water</p>
+          <p className={css.text}>{t('description.tracker.addWaterText')}</p>
         </div>
       </div>
 

@@ -2,19 +2,19 @@ import AdvantagesSection from '../components/AdvantagesSection/AdvantagesSection
 import SignUpForm from '../components/SignUpForm/SignUpForm';
 import styles from '../stylesPages/SignUpPage.module.css';
 
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
-const lngs = {
-  en: { nativeName: 'English' },
-  ukr: { nativeName: 'Українська' },
-};
+// const lngs = {
+//   en: { nativeName: 'English' },
+//   ukr: { nativeName: 'Українська' },
+// };
 
 const SignUpPage = () => {
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
 
   return (
     <div className={styles.signUpPageWrapper}>
-      <div>
+      {/* <div>
         {Object.keys(lngs).map(lng => (
           <button
             key={lng}
@@ -27,7 +27,7 @@ const SignUpPage = () => {
             {lngs[lng].nativeName}
           </button>
         ))}
-      </div>
+      </div> */}
       <div className={styles.formWrapper}>
         <SignUpForm />
       </div>

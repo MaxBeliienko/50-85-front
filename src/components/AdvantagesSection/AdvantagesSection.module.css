@@ -1,5 +1,5 @@
 .backgroundPhoto {
-  background-image: url('../../public/images/homePage/hero.png');
+  background-image: url('../../public/images/homePage/hero.jpg');
   background-size: cover;
   background-position: center;
   width: 288px;
@@ -11,7 +11,7 @@
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .backgroundPhoto {
-    background-image: url('../../public/images/homePage/hero@2.png');
+    background-image: url('../../public/images/homePage/hero@2.jpg');
   }
 }
 

@@ -1,7 +1,9 @@
 import css from './AddWaterBtn.module.css';
 import Iconsvg from '../../Icon';
+import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = ({ onAddWater }) => {
+  const { t } = useTranslation();
   return (
     <div className={css.buttonContainer}>
       <button className={css.addWaterBtn} onClick={onAddWater}>
@@ -11,7 +13,7 @@ const AddWaterBtn = ({ onAddWater }) => {
           iconName="add-water"
           styles={css.icon}
         />
-        Add water
+        {t('description.tracker.addWaterText')}
       </button>
     </div>
   );

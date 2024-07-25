@@ -81,3 +81,132 @@ export const welcomeText = {
     btnSigninText: 'Увійти',
   },
 };
+
+export const dailyNormaText = {
+  en: { normaText: 'My daily norma' },
+  ukr: { normaText: 'Моя денна норма' },
+};
+
+export const trackerText = {
+  en: {
+    todayText: 'Today',
+    addWaterText: 'Add water',
+  },
+  ukr: { todayText: 'Сьогодні', addWaterText: 'Додати воду' },
+};
+
+export const userBarText = {
+  en: {
+    helloText: 'Hello',
+    userText: 'User',
+    setingsText: 'Settings',
+    logOutText: 'Logout',
+  },
+  ukr: {
+    helloText: 'Привіт',
+    userText: 'друже',
+    setingsText: 'Налаштування',
+    logOutText: 'Вийти',
+  },
+};
+
+export const calendarText = {
+  en: {
+    monthText: 'Month',
+  },
+  ukr: {
+    monthText: 'Місяць',
+  },
+};
+
+export const monthNames = {
+  en: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  ukr: [
+    'Січень',
+    'Лютий',
+    'Березень',
+    'Квітень',
+    'Травень',
+    'Червень',
+    'Липень',
+    'Серпень',
+    'Вересень',
+    'Жовтень',
+    'Листопад',
+    'Грудень',
+  ],
+};
+
+export const waterModalText = {
+  en: {
+    editWater: 'Edit the entered amount of water',
+    succesAdd: 'Successfully add',
+    succesEdit: 'Successfully edit',
+  },
+
+  ukr: {
+    editWater: 'Редагувати введену кількість води',
+    succesAdd: 'Успішно додано',
+    succesEdit: 'Успішно відредаговано',
+  },
+};
+
+export const waterForm = {
+  en: {
+    chooseValue: 'Choose a value:',
+    amountWater: 'Amount of water:',
+    recordingTime: 'Recording time:',
+    usedWater: 'Enter the value of the water used:',
+    saveBtn: 'Save',
+  },
+  ukr: {
+    chooseValue: 'Виберіть значення:',
+    amountWater: 'Кількість води:',
+    recordingTime: 'Час запису:',
+    usedWater: 'Введіть значення випитої води:',
+    saveBtn: 'Зберегти',
+  },
+};
+
+export const deleteWater = {
+  en: {
+    succesDelete: 'Successfully deleted',
+    title: 'Delete entry',
+    warning: 'Are you sure you want to delete the entry?',
+    deleteBtn: 'Delete',
+    cancelBtn: 'Cancel',
+  },
+  ukr: {
+    succesDelete: 'Успішно видалено',
+    title: 'Видалити запис',
+    warning: 'Ви впевнені, що хочете видалити запис?',
+    deleteBtn: 'Видалити',
+    cancelBtn: 'Скасувати',
+  },
+};
+
+export const logOutModalText = {
+  en: {
+    title: 'Log out',
+    warning: 'Do you really want to leave?',
+    cancelBtn: 'Cancel',
+  },
+  ukr: {
+    title: 'Вийти',
+    warning: 'Ви дійсно хочете вийти?',
+    cancelBtn: 'Скасувати',
+  },
+};

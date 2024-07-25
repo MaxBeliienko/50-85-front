@@ -2,27 +2,29 @@ import styles from './DeleteWaterModal.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteWater } from '../../redux/water/operations';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const DeleteWaterModal = ({ closeModal, id }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const handleDelete = () => {
     console.log(id);
     dispatch(deleteWater(id));
-    toast.success('Successfully delet');
+    toast.success(t('description.deleteWater.succesDelete'));
     closeModal();
   };
 
   return (
     <div className={styles.modal}>
-      <h6 className={styles.title}>Delete entry</h6>
-      <p className={styles.text}>Are you sure you want to delete the entry?</p>
+      <h6 className={styles.title}>{t('description.deleteWater.title')}</h6>
+      <p className={styles.text}>{t('description.deleteWater.warning')}</p>
       <div className={styles.buttons}>
         <button className={styles.confirmBtn} onClick={handleDelete}>
-          Delete
+          {t('description.deleteWater.deleteBtn')}
         </button>
         <button className={styles.cancelBtn} onClick={closeModal}>
-          Cancel
+          {t('description.deleteWater.cancelBtn')}
         </button>
       </div>
     </div>
