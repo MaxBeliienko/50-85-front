@@ -13,8 +13,8 @@ import { useSearchParams } from 'react-router-dom';
 const TrackerPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
-  const monthData = useSelector(selectMonthWater);
-  console.log(monthData);
+  // const monthData = useSelector(selectMonthWater);
+  // console.log(monthData);
 
   const monthNames = [
     'January',
