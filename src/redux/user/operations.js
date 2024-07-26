@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
+import { apiClient } from '../../apiClient';
 
 const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   try {

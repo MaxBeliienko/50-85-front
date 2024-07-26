@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
@@ -71,7 +70,7 @@ export const refreshUser = createAsyncThunk(
       // }
       // const newToken = refreshResult.payload;
       // setAuthHeader(newToken);
-      return thunkApi > rejectWithValue('No token found');
+      return thunkApi.rejectWithValue('No token found');
     }
 
     setAuthHeader(persistedToken);
