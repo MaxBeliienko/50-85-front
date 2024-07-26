@@ -68,18 +68,8 @@ const CustomImageUploading = ({ onImageChange, initialPhoto }) => {
                     alt="Avatar"
                   />
                   <div className={styles.imageItemBtnWrapper}>
-                    <button
-                      onClick={() => onImageUpdate(0)}
-                      className={styles.uploadImageButton}
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => onImageRemove(0)}
-                      className={styles.uploadImageButton}
-                    >
-                      Remove
-                    </button>
+                    <button onClick={() => onImageUpdate(0)}>Update</button>
+                    <button onClick={() => onImageRemove(0)}>Remove</button>
                   </div>
                 </div>
               ) : (
