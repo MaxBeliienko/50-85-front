@@ -14,7 +14,7 @@ const TrackerPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   const monthData = useSelector(selectMonthWater);
-  console.log(monthData);
+  // console.log(monthData);
 
   const monthNames = [
     'January',
@@ -73,6 +73,9 @@ const TrackerPage = () => {
   }
 
   useEffect(() => {
+    // if (!searchDate.day) setSearchParams(today);
+    // console.log(searchDate);
+
     dispatch(
       fetchDailyWater({
         year: searchDate.year,
@@ -167,6 +170,7 @@ const TrackerPage = () => {
           handlePreviousMonth={handlePreviousMonth}
           onChangeDate={onChangeDate}
           today={today}
+          monthData={monthData}
         />
       </div>
     </div>

@@ -37,14 +37,14 @@ const UserBar = () => {
   };
   const onClosePopup = useCallback(e => {
     const elem = e.target.closest('[data-popup]');
-    console.log(elem);
+    // console.log(elem);
     if (elem) return;
-    console.log('hello');
+    // console.log('hello');
     setIsPopupOpen(false);
   }, []);
   const arrowClass = !isPopupOpen ? '' : 'rotate-arrow';
   useEffect(() => {
-    console.log(isPopupOpen);
+    // console.log(isPopupOpen);
     if (isPopupOpen) {
       document.addEventListener('click', onClosePopup);
     } else {
