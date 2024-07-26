@@ -13,7 +13,7 @@ export const getUserProfile = createAsyncThunk(
   'users/user-profile',
   asyncThunkWrapper(async () => {
     const { data } = await axios.get('/users/user-profile');
-    return data;
+    return data.data;
   })
 );
 
