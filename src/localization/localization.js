@@ -210,3 +210,36 @@ export const logOutModalText = {
     cancelBtn: 'Скасувати',
   },
 };
+
+export const settingsModalText = {
+  en: {
+    title: 'Settings',
+    female: 'female',
+    gender: 'Your gender identity: ',
+    woman: 'Woman',
+    man: 'Man',
+    name: 'Your name:',
+    email: 'Email:',
+    requirement: 'My daily requirement:',
+    weight: 'Your weight in kilograms:',
+    activeTime: ' The time of active participation in sports:',
+    waterToDrink: 'Write down how much water you will drink:',
+    save: 'Save',
+    language: 'Language',
+  },
+  ukr: {
+    title: 'Налаштування',
+    female: 'Жінка',
+    gender: 'Ви себе ідентифікуєте як: ',
+    woman: 'Жінка',
+    man: 'Чоловік',
+    name: "Ваше ім'я:",
+    email: 'Електронна пошта:',
+    requirement: 'Моя щоденна норма:',
+    weight: 'Ваша вага в кілограмах:',
+    activeTime: 'Час активних занять спортом:',
+    waterToDrink: "Запишіть, скільки води ви вип'єте:",
+    save: 'Зберегти',
+    language: 'Мова',
+  },
+};
