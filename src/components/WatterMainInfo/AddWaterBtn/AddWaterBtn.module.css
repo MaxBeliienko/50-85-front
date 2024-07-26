@@ -28,14 +28,13 @@
   cursor: pointer;
 }
 
-.addWaterBtn:hover,
-.addWaterBtn:focus {
+.addWaterBtn:hover {
   color: #9be1a0;
 }
 
-.addWaterBtn:active {
+/* .addWaterBtn:active {
   color: #ffffff;
-}
+} */
 
 .icon {
   width: 16px;
