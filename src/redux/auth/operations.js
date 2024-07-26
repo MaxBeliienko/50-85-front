@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
-axios.defaults.baseURL = 'https://aquatrack-backend.onrender.com';
+// axios.defaults.baseURL = 'https://aquatrack-backend.onrender.com';
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// const setAuthHeader = token => {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
 
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
+// const clearAuthHeader = () => {
+//   axios.defaults.headers.common.Authorization = '';
+// };
 
 const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   try {
@@ -33,7 +34,7 @@ const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
 export const registerUser = createAsyncThunk(
   'auth/register',
   asyncThunkWrapper(async user => {
-    const { data } = await axios.post('/users/register', user);
+    const { data } = await apiClient.post('/users/register', user);
     setAuthHeader(data.data.accessToken);
     return data;
   })
@@ -42,7 +43,7 @@ export const registerUser = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'auth/login',
   asyncThunkWrapper(async user => {
-    const { data } = await axios.post('/users/login', user);
+    const { data } = await apiClient.post('/users/login', user);
     setAuthHeader(data.data.accessToken);
     return data;
   })
@@ -51,7 +52,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk(
   'auth/logout',
   asyncThunkWrapper(async () => {
-    await axios.post('/users/logout');
+    await apiClient.post('/users/logout');
     clearAuthHeader();
   })
 );
@@ -60,19 +61,26 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   asyncThunkWrapper(async (_, thunkApi) => {
     const state = thunkApi.getState();
-    const persistedToken =
-      state.auth.token || localStorage.getItem('accessToken');
+    const persistedToken = state.auth.token || localStorage.getItem('token');
 
     if (!persistedToken) {
-      const refreshResult = await thunkApi.dispatch(refreshUser());
+      // const refreshResult = await thunkApi.dispatch(refreshUser());
 
-      if (refreshResult.error) {
-        return thunkApi.rejectWithValue(refreshResult.error.message);
-      }
-      const newToken = refreshResult.payload;
-      setAuthHeader(newToken);
-    } else {
-      setAuthHeader(persistedToken);
+      // if (refreshResult.error) {
+      //   return thunkApi.rejectWithValue(refreshResult.error.message);
+      // }
+      // const newToken = refreshResult.payload;
+      // setAuthHeader(newToken);
+      return thunkApi > rejectWithValue('No token found');
+    }
+
+    setAuthHeader(persistedToken);
+
+    try {
+      const { data } = await apiClient.get('/users/user-profile');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   })
 );
