@@ -24,21 +24,29 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
-}
-
-/* .addWaterBtn:active {
-  color: #9be1a0;
+  transition: color 0.3s, background-color 0.3s;
+  cursor: pointer;
 }
 
 .addWaterBtn:hover {
   color: #9be1a0;
+}
+
+/* .addWaterBtn:active {
+  color: #ffffff;
 } */
 
 .icon {
   width: 16px;
   height: 16px;
-  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2px;
 }
+
+/* .addWaterBtn:hover .icon,
+.addWaterBtn:focus .icon {
+  fill: #9be1a0;
+} */
 
 @media (min-width: 768px) {
   .addWaterBtn {
