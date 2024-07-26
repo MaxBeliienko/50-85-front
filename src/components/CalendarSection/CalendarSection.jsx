@@ -10,6 +10,7 @@ const CalendarSection = ({
   handleNextMonth,
   onChangeDate,
   today,
+  monthData,
 }) => {
   const { t } = useTranslation();
 
@@ -43,6 +44,7 @@ const CalendarSection = ({
         currentDate={currentDate}
         onChangeDate={onChangeDate}
         today={today}
+        monthData={monthData}
       />
     </>
   );

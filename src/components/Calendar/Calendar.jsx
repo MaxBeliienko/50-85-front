@@ -3,13 +3,20 @@ import css from './Calendar.module.css';
 import { fetchMonthWater } from '../../redux/water/operations';
 import { useEffect } from 'react';
 
-const Calendar = ({ today, currentDate, onChangeDate }) => {
+const Calendar = ({ today, currentDate, onChangeDate, monthData }) => {
   const daysInMonth = new Date(
     currentDate.year,
     currentDate.month + 1,
     0
   ).getDate();
-  const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
+    return { day: i + 1, percentage: '0%' };
+  });
+
+  monthData.map(item => {
+    daysArray[parseInt(item.date) - 1].percentage = item.percentage;
+  });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +27,7 @@ const Calendar = ({ today, currentDate, onChangeDate }) => {
 
   return (
     <ul className={css.calendar}>
-      {daysArray.map(day => (
+      {daysArray.map(({ day, percentage }) => (
         <li key={day}>
           <button
             className={day === today.day ? css.currentday : css.calendarday}
@@ -31,7 +38,7 @@ const Calendar = ({ today, currentDate, onChangeDate }) => {
           >
             {day}
           </button>
-          <p className={css.percent}>50%</p>
+          <p className={css.percent}>{percentage}</p>
         </li>
       ))}
     </ul>
