@@ -16,8 +16,9 @@ const validationSchema = Yup.object().shape({
 });
 
 const WaterForm = ({ submit, waterItem }) => {
-  console.log('edit water form', waterItem._id);
-  const [waterAmount, setWaterAmount] = useState(50);
+  const [waterAmount, setWaterAmount] = useState(
+    waterItem ? waterItem.volume : 50
+  );
 
   const getTime = () => {
     const currentDate = new Date();
@@ -27,13 +28,13 @@ const WaterForm = ({ submit, waterItem }) => {
     return `${hours}:${formattedMinutes}`;
   };
 
-  function defaulVolume(item) {
-    if (item) {
-      return item.volume;
-    } else {
-      return waterAmount;
-    }
-  }
+  // function defaulVolume(item) {
+  //   if (item) {
+  //     return item.volume;
+  //   } else {
+  //     return waterAmount;
+  //   }
+  // }
 
   function defaultTime(item) {
     if (item) {
@@ -51,7 +52,7 @@ const WaterForm = ({ submit, waterItem }) => {
   } = useForm({
     mode: 'onChange',
     defaultValues: {
-      volume: defaulVolume(waterItem),
+      volume: waterAmount,
       time: defaultTime(waterItem),
     },
     resolver: yupResolver(validationSchema),
