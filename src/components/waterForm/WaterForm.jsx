@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const WaterForm = ({ submit, waterItem }) => {
-  console.log('edit water form', waterItem);
+  console.log('edit water form', waterItem._id);
   const [waterAmount, setWaterAmount] = useState(50);
 
   const getTime = () => {

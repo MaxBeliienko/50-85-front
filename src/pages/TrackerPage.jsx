@@ -4,16 +4,18 @@ import MainWaterInfo from '../components/WatterMainInfo/MainWaterInfo/MainWaterI
 import UserButton from '../components/WaterDetailedInfo/UserPanel/UserPanel';
 import WaterList from '../components/WaterList/WaterList';
 import { useEffect, useState } from 'react';
-import { selectLoading } from '../redux/water/selectors';
+import { selectLoading, selectMonthWater } from '../redux/water/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDailyWater } from '../redux/water/operations';
+import { fetchDailyWater, fetchMonthWater } from '../redux/water/operations';
 import { Audio } from 'react-loader-spinner';
 import { useSearchParams } from 'react-router-dom';
 
 const TrackerPage = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
+  const monthData = useSelector(selectMonthWater);
+  console.log(monthData);
 
-  const value = 50;
   const monthNames = [
     'January',
     'February',
@@ -29,7 +31,6 @@ const TrackerPage = () => {
     'December',
   ];
 
-  const isLoading = useSelector(selectLoading);
   const today = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
@@ -43,16 +44,12 @@ const TrackerPage = () => {
   });
 
   const [initialDate, setInitialDate] = useState({
-    year: today.year,
-    month: today.month,
-    day: today.day,
+    year: null,
+    month: null,
+    day: null,
   });
 
-  const [searchParams, setSearchParams] = useSearchParams({
-    year: today.year,
-    month: today.month,
-    day: today.day,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const searchDate = {
     year: searchParams.get('year'),
@@ -61,28 +58,21 @@ const TrackerPage = () => {
   };
 
   const onChangeDate = (year, month, day) => {
-    setSearchParams({ year, month, day });
-    setInitialDate({ year, month: month - 1, day });
+    setSearchParams({ year, month: month, day });
+    setInitialDate({ year, month, day });
   };
 
   const onChangeMonth = (year, month) => {
-    setSearchParams({ year, month });
+    setSearchParams({ year, month: month });
   };
 
   function formatNumber(str) {
-    // Преобразуем строку в число (если нужно)
     let num = parseInt(str, 10);
-    // Преобразуем число обратно в строку и добавляем ведущий ноль, если необходимо
     let formattedNum = num.toString().padStart(2, '0');
     return formattedNum;
   }
 
   useEffect(() => {
-    console.log(
-      searchDate.year,
-      formatNumber(searchDate.month),
-      formatNumber(searchDate.day)
-    );
     dispatch(
       fetchDailyWater({
         year: searchDate.year,
@@ -90,16 +80,15 @@ const TrackerPage = () => {
         day: formatNumber(searchDate.day),
       })
     );
-    const today = new Date();
+    dispatch(
+      fetchMonthWater({
+        year: searchDate.year,
+        month: formatNumber(searchDate.month),
+      })
+    );
 
-    const initial = {
-      year: today.getFullYear(),
-      month: today.getMonth(),
-      day: today.getDate(),
-    };
-
-    setCurrentDate(initial);
-    setInitialDate(initial);
+    // setCurrentDate(initial);
+    // setInitialDate(initial);
     // dispatch(fetchMonthWater(initial.year, initial.month));
   }, [dispatch, searchDate.year, searchDate.month, searchDate.day]);
 
@@ -108,7 +97,7 @@ const TrackerPage = () => {
       const nextMonth = (prevState.month + 1) % 12;
       const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
       onChangeMonth(nextYear, nextMonth);
-      onChangeDate(nextYear, nextMonth + 1, 1);
+      // onChangeDate(nextYear, nextMonth + 1, 1);
       if (nextYear === initialDate.year && nextMonth === initialDate.month) {
         return {
           ...initialDate,
@@ -117,7 +106,7 @@ const TrackerPage = () => {
         return {
           year: nextYear,
           month: nextMonth,
-          day: 1,
+          day: null,
         };
       }
     });
@@ -129,7 +118,7 @@ const TrackerPage = () => {
       const previousYear =
         prevState.year + Math.floor((prevState.month - 1) / 12);
       onChangeMonth(previousYear, previousMonth);
-      onChangeDate(previousYear, previousMonth + 1, 1);
+      // onChangeDate(previousYear, previousMonth + 1, 1);
 
       if (
         previousYear === initialDate.year &&
@@ -142,7 +131,7 @@ const TrackerPage = () => {
         return {
           year: previousYear,
           month: previousMonth,
-          day: 1,
+          day: null,
         };
       }
     });
@@ -169,14 +158,15 @@ const TrackerPage = () => {
           currentDate={initialDate}
           monthNames={monthNames}
           searchDate={searchDate}
+          today={today}
         />
         <CalendarSection
-          waterQuantity={value}
           currentDate={currentDate}
           monthNames={monthNames}
           handleNextMonth={handleNextMonth}
           handlePreviousMonth={handlePreviousMonth}
           onChangeDate={onChangeDate}
+          today={today}
         />
       </div>
     </div>
