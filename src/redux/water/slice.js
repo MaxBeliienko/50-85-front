@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addWater,
   deleteWater,
+  editWater,
   fetchDailyWater,
   fetchMonthWater,
 } from './operations';
@@ -47,6 +48,22 @@ const waterSlice = createSlice({
         state.dailyWater.push(action.payload);
       })
       .addCase(addWater.rejected, handleRejected)
+      .addCase(editWater.pending, handlePending)
+      .addCase(editWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const index = state.dailyWater.findIndex(
+          water => water._id === action.payload.id
+        );
+        if (index >= 0) {
+          state.dailyWater[index] = {
+            ...state.dailyWater[index],
+            time: action.payload.time,
+            volume: action.payload.volume,
+          };
+        }
+      })
+      .addCase(editWater.rejected, handleRejected)
       .addCase(deleteWater.pending, handlePending)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
