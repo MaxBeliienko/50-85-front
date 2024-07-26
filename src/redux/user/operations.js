@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
 const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   try {
@@ -12,7 +12,7 @@ const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
 export const getUserProfile = createAsyncThunk(
   'users/user-profile',
   asyncThunkWrapper(async () => {
-    const { data } = await axios.get('/users/user-profile');
+    const { data } = await apiClient.get('/users/user-profile');
     return data.data;
   })
 );
@@ -20,7 +20,7 @@ export const getUserProfile = createAsyncThunk(
 export const updateUserProfile = createAsyncThunk(
   'users/user-update',
   asyncThunkWrapper(async user => {
-    const { data } = await axios.patch('/users/user-profile', user);
+    const { data } = await apiClient.patch('/users/user-profile', user);
     return data;
   })
 );
