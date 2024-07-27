@@ -104,7 +104,7 @@ export const userBarText = {
   },
   ukr: {
     helloText: 'Привіт',
-    userText: 'друже',
+    userText: ' друже',
     setingsText: 'Налаштування',
     logOutText: 'Вийти',
   },
@@ -120,34 +120,34 @@ export const calendarText = {
 };
 
 export const monthNames = {
-  en: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ],
-  ukr: [
-    'Січень',
-    'Лютий',
-    'Березень',
-    'Квітень',
-    'Травень',
-    'Червень',
-    'Липень',
-    'Серпень',
-    'Вересень',
-    'Жовтень',
-    'Листопад',
-    'Грудень',
-  ],
+  en: {
+    January: 'January',
+    February: 'February',
+    March: 'March',
+    April: 'April',
+    May: 'May',
+    June: 'June',
+    July: 'July',
+    August: 'August',
+    September: 'September',
+    October: 'October',
+    November: 'November',
+    December: 'December',
+  },
+  ukr: {
+    January: 'Січень',
+    February: 'Лютий',
+    March: 'Березень',
+    April: 'Квітень',
+    May: 'Травень',
+    June: 'Червень',
+    July: 'Липень',
+    August: 'Серпень',
+    September: 'Вересень',
+    October: 'Жовтень',
+    November: 'Листопад',
+    December: 'Грудень',
+  },
 };
 
 export const waterModalText = {
@@ -167,17 +167,21 @@ export const waterModalText = {
 export const waterForm = {
   en: {
     chooseValue: 'Choose a value:',
+    correctData: 'Correct entered data:',
     amountWater: 'Amount of water:',
     recordingTime: 'Recording time:',
     usedWater: 'Enter the value of the water used:',
     saveBtn: 'Save',
+    warningAmount: 'Amount of water could be from interwal ',
   },
   ukr: {
     chooseValue: 'Виберіть значення:',
+    correctData: 'Виправіть введені дані:',
     amountWater: 'Кількість води:',
     recordingTime: 'Час запису:',
     usedWater: 'Введіть значення випитої води:',
     saveBtn: 'Зберегти',
+    warningAmount: 'Кількість води може бути з проміжку ',
   },
 };
 
@@ -208,5 +212,38 @@ export const logOutModalText = {
     title: 'Вийти',
     warning: 'Ви дійсно хочете вийти?',
     cancelBtn: 'Скасувати',
+  },
+};
+
+export const settingsModalText = {
+  en: {
+    title: 'Settings',
+    female: 'female',
+    gender: 'Your gender identity: ',
+    woman: 'Woman',
+    man: 'Man',
+    name: 'Your name:',
+    email: 'Email:',
+    requirement: 'My daily requirement:',
+    weight: 'Your weight in kilograms:',
+    activeTime: ' The time of active participation in sports:',
+    waterToDrink: 'Write down how much water you will drink:',
+    save: 'Save',
+    language: 'Language',
+  },
+  ukr: {
+    title: 'Налаштування',
+    female: 'Жінка',
+    gender: 'Ви себе ідентифікуєте як: ',
+    woman: 'Жінка',
+    man: 'Чоловік',
+    name: "Ваше ім'я:",
+    email: 'Електронна пошта:',
+    requirement: 'Моя щоденна норма:',
+    weight: 'Ваша вага в кілограмах:',
+    activeTime: 'Час активних занять спортом:',
+    waterToDrink: "Запишіть, скільки води ви вип'єте:",
+    save: 'Зберегти',
+    language: 'Мова',
   },
 };

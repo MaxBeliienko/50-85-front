@@ -13,6 +13,8 @@ import {
   selectUserProfile,
   selectIsLoading,
 } from "../../../../../../redux/user/selectors";
+import { useTranslation } from "react-i18next";
+import LocalizationSwitcher from "../../../../../LocalizationSwitcher/LocalizationSwitcher";
 
 const UserSettingsModal = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
     dispatch(updateUserProfile(values));
   };
 
+  const { t } = useTranslation();
   return (
     <Modal
       showModal={showModal}
@@ -38,10 +41,12 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
       title="Settings"
     >
       <div className={styles.settingsModal}>
-        <p className={styles.settingsModalTitle}>Settings</p>
+        <p className={styles.settingsModalTitle}>
+          {t("description.settings.title")}
+        </p>
         <Formik
           initialValues={{
-            gender: user.gender || "female",
+            gender: user.gender || t("description.settings.female"),
             name: user.name || "",
             email: user.email || "",
             weight: user.weight || "",
@@ -63,7 +68,11 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 <div className={styles.gridItem}>
                   <div className={styles.formGroup}>
                     <label className={styles.formGroupLabel}>
-                      Your gender identity:
+                      {t("description.settings.language")}
+                    </label>
+                    <LocalizationSwitcher isSettings={true} />
+                    <label className={styles.formGroupLabel}>
+                      {t("description.settings.gender")}
                     </label>
                     <div className={styles.radioGroup}>
                       <label>
@@ -73,7 +82,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                           name="gender"
                           as="input"
                         />
-                        Woman
+                        {t("description.settings.woman")}
                       </label>
                       <label>
                         <Field
@@ -82,13 +91,13 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                           name="gender"
                           as="input"
                         />
-                        Man
+                        {t("description.settings.man")}
                       </label>
                     </div>
                   </div>
                   <div className={styles.formGroup}>
                     <label htmlFor="name" className={styles.formGroupLabel}>
-                      Your name:
+                      {t("description.settings.name")}
                     </label>
                     <Field
                       type="text"
@@ -99,7 +108,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   </div>
                   <div className={styles.formGroup}>
                     <label htmlFor="email" className={styles.formGroupLabel}>
-                      Email:
+                      {t("description.settings.email")}
                     </label>
                     <Field
                       type="email"
@@ -114,7 +123,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                       htmlFor="dailyNorma"
                       className={styles.formGroupLabel}
                     >
-                      My daily norma
+                      {t("description.settings.requirement")}
                     </label>
                     <div className={styles.dailyNormaGroup}>
                       <div>
@@ -143,7 +152,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 <div className={styles.gridItem}>
                   <div className={styles.formGroup}>
                     <label htmlFor="weight" className={styles.formGroupLabel}>
-                      Your weight in kilograms:
+                      {t("description.settings.weight")}
                     </label>
                     <Field
                       type="number"
@@ -157,7 +166,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                       htmlFor="activityLevel"
                       className={styles.formGroupLabel}
                     >
-                      The time of active participation in sports:
+                      {t("description.settings.activeTime")}
                     </label>
                     <Field
                       type="text"
@@ -175,7 +184,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                       htmlFor="dailyRequirement"
                       className={styles.formGroupLabel}
                     >
-                      Write down how much water you will drink:
+                      {t("description.settings.waterToDrink")}
                     </label>
                     <Field
                       type="text"
@@ -191,7 +200,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                 className={styles.saveButton}
                 disabled={loading}
               >
-                Save
+                {t("description.settings.save")}
               </button>
             </Form>
           )}

@@ -7,7 +7,7 @@ import RestrictedRoute from './components/RestrictedRoute';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from './redux/auth/operations';
+import { getUserProfile } from './redux/user/operations';
 // import { selectIsRefreshing } from './redux/auth/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -17,10 +17,9 @@ const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 
 function App() {
   const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(getUserProfile());
   }, [dispatch]);
 
   return (

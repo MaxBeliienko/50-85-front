@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const WaterForm = ({ submit, waterItem }) => {
+const WaterForm = ({ submit, waterItem, operationType }) => {
   const [waterAmount, setWaterAmount] = useState(
     waterItem ? waterItem.volume : 50
   );
@@ -69,13 +69,15 @@ const WaterForm = ({ submit, waterItem }) => {
     setWaterAmount(prevWaterAmount => Math.min(prevWaterAmount + 50, 5000));
   };
 
+  const { t } = useTranslation();
+
   const handleWater = e => {
     const { value } = e.target;
     if (value === '') {
       setWaterAmount(0);
     } else {
       if (parseInt(value) > 5000 || parseInt(value) < 0) {
-        toast('Amount of water could be from interwal [0,5000]', {
+        toast(t('description.waterForm.warningAmount') + '[0,5000]', {
           duration: 2000,
           style: {
             margin: '60px',
@@ -88,11 +90,13 @@ const WaterForm = ({ submit, waterItem }) => {
       }
     }
   };
-  const { t } = useTranslation();
+
   return (
     <>
       <p className={styles.biggerText}>
-        {t('description.waterForm.chooseValue')}
+        {operationType === 'add'
+          ? t('description.waterForm.chooseValue')
+          : t('description.waterForm.correctData')}
       </p>
       <p className={styles.smallerText}>
         {t('description.waterForm.amountWater')}
