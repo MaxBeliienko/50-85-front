@@ -1,4 +1,4 @@
-import { lazy, useEffect } from 'react';
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import NotFound from './components/notFound/NotFound';
@@ -6,8 +6,6 @@ import PrivateRoute from './components/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute';
 // import CalendarSection from './components/CalendarSection/CalendarSection.jsx';
 import { Toaster } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { refreshUser } from './redux/auth/operations';
 // import { selectIsRefreshing } from './redux/auth/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
