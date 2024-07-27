@@ -3,10 +3,10 @@ import css from './Calendar.module.css';
 import { fetchMonthWater } from '../../redux/water/operations';
 import { useEffect } from 'react';
 
-const Calendar = ({ today, currentDate, onChangeDate, monthData }) => {
+const Calendar = ({ today, searchDate, onChangeDate, monthData }) => {
   const daysInMonth = new Date(
-    currentDate.year,
-    currentDate.month + 1,
+    searchDate.year,
+    searchDate.month + 1,
     0
   ).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
@@ -21,9 +21,9 @@ const Calendar = ({ today, currentDate, onChangeDate, monthData }) => {
 
   useEffect(() => {
     dispatch(
-      fetchMonthWater({ year: currentDate.year, month: currentDate.month })
+      fetchMonthWater({ year: searchDate.year, month: searchDate.month })
     );
-  }, [dispatch, currentDate.year, currentDate.month]);
+  }, [dispatch, searchDate.year, searchDate.month]);
 
   return (
     <ul className={css.calendar}>
@@ -32,9 +32,7 @@ const Calendar = ({ today, currentDate, onChangeDate, monthData }) => {
           <button
             className={day === today.day ? css.currentday : css.calendarday}
             disabled={day > today.day}
-            onClick={() =>
-              onChangeDate(currentDate.year, currentDate.month + 1, day)
-            }
+            onClick={() => onChangeDate(searchDate.year, searchDate.month, day)}
           >
             {day}
           </button>
