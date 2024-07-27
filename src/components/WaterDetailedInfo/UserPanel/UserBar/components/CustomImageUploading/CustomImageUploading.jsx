@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import Iconsvg from "../../../../../Icon";
 import styles from "./CustomImageUploading.module.css";
-import axios from "axios";
 
 const CustomImageUploading = ({ onImageChange, initialPhoto }) => {
   const [images, setImages] = useState([]);
@@ -14,37 +13,15 @@ const CustomImageUploading = ({ onImageChange, initialPhoto }) => {
     }
   }, [initialPhoto]);
 
-  const onChange = async (imageList) => {
+  const onChange = (imageList) => {
     setImages(imageList);
 
     if (imageList.length > 0) {
       const imageFile = imageList[0].file;
-      try {
-        const imageUrl = await uploadImageToCloudinary(imageFile);
-        onImageChange(imageUrl);
-      } catch (error) {
-        console.error("Error uploading image to Cloudinary", error);
-      }
+      const imageUrl = URL.createObjectURL(imageFile);
+      onImageChange(imageUrl, imageFile);
     } else {
       onImageChange("");
-    }
-  };
-
-  const uploadImageToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/CLOUD_NAME/image/upload`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-      return response.data.secure_url;
-    } catch (error) {
-      throw new Error("Failed to upload image.");
     }
   };
 
