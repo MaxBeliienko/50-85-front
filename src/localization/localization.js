@@ -104,7 +104,7 @@ export const userBarText = {
   },
   ukr: {
     helloText: 'Привіт',
-    userText: 'друже',
+    userText: ' друже',
     setingsText: 'Налаштування',
     logOutText: 'Вийти',
   },
