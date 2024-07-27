@@ -20,7 +20,7 @@ const WaterList = ({ currentDate, monthNames, today }) => {
   };
 
   const { t } = useTranslation();
-
+  const currentMonthName = monthNames[currentDate.month - 1];
   const isToday =
     today.day === currentDate.day &&
     today.month === currentDate.month &&
@@ -39,8 +39,10 @@ const WaterList = ({ currentDate, monthNames, today }) => {
       <div className={css.topcontainer}>
         <h2 className={css.title}>
           {isToday
-            ? 'Today'
-            : `${currentDate.day}, ${monthNames[currentDate.month - 1]}`}
+            ? t('description.tracker.todayText')
+            : `${currentDate.day}, ${t(
+                `description.months.${currentMonthName}`
+              )}`}
         </h2>
         {isToday && (
           <div className={css.btncontainer}>

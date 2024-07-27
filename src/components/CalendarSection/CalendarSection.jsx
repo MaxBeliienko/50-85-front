@@ -13,6 +13,7 @@ const CalendarSection = ({
   monthData,
 }) => {
   const { t } = useTranslation();
+  const currentMonthName = monthNames[currentDate.month];
 
   return (
     <>
@@ -23,7 +24,7 @@ const CalendarSection = ({
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
           </button>
           <p>
-            {monthNames[currentDate.month]}, {currentDate.year}
+            {t(`description.months.${currentMonthName}`)},{currentDate.year}
           </p>
 
           <button className={css.btn} onClick={handleNextMonth}>
