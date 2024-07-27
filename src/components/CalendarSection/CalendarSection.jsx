@@ -81,6 +81,7 @@ const CalendarSection = ({
         <div className={css.blockcalendar}>
           <button
             className={css.btn}
+            id="prevMonth" aria-label="get previous month"
             onClick={() => getPreviousMonth(searchDate)}
           >
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
@@ -91,13 +92,14 @@ const CalendarSection = ({
 
           <button
             className={css.btn}
+            id="nextMonth" aria-label="get next month"
             onClick={() => {
               getNextMonth(searchDate);
             }}
           >
             <Iconsvg iconName={'right'} width={5} height={9} styles={css.btn} />
           </button>
-          <button className={css.btn}>
+          <button className={css.btn} id="statistics" aria-label="get statistics of week">
             <Iconsvg
               iconName={'schedule'}
               styles={css.schedule}

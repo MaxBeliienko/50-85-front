@@ -2,6 +2,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import css from './WaterProgressBar.module.css';
 import { useTranslation } from 'react-i18next';
+import React from 'react';
 
 const WaterProgressBar = ({ consumed, dailyNorma }) => {
   const progress = (consumed / dailyNorma) * 100;
@@ -38,6 +39,12 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
     boxShadow: 'none',
   };
   const { t } = useTranslation();
+
+  const handleRender = (node, props) => {
+    return React.cloneElement(node, {
+      'aria-label': 'Slider for showing how much water you drunk'
+    });
+  };
   return (
     <div className={css.waterProgressBar}>
       <div className={css.today}>{t('description.tracker.todayText')}</div>
@@ -48,6 +55,7 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
           railStyle={railStyle}
           handleStyle={handleStyle}
           style={sliderStyle}
+          handleRender={handleRender}
           disabled
         />
       </div>
