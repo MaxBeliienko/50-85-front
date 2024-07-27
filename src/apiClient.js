@@ -32,7 +32,7 @@ apiClient.interceptors.response.use(
       if (isRefreshing) {
         return new Promise(resolve => {
           addRefreshSubscriber(token => {
-            originalRequest.headers['Authorization'] = 'Bearer ' + token;
+            originalRequest.headers['Authorization'] = `Bearer ${token}`;
             resolve(apiClient(originalRequest));
           });
         });
@@ -42,12 +42,12 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshToken = localStorage.getItem('refreshToken');
         const response = await axios.post(
           'https://aquatrack-backend.onrender.com/users/refresh-token',
-          { token: refreshToken }
+          {},
+          { withCredentials: true }
         );
-        const { accessToken } = response.data;
+        const { accessToken } = response.data.data;
 
         localStorage.setItem('accessToken', accessToken);
         setAuthHeader(accessToken);

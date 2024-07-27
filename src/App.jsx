@@ -16,13 +16,6 @@ const SignInPage = lazy(() => import('./pages/SignInPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 
 function App() {
-  const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
