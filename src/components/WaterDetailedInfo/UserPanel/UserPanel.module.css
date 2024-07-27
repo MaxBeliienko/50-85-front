@@ -1,6 +1,7 @@
 .userPanelWrap {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .fontGilroy {
@@ -20,4 +21,14 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: #323f47;
+}
+
+@media (min-width: 768px) {
+  .userPanelWrap {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1440px) {
 }

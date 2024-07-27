@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
   justify-content: space-between;
 }
 
@@ -18,7 +19,7 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .btn {
@@ -29,6 +30,9 @@
   height: 30px;
   background-color: #9be1a0;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .svg {
