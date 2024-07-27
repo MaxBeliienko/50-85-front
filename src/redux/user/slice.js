@@ -20,6 +20,7 @@ const initialState = {
     weight: null,
     activityLevel: null,
     dailyRequirement: null,
+    dailyWaterIntake: null,
   },
   loading: false,
   error: null,

@@ -52,6 +52,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
             weight: user.weight || "",
             activityLevel: user.activityLevel || "",
             dailyRequirement: user.dailyRequirement || 2000,
+            dailyWaterIntake: user.dailyWaterIntake || "",
             photo: user.photo || "",
           }}
           validationSchema={userValidationSchema}
@@ -180,7 +181,10 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   <div className={styles.formGroup}>
                     <p>
                       {t("description.settings.requiredWater")}{" "}
-                      <span>1.8 L</span>
+                      <span>
+                        {user.dailyWaterIntake}{" "}
+                        {t("description.settings.liter")}
+                      </span>
                     </p>
                     <label
                       htmlFor="dailyRequirement"
