@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: 'https://aquatrack-backend.onrender.com',
+  withCredentials: true,
 });
 
 let isRefreshing = false;
