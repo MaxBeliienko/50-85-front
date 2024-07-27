@@ -75,7 +75,6 @@ const WaterDetailedInfo = () => {
 
   const onChangeDate = (year, month, day) => {
     setSearchParams({ year, month, day });
-    // setInitialDate({ year, month, day });
   };
 
   const onChangeMonth = (year, month) => {

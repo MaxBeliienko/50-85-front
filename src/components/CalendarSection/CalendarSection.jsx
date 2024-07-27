@@ -14,66 +14,87 @@ const CalendarSection = ({
 }) => {
   const { t } = useTranslation();
   const monthToNumber = Number(searchDate.month);
-  console.log('monthToNumber', monthToNumber);
   const currentMonthName = monthNames[monthToNumber];
-  console.log(currentMonthName);
-  console.log(searchDate.month);
   const monthData = useSelector(selectMonthWater);
 
-  const handleNextMonth = () => {
-    onChangeMonth(prevState => {
-      const nextMonth = (prevState.month + 1) % 12;
-      const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
-      console.log(nextMonth, nextYear);
-      onChangeMonth(nextYear, nextMonth);
-      // if (nextYear === searchDate.year && nextMonth === searchDate.month) {
-      //   return {
-      //     ...searchDate,
-      //   };
-      // } else {
-      //   return {
-      //     year: nextYear,
-      //     month: nextMonth,
-      //   };
-      // }
-    });
-  };
+  function getNextMonth(currentDate) {
+    if (Number(currentDate.month) === 12) {
+      onChangeMonth(Number(currentDate.year) + 1, 1);
+    } else {
+      onChangeMonth(currentDate.year, Number(currentDate.month) + 1);
+    }
+  }
 
-  const handlePreviousMonth = () => {
-    onChangeMonth(prevState => {
-      const previousMonth = (prevState.month - 1 + 12) % 12;
-      const previousYear =
-        prevState.year + Math.floor((prevState.month - 1) / 12);
-      onChangeMonth(previousYear, previousMonth);
+  function getPreviousMonth(currentDate) {
+    if (Number(currentDate.month) === 1) {
+      onChangeMonth(Number(currentDate.year) - 1, 12);
+    } else {
+      onChangeMonth(currentDate.year, Number(currentDate.month), 1);
+    }
+  }
 
-      // if (
-      //   previousYear === searchDate.year &&
-      //   previousMonth === searchDate.month
-      // ) {
-      //   return {
-      //     ...searchDate,
-      //   };
-      // } else {
-      //   return {
-      //     year: previousYear,
-      //     month: previousMonth,
-      //   };
-      // }
-    });
-  };
+  // const handleNextMonth = () => {
+  //   onChangeMonth(prevState => {
+  //     const nextMonth = (prevState.month + 1) % 12;
+  //     const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
+  //     console.log(nextMonth, nextYear);
+  //     onChangeMonth(nextYear, nextMonth);
+  // if (nextYear === searchDate.year && nextMonth === searchDate.month) {
+  //   return {
+  //     ...searchDate,
+  //   };
+  // } else {
+  //   return {
+  //     year: nextYear,
+  //     month: nextMonth,
+  //   };
+  // }
+  //   });
+  // };
+
+  // const handlePreviousMonth = () => {
+  //   onChangeMonth(prevState => {
+  //     const previousMonth = (prevState.month - 1 + 12) % 12;
+  //     const previousYear =
+  //       prevState.year + Math.floor((prevState.month - 1) / 12);
+  //     onChangeMonth(previousYear, previousMonth);
+
+  // if (
+  //   previousYear === searchDate.year &&
+  //   previousMonth === searchDate.month
+  // ) {
+  //   return {
+  //     ...searchDate,
+  //   };
+  // } else {
+  //   return {
+  //     year: previousYear,
+  //     month: previousMonth,
+  //   };
+  // }
+  //   });
+  // };
   return (
     <>
       <div className={css.title}>
         <h2>{t(`description.calendar.monthText`)}</h2>
         <div className={css.blockcalendar}>
-          <button className={css.btn} onClick={handlePreviousMonth}>
+          <button
+            className={css.btn}
+            onClick={() => getPreviousMonth(searchDate)}
+          >
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
           </button>
           <p>
             {currentMonthName},{searchDate.year}
           </p>
 
-          <button className={css.btn} onClick={handleNextMonth}>
+          <button
+            className={css.btn}
+            onClick={() => {
+              getNextMonth(searchDate);
+            }}
+          >
             <Iconsvg iconName={'right'} width={5} height={9} styles={css.btn} />
           </button>
           <button className={css.btn}>
