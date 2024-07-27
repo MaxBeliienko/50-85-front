@@ -108,19 +108,35 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                       className={styles.formControl}
                     />
                   </div>
-                  <div className={styles.formGroup}>
+
+                  <div className={styles.formGroupDailyNorma}>
                     <label
-                      htmlFor="dailyRequirement"
+                      htmlFor="dailyNorma"
                       className={styles.formGroupLabel}
                     >
-                      My daily requirement:
+                      My daily norma
                     </label>
-                    <Field
-                      type="text"
-                      id="dailyRequirement"
-                      name="dailyRequirement"
-                      className={styles.formControl}
-                    />
+                    <div className={styles.dailyNormaGroup}>
+                      <div>
+                        <label htmlFor="dailyNorma">For woman:</label>
+                        <p>V=(M*0,03) + (T*0,4)</p>
+                      </div>
+
+                      <div>
+                        <label htmlFor="dailyNorma">For man:</label>
+                        <p>V=(M*0,04) + (T*0,6)</p>
+                      </div>
+                    </div>
+                    <p>
+                      <span>*</span> V is the volume of the water norm in liters
+                      per day, M is your body weight, T is the time of active
+                      sports, or another type of activity commensurate in terms
+                      of loads (in the absence of these, you must set 0)
+                    </p>
+                    <p>
+                      {" "}
+                      <span>!</span> Active time in hours
+                    </p>
                   </div>
                 </div>
 
@@ -151,6 +167,10 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                     />
                   </div>
                   <div className={styles.formGroup}>
+                    <p>
+                      The required amount of water in liters per day:{" "}
+                      <span>1.8 L</span>
+                    </p>
                     <label
                       htmlFor="dailyRequirement"
                       className={styles.formGroupLabel}
