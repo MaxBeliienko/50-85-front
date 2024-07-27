@@ -141,14 +141,12 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                       </div>
                     </div>
                     <p>
-                      <span>*</span> V is the volume of the water norm in liters
-                      per day, M is your body weight, T is the time of active
-                      sports, or another type of activity commensurate in terms
-                      of loads (in the absence of these, you must set 0)
+                      <span>*</span>{" "}
+                      {t("description.settings.formulaExplanation")}
                     </p>
                     <p>
                       {" "}
-                      <span>!</span> Active time in hours
+                      <span>!</span> {t("description.settings.activeTimeHour")}
                     </p>
                   </div>
                 </div>

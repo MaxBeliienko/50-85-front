@@ -235,6 +235,9 @@ export const settingsModalText = {
     waterToDrink: 'Write down how much water you will drink:',
     save: 'Save',
     language: 'Language',
+    formulaExplanation:
+      'V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)',
+    activeTimeHour: 'Active time in hours',
   },
   ukr: {
     title: 'Налаштування',
@@ -245,10 +248,18 @@ export const settingsModalText = {
     name: "Ваше ім'я:",
     email: 'Електронна пошта:',
     requirement: 'Моя щоденна норма:',
+    forWoman: 'Для жінки:',
+    womanFormula: 'V=(М*0,03) + (Т*0,4)',
+    forMan: 'Для чоловіка:',
+    manFormula: 'V=(М*0,04) + (Т*0,6)',
     weight: 'Ваша вага в кілограмах:',
     activeTime: 'Час активних занять спортом:',
+    requiredWater: 'Необхідна кількість води в літрах на день:',
     waterToDrink: "Запишіть, скільки води ви вип'єте:",
     save: 'Зберегти',
     language: 'Мова',
+    formulaExplanation:
+      ' V - це обсяг норми води в літрах на день, М - ваша вага, Т - час активних занять спортом або іншим видом діяльності, рівнозначним за навантаженням (при їх відсутності необхідно встановити 0)',
+    activeTimeHour: 'Активний час в годинах',
   },
 };
