@@ -127,13 +127,17 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                     </label>
                     <div className={styles.dailyNormaGroup}>
                       <div>
-                        <label htmlFor="dailyNorma">For woman:</label>
-                        <p>V=(M*0,03) + (T*0,4)</p>
+                        <label htmlFor="dailyNorma">
+                          {t("description.settings.forWoman")}
+                        </label>
+                        <p>{t("description.settings.womanFormula")}</p>
                       </div>
 
                       <div>
-                        <label htmlFor="dailyNorma">For man:</label>
-                        <p>V=(M*0,04) + (T*0,6)</p>
+                        <label htmlFor="dailyNorma">
+                          {t("description.settings.forMan")}
+                        </label>
+                        <p>{t("description.settings.manFormula")}</p>
                       </div>
                     </div>
                     <p>
@@ -177,7 +181,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   </div>
                   <div className={styles.formGroup}>
                     <p>
-                      The required amount of water in liters per day:{" "}
+                      {t("description.settings.requiredWater")}{" "}
                       <span>1.8 L</span>
                     </p>
                     <label
