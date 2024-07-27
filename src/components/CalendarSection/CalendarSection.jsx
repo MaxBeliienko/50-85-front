@@ -2,29 +2,75 @@ import Calendar from '../Calendar/Calendar';
 import css from './CalendarSection.module.css';
 import Iconsvg from '../Icon';
 import { useTranslation } from 'react-i18next';
+import { selectMonthWater } from '../../redux/water/selectors';
+import { useSelector } from 'react-redux';
 
 const CalendarSection = ({
-  currentDate,
+  searchDate,
   monthNames,
-  handlePreviousMonth,
-  handleNextMonth,
   onChangeDate,
+  onChangeMonth,
   today,
-  monthData,
 }) => {
   const { t } = useTranslation();
-  const currentMonthName = monthNames[currentDate.month];
+  const monthToNumber = Number(searchDate.month);
+  console.log('monthToNumber', monthToNumber);
+  const currentMonthName = monthNames[monthToNumber];
+  console.log(currentMonthName);
+  console.log(searchDate.month);
+  const monthData = useSelector(selectMonthWater);
 
+  const handleNextMonth = () => {
+    onChangeMonth(prevState => {
+      const nextMonth = (prevState.month + 1) % 12;
+      const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
+      console.log(nextMonth, nextYear);
+      onChangeMonth(nextYear, nextMonth);
+      // if (nextYear === searchDate.year && nextMonth === searchDate.month) {
+      //   return {
+      //     ...searchDate,
+      //   };
+      // } else {
+      //   return {
+      //     year: nextYear,
+      //     month: nextMonth,
+      //   };
+      // }
+    });
+  };
+
+  const handlePreviousMonth = () => {
+    onChangeMonth(prevState => {
+      const previousMonth = (prevState.month - 1 + 12) % 12;
+      const previousYear =
+        prevState.year + Math.floor((prevState.month - 1) / 12);
+      onChangeMonth(previousYear, previousMonth);
+
+      // if (
+      //   previousYear === searchDate.year &&
+      //   previousMonth === searchDate.month
+      // ) {
+      //   return {
+      //     ...searchDate,
+      //   };
+      // } else {
+      //   return {
+      //     year: previousYear,
+      //     month: previousMonth,
+      //   };
+      // }
+    });
+  };
   return (
     <>
       <div className={css.title}>
-        <h2>{t('description.calendar.monthText')}</h2>
+        <h2>{t(`description.calendar.monthText`)}</h2>
         <div className={css.blockcalendar}>
           <button className={css.btn} onClick={handlePreviousMonth}>
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
           </button>
           <p>
-            {t(`description.months.${currentMonthName}`)},{currentDate.year}
+            {currentMonthName},{searchDate.year}
           </p>
 
           <button className={css.btn} onClick={handleNextMonth}>
@@ -42,7 +88,7 @@ const CalendarSection = ({
       </div>
 
       <Calendar
-        currentDate={currentDate}
+        searchDate={searchDate}
         onChangeDate={onChangeDate}
         today={today}
         monthData={monthData}

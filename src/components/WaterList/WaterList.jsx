@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../redux/water/selectors';
 
-const WaterList = ({ currentDate, monthNames, today }) => {
+const WaterList = ({ searchDate, monthNames, isToday }) => {
   const [showModal, setShowModal] = useState(false);
   const dailyWaterArray = useSelector(selectDailyWater);
+  console.log('dailyWaterArray', dailyWaterArray);
 
   const openModal = () => {
     setShowModal(true);
@@ -20,14 +21,10 @@ const WaterList = ({ currentDate, monthNames, today }) => {
   };
 
   const { t } = useTranslation();
-  const currentMonthName = monthNames[currentDate.month - 1];
-  const isToday =
-    today.day === currentDate.day &&
-    today.month === currentDate.month &&
-    today.year === currentDate.year;
+  const currentMonthName = monthNames[searchDate.month - 1];
 
   return (
-    <div className={css.container}>
+    <>
       <Modal
         showModal={showModal}
         closeModal={closeModal}
@@ -40,7 +37,7 @@ const WaterList = ({ currentDate, monthNames, today }) => {
         <h2 className={css.title}>
           {isToday
             ? t('description.tracker.todayText')
-            : `${currentDate.day}, ${t(
+            : `${searchDate.day}, ${t(
                 `description.months.${currentMonthName}`
               )}`}
         </h2>
@@ -68,7 +65,7 @@ const WaterList = ({ currentDate, monthNames, today }) => {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,8 @@
+.waterCalendarcontainer {
+  background-color: #f0eff4;
+  padding: 40px 20px;
+  min-width: 343px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
