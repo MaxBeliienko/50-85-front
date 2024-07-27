@@ -167,17 +167,21 @@ export const waterModalText = {
 export const waterForm = {
   en: {
     chooseValue: 'Choose a value:',
+    correctData: 'Correct entered data:',
     amountWater: 'Amount of water:',
     recordingTime: 'Recording time:',
     usedWater: 'Enter the value of the water used:',
     saveBtn: 'Save',
+    warningAmount: 'Amount of water could be from interwal ',
   },
   ukr: {
     chooseValue: 'Виберіть значення:',
+    correctData: 'Виправіть введені дані:',
     amountWater: 'Кількість води:',
     recordingTime: 'Час запису:',
     usedWater: 'Введіть значення випитої води:',
     saveBtn: 'Зберегти',
+    warningAmount: 'Кількість води може бути з проміжку ',
   },
 };
 
