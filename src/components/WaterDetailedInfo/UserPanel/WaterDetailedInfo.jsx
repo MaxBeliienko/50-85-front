@@ -17,7 +17,6 @@ const WaterDetailedInfo = () => {
     month: date.getMonth() + 1,
     day: date.getDate(),
   };
-  console.log('today', today);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -26,7 +25,6 @@ const WaterDetailedInfo = () => {
     month: formatNumber(searchParams.get('month') || today.month),
     day: formatNumber(searchParams.get('day') || today.day),
   };
-  console.log('searchDate', searchDate);
   const isToday =
     Number(today.day) === Number(searchDate.day) &&
     Number(today.month) === Number(searchDate.month) &&
@@ -50,7 +48,6 @@ const WaterDetailedInfo = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('useEffect waterdetailedinfo');
     dispatch(
       fetchDailyWater({
         year: searchDate.year,
