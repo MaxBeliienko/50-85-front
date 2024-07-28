@@ -8,9 +8,10 @@
   cursor: pointer;
   background-color: transparent;
   color: var(--black);
-  margin-left: 84px;
+  margin-left: 0 !important;
   outline: none;
 }
+
 .noMargin {
   margin: 0;
 }
