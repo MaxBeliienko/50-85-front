@@ -81,7 +81,7 @@ const MainWaterInfo = () => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal operationType="add" onAddWater={handleAddWater} />
+        <WaterModal operationType="add" onCloseModal={closeModal} />
       </Modal>
     </>
   );
