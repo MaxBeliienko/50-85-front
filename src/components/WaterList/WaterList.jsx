@@ -7,10 +7,13 @@ import WaterModal from '../waterModal/WaterModal';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../redux/water/selectors';
+import { Hourglass } from 'react-loader-spinner';
+import { selectIsLoading } from '../../redux/user/selectors';
 
 const WaterList = ({ searchDate, monthNames, isToday }) => {
   const [showModal, setShowModal] = useState(false);
   const dailyWaterArray = useSelector(selectDailyWater);
+  const loading = useSelector(selectIsLoading);
 
   const openModal = () => {
     setShowModal(true);
@@ -32,6 +35,7 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
       >
         <WaterModal operationType={'add'} onCloseModal={closeModal} />
       </Modal>
+
       <div className={css.topcontainer}>
         <h2 className={css.title}>
           {isToday ? 'Today' : `${searchDate.day}, ${currentMonthName}`}
@@ -50,7 +54,17 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
           </div>
         )}
       </div>
-
+      {loading && (
+        <Hourglass
+          visible={true}
+          height="40"
+          width="40"
+          ariaLabel="hourglass-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          colors={['#9BE1A0', '#72a1ed']}
+        />
+      )}
       <ul className={css.list}>
         {dailyWaterArray.map(wateritem => {
           return (
