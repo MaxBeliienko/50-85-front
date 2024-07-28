@@ -24,6 +24,24 @@ const addRefreshSubscriber = callback => {
   refreshSubscribers.push(callback);
 };
 
+const updateTokenInLocalStorage = newToken => {
+  const authData = localStorage.getItem('persist:auth');
+  if (authData) {
+    let authObject = JSON.parse(authData);
+
+    // Парсимо значення 'token', якщо воно є у форматі JSON
+    if (authObject.token) {
+      authObject.token = JSON.parse(authObject.token);
+    }
+
+    // Оновлюємо токен
+    authObject.token = newToken;
+
+    // Зберігаємо назад у localStorage
+    localStorage.setItem('persist:auth', JSON.stringify(authObject));
+  }
+};
+
 apiClient.interceptors.response.use(
   response => response,
   async error => {
@@ -49,7 +67,7 @@ apiClient.interceptors.response.use(
         );
         const { accessToken } = response.data.data;
 
-        localStorage.setItem('accessToken', accessToken);
+        updateTokenInLocalStorage(accessToken);
         setAuthHeader(accessToken);
         isRefreshing = false;
         onRefreshed(accessToken);
