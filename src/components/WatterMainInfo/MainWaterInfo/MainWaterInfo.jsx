@@ -13,7 +13,7 @@ import bottle2t from '../../../public/images/bottle/bottle2t.png';
 import bottle1d from '../../../public/images/bottle/bottle1d.png';
 import bottle2d from '../../../public/images/bottle/bottle2d.png';
 import Modal from '../../Modal.jsx';
-import { fetchDailyWater, addWater } from '../../../redux/water/operations.js';
+import { fetchDailyWater } from '../../../redux/water/operations.js';
 import { selectDailyWater } from '../../../redux/water/selectors';
 
 const MainWaterInfo = () => {
@@ -43,20 +43,20 @@ const MainWaterInfo = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleAddWater = volume => {
-    const today = new Date();
-    const time = today.toISOString();
-    dispatch(addWater({ volume, time })).then(() => {
-      closeModal();
-      dispatch(
-        fetchDailyWater({
-          year: today.getFullYear(),
-          month: today.getMonth() + 1,
-          day: today.getDate(),
-        })
-      );
-    });
-  };
+  // const handleAddWater = volume => {
+  //   const today = new Date();
+  //   const time = today.toISOString();
+  //   dispatch(addWater({ volume, time })).then(() => {
+  //     closeModal();
+  //     dispatch(
+  //       fetchDailyWater({
+  //         year: today.getFullYear(),
+  //         month: today.getMonth() + 1,
+  //         day: today.getDate(),
+  //       })
+  //     );
+  //   });
+  // };
 
   return (
     <>
