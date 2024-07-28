@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import styles from './HomeMain.module.css';
 import { useTranslation } from 'react-i18next';
+import LocalizationSwitcher from '../LocalizationSwitcher/LocalizationSwitcher';
 
 const WelcomeSection = () => {
   const { t } = useTranslation();
@@ -9,6 +10,7 @@ const WelcomeSection = () => {
   return (
     <div className={styles.mainWrapper}>
       <Logo />
+      <LocalizationSwitcher />
       <div className={styles.sectionWrap}>
         <h2 className={styles.subtitle}>
           {t('description.welcome.subtitleText')}

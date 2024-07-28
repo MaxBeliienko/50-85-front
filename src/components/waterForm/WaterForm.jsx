@@ -15,9 +15,10 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const WaterForm = ({ submit, waterItem }) => {
-  // console.log('edit water form', waterItem._id);
-  const [waterAmount, setWaterAmount] = useState(50);
+const WaterForm = ({ submit, waterItem, operationType }) => {
+  const [waterAmount, setWaterAmount] = useState(
+    waterItem ? waterItem.volume : 50
+  );
 
   const getTime = () => {
     const currentDate = new Date();
@@ -28,13 +29,13 @@ const WaterForm = ({ submit, waterItem }) => {
     return `${formattedHours}:${formattedMinutes}`;
   };
 
-  function defaulVolume(item) {
-    if (item) {
-      return item.volume;
-    } else {
-      return waterAmount;
-    }
-  }
+  // function defaulVolume(item) {
+  //   if (item) {
+  //     return item.volume;
+  //   } else {
+  //     return waterAmount;
+  //   }
+  // }
 
   function defaultTime(item) {
     if (item) {
@@ -52,7 +53,7 @@ const WaterForm = ({ submit, waterItem }) => {
   } = useForm({
     mode: 'onChange',
     defaultValues: {
-      volume: defaulVolume(waterItem),
+      volume: waterAmount,
       time: defaultTime(waterItem),
     },
     resolver: yupResolver(validationSchema),
@@ -69,13 +70,15 @@ const WaterForm = ({ submit, waterItem }) => {
     setWaterAmount(prevWaterAmount => Math.min(prevWaterAmount + 50, 5000));
   };
 
+  const { t } = useTranslation();
+
   const handleWater = e => {
     const { value } = e.target;
     if (value === '') {
       setWaterAmount(0);
     } else {
       if (parseInt(value) > 5000 || parseInt(value) < 0) {
-        toast('Amount of water could be from interwal [0,5000]', {
+        toast(t('description.waterForm.warningAmount') + '[0,5000]', {
           duration: 2000,
           style: {
             margin: '60px',
@@ -88,11 +91,13 @@ const WaterForm = ({ submit, waterItem }) => {
       }
     }
   };
-  const { t } = useTranslation();
+
   return (
     <>
       <p className={styles.biggerText}>
-        {t('description.waterForm.chooseValue')}
+        {operationType === 'add'
+          ? t('description.waterForm.chooseValue')
+          : t('description.waterForm.correctData')}
       </p>
       <p className={styles.smallerText}>
         {t('description.waterForm.amountWater')}

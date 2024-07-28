@@ -1,16 +1,19 @@
 import { useState } from 'react';
-import Iconsvg from '../Icon';
 import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 import Modal from '../Modal';
 import WaterModal from '../waterModal/WaterModal';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../redux/water/selectors';
+import { Hourglass } from 'react-loader-spinner';
+import { selectIsLoading } from '../../redux/user/selectors';
+import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
+import ChooseDate from '../ChooseDate/ChooseDate';
 
-const WaterList = ({ currentDate, monthNames, today }) => {
+const WaterList = ({ searchDate, monthNames, isToday }) => {
   const [showModal, setShowModal] = useState(false);
   const dailyWaterArray = useSelector(selectDailyWater);
+  const loading = useSelector(selectIsLoading);
 
   const openModal = () => {
     setShowModal(true);
@@ -19,15 +22,10 @@ const WaterList = ({ currentDate, monthNames, today }) => {
     setShowModal(false);
   };
 
-  const { t } = useTranslation();
-
-  const isToday =
-    today.day === currentDate.day &&
-    today.month === currentDate.month &&
-    today.year === currentDate.year;
+  const currentMonthName = monthNames[Number(searchDate.month) - 1];
 
   return (
-    <div className={css.container}>
+    <>
       <Modal
         showModal={showModal}
         closeModal={closeModal}
@@ -36,27 +34,26 @@ const WaterList = ({ currentDate, monthNames, today }) => {
       >
         <WaterModal operationType={'add'} onCloseModal={closeModal} />
       </Modal>
-      <div className={css.topcontainer}>
-        <h2 className={css.title}>
-          {isToday
-            ? 'Today'
-            : `${currentDate.day}, ${monthNames[currentDate.month - 1]}`}
-        </h2>
-        {isToday && (
-          <div className={css.btncontainer}>
-            <button className={css.btn} onClick={openModal}>
-              <Iconsvg
-                iconName="add-water"
-                width={16}
-                height={16}
-                styles={css.svg}
-              />
-            </button>
-            <p className={css.text}>{t('description.tracker.addWaterText')}</p>
-          </div>
-        )}
-      </div>
 
+      <div className={css.topcontainer}>
+        <ChooseDate
+          currentMonthName={currentMonthName}
+          searchDate={searchDate}
+          isToday={isToday}
+        />
+        {isToday && <AddWaterBtn openModal={openModal} />}
+      </div>
+      {loading && (
+        <Hourglass
+          visible={true}
+          height="40"
+          width="40"
+          ariaLabel="hourglass-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          colors={['#9BE1A0', '#72a1ed']}
+        />
+      )}
       <ul className={css.list}>
         {dailyWaterArray.map(wateritem => {
           return (
@@ -66,7 +63,7 @@ const WaterList = ({ currentDate, monthNames, today }) => {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 

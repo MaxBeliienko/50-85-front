@@ -3,7 +3,7 @@ import Iconsvg from './Icon';
 
 ReactModal.setAppElement('#root');
 
-const Modal = ({ showModal, closeModal, buttonTop, buttonRight, children }) => {
+const Modal = ({ showModal, closeModal, children }) => {
   const customStyles = {
     content: {
       top: '50%',
@@ -30,8 +30,8 @@ const Modal = ({ showModal, closeModal, buttonTop, buttonRight, children }) => {
     border: 'none',
     cursor: 'pointer',
     position: 'absolute',
-    top: buttonTop,
-    right: buttonRight,
+    top: 20,
+    right: 20,
   };
 
   return (

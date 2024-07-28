@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../../redux/auth/operations.js';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import LocalizationSwitcher from '../LocalizationSwitcher/LocalizationSwitcher.jsx';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -70,6 +71,7 @@ const SignUpForm = () => {
   return (
     <>
       <Logo />
+      <LocalizationSwitcher />
       <div className={styles.signUpWrapper}>
         <p className={styles.mainText}>{t('description.signUp.MainHeader')}</p>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

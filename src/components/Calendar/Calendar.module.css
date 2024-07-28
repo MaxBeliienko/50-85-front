@@ -4,61 +4,15 @@
   align-items: center;
   justify-content: flex-start;
   max-width: 100%;
-  gap: 16px;
-
-  li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  gap: 16px 18px;
 }
 
-.btn {
-  border: none;
-  outline: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: white;
-}
-
-.calendarday {
-  border: none;
-  outline: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: white;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.29;
-  letter-spacing: -0.01em;
-}
-
-.currentday {
-  border: none;
-  outline: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: white;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.29;
-  letter-spacing: -0.01em;
-  color: #9be1a0;
-  background-color: #323f47;
-}
-
-.percent {
-  margin-top: 6px;
-  font-weight: 400;
-  font-size: 10px;
-  color: rgba(47, 47, 47, 0.6);
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .disabledStyle {
@@ -67,4 +21,16 @@
 
 .hidden {
   visibility: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .calendar {
+    gap: 15px 48px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .calendar {
+    gap: 15px 43px;
+  }
 }
