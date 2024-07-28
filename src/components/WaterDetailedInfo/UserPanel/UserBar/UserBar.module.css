@@ -11,7 +11,7 @@
   padding: 6px 12px;
   width: 157px;
   height: 50px;
-  background: #323f47;
+  background: var(--light-black);
   border: none;
   cursor: pointer;
 }
@@ -24,14 +24,14 @@
 }
 
 .user-name {
-  font-family: 'Poppins', sans-serif;
+  font-family: inherit;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   line-height: 1.5;
   letter-spacing: -0.01em;
   text-align: center;
-  color: #fff;
+  color:var(--white);
 }
 
 .user-button img {
@@ -46,8 +46,8 @@
   border-radius: 50%;
   margin-right: 8px;
   margin-left: 8px;
-  color: #fff;
-  background-color: #323f47;
+  color:var(--white);
+  background-color: var(--light-black);
 }
 
 .userName {
@@ -58,67 +58,22 @@
   line-height: 1.5;
   letter-spacing: -0.01em;
   text-align: center;
-  color: #fff;
+  color:var(--white);
 
   width: 7ch;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.popupMenu {
-  margin-top: 4px;
-  border-radius: 15px;
-  padding: 14px;
-  width: 157px;
-  height: 72px;
-  border: none;
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
-  position: absolute;
-  top: 50px;
-}
-
-.popupMenuContainer {
-  margin-top: 8px;
-}
-
-.popupMenuButton {
-  border: none;
-  background-color: #fff;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
-  line-height: 1.28571;
-  color: #323f47;
-  transition: color 0.3s;
-  display: flex;
-  gap: 8px;
-  column-gap: 8px;
-  outline: none;
-}
-
-.popupMenuButton:hover {
-  color: rgba(50, 63, 71, 0.4);
-}
-
-.popupMenuContainer {
-  stroke: rgba(50, 63, 71, 0.4);
-}
-.popupMenuButton:hover .svg {
-  stroke: rgba(50, 63, 71, 0.4);
-}
-.svg {
-  stroke: #323f47;
-  transition: color 0.3s;
-}
-
 .rotate-arrow {
   transform: rotateZ(180deg);
-  color: #fff;
+  color:var(--white);
 }
 .userWpapper {
   display: flex;
   align-items: center;
+}
+.svg {
+  stroke: var(--light-black);
+  transition: color 0.3s;
 }
