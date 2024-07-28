@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
-import Iconsvg from "../../../../../Icon";
+import Iconsvg from "../../../../../../../../../Icon";
 import styles from "./CustomImageUploading.module.css";
 
 const CustomImageUploading = ({ onImageChange, initialPhoto }) => {

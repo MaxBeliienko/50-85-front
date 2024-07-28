@@ -45,19 +45,25 @@
 }
 
 .imagePlaceholder {
-  width: 100px;
-  height: 100px;
-  max-width: 100px;
-  min-height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-color: rgb(220, 220, 220);
+
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .avatar {
-  width: 100px;
-  height: 100px;
-  max-width: 100px;
-  min-height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   object-fit: cover;
+
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 }
