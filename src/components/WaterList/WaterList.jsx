@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import Iconsvg from '../Icon';
 import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 import Modal from '../Modal';
 import WaterModal from '../waterModal/WaterModal';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../redux/water/selectors';
 import { Hourglass } from 'react-loader-spinner';
 import { selectIsLoading } from '../../redux/user/selectors';
+import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
+import ChooseDate from '../ChooseDate/ChooseDate';
 
 const WaterList = ({ searchDate, monthNames, isToday }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +22,6 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
     setShowModal(false);
   };
 
-  const { t } = useTranslation();
   const currentMonthName = monthNames[Number(searchDate.month) - 1];
 
   return (
@@ -37,22 +36,12 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
       </Modal>
 
       <div className={css.topcontainer}>
-        <h2 className={css.title}>
-          {isToday ? 'Today' : `${searchDate.day}, ${currentMonthName}`}
-        </h2>
-        {isToday && (
-          <div className={css.btncontainer}>
-            <button className={css.btn} onClick={openModal}>
-              <Iconsvg
-                iconName="add-water"
-                width={16}
-                height={16}
-                styles={css.svg}
-              />
-            </button>
-            <p className={css.text}>{t('description.tracker.addWaterText')}</p>
-          </div>
-        )}
+        <ChooseDate
+          currentMonthName={currentMonthName}
+          searchDate={searchDate}
+          isToday={isToday}
+        />
+        {isToday && <AddWaterBtn openModal={openModal} />}
       </div>
       {loading && (
         <Hourglass

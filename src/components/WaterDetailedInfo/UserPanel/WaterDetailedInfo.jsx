@@ -30,6 +30,10 @@ const WaterDetailedInfo = () => {
     Number(today.month) === Number(searchDate.month) &&
     Number(today.year) === Number(searchDate.year);
 
+  const isCurrentMonth =
+    Number(today.month) === Number(searchDate.month) &&
+    Number(today.year) === Number(searchDate.year);
+
   const monthNames = [
     'January',
     'February',
@@ -101,6 +105,7 @@ const WaterDetailedInfo = () => {
         onChangeDate={onChangeDate}
         onChangeMonth={onChangeMonth}
         searchDate={searchDate}
+        isCurrentMonth={isCurrentMonth}
       />
     </div>
   );

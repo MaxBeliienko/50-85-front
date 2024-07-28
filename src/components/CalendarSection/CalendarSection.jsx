@@ -4,12 +4,13 @@ import Iconsvg from '../Icon';
 import { selectMonthWater } from '../../redux/water/selectors';
 import { useSelector } from 'react-redux';
 
-const CalendarSection = ({
+const CalendarPagination = ({
   searchDate,
   monthNames,
   onChangeDate,
   onChangeMonth,
   today,
+  isCurrentMonth,
 }) => {
   const currentMonthName = monthNames[Number(searchDate.month) - 1];
   const monthData = useSelector(selectMonthWater);
@@ -77,9 +78,10 @@ const CalendarSection = ({
         onChangeDate={onChangeDate}
         today={today}
         monthData={monthData}
+        isCurrentMonth={isCurrentMonth}
       />
     </>
   );
 };
 
-export default CalendarSection;
+export default CalendarPagination;

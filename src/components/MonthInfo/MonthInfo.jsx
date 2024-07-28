@@ -1,4 +1,4 @@
-import CalendarSection from '../CalendarSection/CalendarSection';
+import CalendarPagination from '../CalendarSection/CalendarSection';
 import css from './MonthInfo.module.css';
 
 const MonthInfo = ({
@@ -7,15 +7,17 @@ const MonthInfo = ({
   onChangeDate,
   searchDate,
   monthNames,
+  isCurrentMonth,
 }) => {
   return (
     <div className={css.container}>
-      <CalendarSection
+      <CalendarPagination
         today={today}
         onChangeDate={onChangeDate}
         onChangeMonth={onChangeMonth}
         searchDate={searchDate}
         monthNames={monthNames}
+        isCurrentMonth={isCurrentMonth}
       />
     </div>
   );
