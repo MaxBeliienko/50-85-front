@@ -14,7 +14,7 @@ const WaterDetailedInfo = () => {
   const date = new Date();
   const today = {
     year: date.getFullYear(),
-    month: date.getMonth(),
+    month: date.getMonth() + 1,
     day: date.getDate(),
   };
   console.log('today', today);
@@ -74,11 +74,19 @@ const WaterDetailedInfo = () => {
   }
 
   const onChangeDate = (year, month, day) => {
-    setSearchParams({ year, month, day });
+    setSearchParams({
+      year: formatNumber(year),
+      month: formatNumber(month),
+      day: formatNumber(day),
+    });
   };
 
   const onChangeMonth = (year, month) => {
-    setSearchParams({ year, month, day: 1 });
+    setSearchParams({
+      year: formatNumber(year),
+      month: formatNumber(month),
+      day: '01',
+    });
   };
 
   return (
