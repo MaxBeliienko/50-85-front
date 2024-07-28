@@ -1,4 +1,4 @@
-import CalendarPagination from '../CalendarSection/CalendarSection';
+import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import css from './MonthInfo.module.css';
 
 const MonthInfo = ({

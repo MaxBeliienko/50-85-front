@@ -1,5 +1,5 @@
 import Calendar from '../Calendar/Calendar';
-import css from './CalendarSection.module.css';
+import css from './CalendarPagination.module.css';
 import Iconsvg from '../Icon';
 import { selectMonthWater } from '../../redux/water/selectors';
 import { useSelector } from 'react-redux';
