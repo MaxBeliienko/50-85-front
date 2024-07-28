@@ -3,13 +3,14 @@
   outline: none;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 100%;
   cursor: pointer;
   background-color: rgba(50, 63, 71, 0.2);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .currentday {
@@ -17,20 +18,40 @@
   outline: none;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 100%;
   cursor: pointer;
-  background-color: white;
+  background-color: #323f47;
+  color: #9be1a0;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.01em;
-  color: #9be1a0;
-  background-color: #323f47;
+  text-align: center;
 }
 
 .percent {
-  margin-top: 6px;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   color: rgba(47, 47, 47, 0.705);
+}
+
+@media screen and (min-width: 768px) {
+  .calendarday {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .currentday {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .percent {
+    font-size: 12px;
+    line-height: 1.87;
+  }
 }

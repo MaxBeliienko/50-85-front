@@ -35,7 +35,7 @@ const Calendar = ({
   return (
     <ul className={css.calendar}>
       {daysArray.map(({ day, percentage }) => (
-        <li key={day}>
+        <li key={day} className={css.item}>
           <CalendarItem
             percentage={percentage}
             day={day}

@@ -4,24 +4,15 @@
   align-items: center;
   justify-content: flex-start;
   max-width: 100%;
-  gap: 16px;
-
-  li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  gap: 16px 18px;
 }
 
-.btn {
-  border: none;
-  outline: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: white;
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .disabledStyle {
@@ -30,4 +21,16 @@
 
 .hidden {
   visibility: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .calendar {
+    gap: 15px 48px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .calendar {
+    gap: 15px 43px;
+  }
 }

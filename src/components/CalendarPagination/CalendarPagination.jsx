@@ -33,8 +33,8 @@ const CalendarPagination = ({
 
   return (
     <>
-      <div className={css.title}>
-        <h2>Month</h2>
+      <div className={css.titlecomtainer}>
+        <h2 className={css.month}>Month</h2>
         <div className={css.blockcalendar}>
           <button
             className={css.btn}
@@ -44,8 +44,8 @@ const CalendarPagination = ({
           >
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
           </button>
-          <p>
-            {currentMonthName},{searchDate.year}
+          <p className={css.date}>
+            {currentMonthName}, {searchDate.year}
           </p>
 
           <button
