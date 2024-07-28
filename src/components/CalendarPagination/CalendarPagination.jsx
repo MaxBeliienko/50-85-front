@@ -3,6 +3,8 @@ import css from './CalendarPagination.module.css';
 import Iconsvg from '../Icon';
 import { selectMonthWater } from '../../redux/water/selectors';
 import { useSelector } from 'react-redux';
+import StatisticsSchedule from '../StatisticsSchedule/StatisticsSchedule';
+import { useState } from 'react';
 
 const CalendarPagination = ({
   searchDate,
@@ -31,10 +33,16 @@ const CalendarPagination = ({
     }
   }
 
+  const [activeComponent, setActiveComponent] = useState(true);
+
+  const handleClick = () => {
+    setActiveComponent(!activeComponent);
+  };
+
   return (
     <>
       <div className={css.titlecomtainer}>
-        <h2 className={css.month}>Month</h2>
+        <h2 className={css.month}>{activeComponent ? 'Month' : 'Statistics'}</h2>
         <div className={css.blockcalendar}>
           <button
             className={css.btn}
@@ -62,6 +70,7 @@ const CalendarPagination = ({
             className={css.btn}
             id="statistics"
             aria-label="get statistics of week"
+            onClick={handleClick}
           >
             <Iconsvg
               iconName={'schedule'}
@@ -72,14 +81,17 @@ const CalendarPagination = ({
           </button>
         </div>
       </div>
-
-      <Calendar
-        searchDate={searchDate}
-        onChangeDate={onChangeDate}
-        today={today}
-        monthData={monthData}
-        isCurrentMonth={isCurrentMonth}
-      />
+      {activeComponent ? (
+        <Calendar
+          searchDate={searchDate}
+          onChangeDate={onChangeDate}
+          today={today}
+          monthData={monthData}
+          isCurrentMonth={isCurrentMonth}
+        />
+      ) : (
+        <StatisticsSchedule />
+      )}
     </>
   );
 };
