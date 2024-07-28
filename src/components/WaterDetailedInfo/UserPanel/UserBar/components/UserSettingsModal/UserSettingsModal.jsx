@@ -19,7 +19,13 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
   const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
 
-  const { register, handleSubmit, setValue, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(userValidationSchema),
     defaultValues: {
       gender: user.gender || t("description.settings.female"),
@@ -136,6 +142,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("name")}
                   className={styles.formControl}
                 />
+                {errors.name && (
+                  <p className={styles.errorMessage}>{errors.name.message}</p>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="email" className={styles.formGroupLabel}>
@@ -147,6 +156,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("email")}
                   className={styles.formControl}
                 />
+                {errors.email && (
+                  <p className={styles.errorMessage}>{errors.email.message}</p>
+                )}
               </div>
 
               <div className={styles.formGroupDailyNorma}>
@@ -188,6 +200,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("weight")}
                   className={styles.formControl}
                 />
+                {errors.weight && (
+                  <p className={styles.errorMessage}>{errors.weight.message}</p>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <label
@@ -202,6 +217,11 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("activityLevel")}
                   className={styles.formControl}
                 />
+                {errors.activityLevel && (
+                  <p className={styles.errorMessage}>
+                    {errors.activityLevel.message}
+                  </p>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <p>
@@ -222,6 +242,11 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("dailyRequirement")}
                   className={styles.formControl}
                 />
+                {errors.dailyRequirement && (
+                  <p className={styles.errorMessage}>
+                    {errors.dailyRequirement.message}
+                  </p>
+                )}
               </div>
             </div>
           </div>

@@ -195,3 +195,9 @@
 .saveButton:hover {
     background-color: rgba(135, 210, 141, 1);
 }
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}

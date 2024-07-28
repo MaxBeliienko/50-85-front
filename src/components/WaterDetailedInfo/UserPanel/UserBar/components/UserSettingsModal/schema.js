@@ -21,6 +21,7 @@ export const userValidationSchema = yup.object({
     .number()
     .typeError('Daily Requirement must be a number')
     .nullable()
-    .notRequired(),
+    .notRequired()
+    .max(5000, 'Daily Requirement cannot exceed 5000 liters'),
   photo: yup.string().url('Invalid URL format').nullable(),
 });
