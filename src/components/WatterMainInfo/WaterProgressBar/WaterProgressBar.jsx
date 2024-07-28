@@ -40,9 +40,9 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
   };
   const { t } = useTranslation();
 
-  const handleRender = (node, props) => {
+  const handleRender = node => {
     return React.cloneElement(node, {
-      'aria-label': 'Slider for showing how much water you drunk'
+      'aria-label': 'Slider for showing how much water you drunk',
     });
   };
   return (
