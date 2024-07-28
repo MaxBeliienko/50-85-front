@@ -32,9 +32,11 @@
   color: #9be1a0;
 }
 
-/* .addWaterBtn:active {
+.addWaterBtn:active {
   color: #ffffff;
-} */
+  outline: none;
+  box-shadow: none;
+}
 
 .icon {
   width: 16px;
@@ -42,11 +44,6 @@
   stroke: currentColor;
   stroke-width: 2px;
 }
-
-/* .addWaterBtn:hover .icon,
-.addWaterBtn:focus .icon {
-  fill: #9be1a0;
-} */
 
 @media (min-width: 768px) {
   .addWaterBtn {

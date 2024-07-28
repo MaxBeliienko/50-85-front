@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma.jsx';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar.jsx';
 import AddWaterBtn from '../AddWaterBtn/AddWaterbtn.jsx';
@@ -12,18 +13,39 @@ import bottle2t from '../../../public/images/bottle/bottle2t.png';
 import bottle1d from '../../../public/images/bottle/bottle1d.png';
 import bottle2d from '../../../public/images/bottle/bottle2d.png';
 import Modal from '../../Modal.jsx';
+import { fetchDailyWater, addWater } from '../../../redux/water/operations.js';
+import { selectDailyWater } from '../../../redux/water/selectors';
 
 const MainWaterInfo = () => {
-  const [consumed, setConsumed] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const dailyWaterArray = useSelector(selectDailyWater);
   const dailyNorma = 1.5;
+
+  useEffect(() => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    // console.log('Fetching data for MainWaterInfo useEffect:', {
+    //   year,
+    //   month,
+    //   day,
+    // });
+    dispatch(fetchDailyWater({ year, month, day }));
+  }, [dispatch]);
+
+  const consumed = dailyWaterArray.reduce((acc, item) => acc + item.volume, 0);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const addWater = amount => {
-    setConsumed(prev => Math.min(prev + amount, dailyNorma));
-    closeModal();
+  const handleAddWater = volume => {
+    const today = new Date();
+    const time = today.toISOString();
+    dispatch(addWater({ volume, time })).then(() => {
+      closeModal();
+    });
   };
 
   return (
@@ -49,7 +71,7 @@ const MainWaterInfo = () => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal operationType="add" onAddWater={addWater} />
+        <WaterModal operationType="add" onAddWater={handleAddWater} />
       </Modal>
     </>
   );

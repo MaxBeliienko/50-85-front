@@ -17,6 +17,7 @@ export const fetchDailyWater = createAsyncThunk(
   'water/daily',
   async ({ year, month, day }, thunkAPI) => {
     try {
+      console.log('Fetching data for operation:', { year, month, day });
       const res = await axios.get('/water/daily', {
         params: { year, month, day },
       });
