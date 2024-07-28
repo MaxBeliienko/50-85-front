@@ -36,7 +36,7 @@ const Calendar = ({ today, searchDate, onChangeDate, monthData }) => {
           >
             {day}
           </button>
-          <p className={css.percent}>{percentage}</p>
+          <p className={css.percent}> {percentage}</p>
         </li>
       ))}
     </ul>

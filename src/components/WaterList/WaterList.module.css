@@ -35,6 +35,10 @@
   align-items: center;
 }
 
+.loader {
+  margin: 0 auto;
+}
+
 .svg {
   stroke-width: 1.5px;
   stroke: black;
