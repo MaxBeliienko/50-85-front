@@ -13,7 +13,7 @@ const StatisticsSchedule = ({ data }) => {
   return (
     <div className={css.container}>
       <AreaChart
-        width={604}
+        width={2600}
         height={340}
         data={data}
         margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
