@@ -1,0 +1,48 @@
+.popupMenu {
+    margin-top: 4px;
+    border-radius: 15px;
+    padding: 14px;
+    width: 157px;
+    height: 72px;
+    border: none;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    background:  var(--white);
+    position: absolute;
+    top: 50px;
+  }
+  
+  .popupMenuContainer {
+    margin-top: 8px;
+  }
+  
+  .popupMenuButton {
+    border: none;
+    background-color: var(--white);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    line-height: 1.28571;
+    color: var(--light-black);
+    transition: color 0.3s;
+    display: flex;
+    gap: 8px;
+    column-gap: 8px;
+    outline: none;
+  }
+  
+  .popupMenuButton:hover {
+    color: #323f4766;
+  }
+  
+  .popupMenuContainer {
+    stroke: rgba(50, 63, 71, 0.4);
+  }
+  .popupMenuButton:hover .svg {
+    stroke: rgba(50, 63, 71, 0.4);
+  }
+  .svg {
+    stroke: var(--light-black);
+    transition: color 0.3s;
+  }

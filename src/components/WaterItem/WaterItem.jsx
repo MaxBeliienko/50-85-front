@@ -6,7 +6,6 @@ import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
 
 const WaterItem = ({ waterItem }) => {
-  console.log(waterItem._id);
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {

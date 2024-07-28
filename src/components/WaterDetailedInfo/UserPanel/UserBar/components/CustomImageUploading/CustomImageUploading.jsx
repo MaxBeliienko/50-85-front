@@ -1,14 +1,28 @@
-import { useState } from 'react';
-import ImageUploading from 'react-images-uploading';
-import Iconsvg from '../../../../../Icon';
-import styles from './CustomImageUploading.module.css';
+import { useState, useEffect } from "react";
+import ImageUploading from "react-images-uploading";
+import Iconsvg from "../../../../../Icon";
+import styles from "./CustomImageUploading.module.css";
 
-const CustomImageUploading = () => {
+const CustomImageUploading = ({ onImageChange, initialPhoto }) => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
 
-  const onChange = imageList => {
+  useEffect(() => {
+    if (initialPhoto) {
+      setImages([{ data_url: initialPhoto }]);
+    }
+  }, [initialPhoto]);
+
+  const onChange = (imageList) => {
     setImages(imageList);
+
+    if (imageList.length > 0) {
+      const imageFile = imageList[0].file;
+      const imageUrl = URL.createObjectURL(imageFile);
+      onImageChange(imageUrl, imageFile);
+    } else {
+      onImageChange("");
+    }
   };
 
   return (
@@ -18,12 +32,11 @@ const CustomImageUploading = () => {
         onChange={onChange}
         maxNumber={maxNumber}
         dataURLKey="data_url"
-        acceptType={['jpg', 'jpeg', 'png']}
+        acceptType={["jpg", "jpeg", "png"]}
       >
         {({
           imageList,
           onImageUpload,
-          onImageRemove,
           onImageUpdate,
           isDragging,
           dragProps,
@@ -31,36 +44,32 @@ const CustomImageUploading = () => {
           <div className={styles.uploadImageWrapper}>
             <div className={styles.imagePreview}>
               {imageList.length > 0 ? (
-                <div className={styles.imagePreview}>
+                <div className={styles.uploadImageBox}>
                   <img
                     className={styles.avatar}
-                    src={imageList[0]['data_url']}
+                    src={imageList[0]["data_url"]}
                     alt="Avatar"
                   />
-                  <div className={styles.imageItemBtnWrapper}>
-                    <button
-                      onClick={() => onImageUpdate(0)}
-                      className={styles.uploadImageButton}
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => onImageRemove(0)}
-                      className={styles.uploadImageButton}
-                    >
-                      Remove
-                    </button>
-                  </div>{' '}
+                  <button
+                    className={styles.uploadImageButton}
+                    onClick={() => onImageUpdate(0)}
+                  >
+                    <Iconsvg width={16} height={16} iconName={"log-out"} />
+                    Update a photo
+                  </button>
                 </div>
               ) : (
-                <div className={styles.uploadImageBox} {...dragProps}>
+                <div
+                  className={styles.uploadImageBox}
+                  {...dragProps}
+                  onClick={onImageUpload}
+                >
                   <div className={styles.imagePlaceholder} {...dragProps}></div>
                   <button
-                    style={isDragging ? { color: 'red' } : undefined}
+                    style={isDragging ? { color: "red" } : undefined}
                     className={styles.uploadImageButton}
-                    onClick={onImageUpload}
                   >
-                    <Iconsvg width={16} height={16} iconName={'log-out'} />
+                    <Iconsvg width={16} height={16} iconName={"log-out"} />
                     Upload a photo
                   </button>
                 </div>

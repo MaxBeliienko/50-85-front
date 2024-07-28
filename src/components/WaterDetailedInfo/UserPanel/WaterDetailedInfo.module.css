@@ -1,0 +1,21 @@
+.waterCalendarcontainer {
+  max-width: 343px;
+  border-radius: 30px;
+  background-color: #f0eff4;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .waterCalendarcontainer {
+    max-width: 704px;
+    padding: 35px 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .waterCalendarcontainer {
+    max-width: 672px;
+    padding: 33px 32px;
+  }
+}

@@ -1,5 +1,5 @@
-import sprite from '../assets/sprite.svg';
-import PropTypes from 'prop-types';
+import sprite from "../assets/sprite.svg";
+import PropTypes from "prop-types";
 
 const Iconsvg = ({ width, height, iconName, styles, onClick }) => {
   return (
@@ -13,7 +13,7 @@ Iconsvg.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   iconName: PropTypes.string.isRequired,
-  styles: PropTypes.string.isRequired,
+  styles: PropTypes.string,
 };
 
 export default Iconsvg;

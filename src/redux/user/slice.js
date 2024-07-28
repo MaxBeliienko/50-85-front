@@ -12,14 +12,15 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   user: {
-    id: null,
+    _id: null,
     email: null,
+    gender: 'female',
     name: null,
-    avatar: null,
+    photo: null,
     weight: null,
     activityLevel: null,
-    gender: 'female',
     dailyRequirement: null,
+    dailyWaterIntake: null,
   },
   loading: false,
   error: null,

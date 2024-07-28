@@ -2,47 +2,12 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
   justify-content: space-between;
 }
 
-.title {
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.14;
-  letter-spacing: -0.01em;
-}
-
-.btncontainer {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.btn {
-  border: none;
-  outline: none;
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  background-color: #9be1a0;
-  cursor: pointer;
-}
-
-.svg {
-  stroke-width: 1.5px;
-  stroke: black;
-}
-
-.btn:hover,
-.btn:focus {
-  background-color: #323f47;
-
-  .svg {
-    stroke: white;
-  }
+.loader {
+  margin: 0 auto;
 }
 
 .text {
