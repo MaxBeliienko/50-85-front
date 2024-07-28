@@ -8,44 +8,44 @@ import {
   Tooltip,
 } from 'recharts';
 
-const StatisticsSchedule = () => {
-  const data = [
-    {
-      day: '16',
-      pv: 0.8,
-      amt: 2.5,
-    },
-    {
-      day: '17',
-      pv: 1.3,
-      amt: 2.5,
-    },
-    {
-      day: '18',
-      pv: 0.5,
-      amt: 2.5,
-    },
-    {
-      day: '19',
-      pv: 1.8,
-      amt: 2.5,
-    },
-    {
-      day: '20',
-      pv: 1.3,
-      amt: 2.5,
-    },
-    {
-      day: '21',
-      pv: 2,
-      amt: 2.5,
-    },
-    {
-      day: '22',
-      pv: 1.6,
-      amt: 2.5,
-    },
-  ];
+const StatisticsSchedule = ({ data }) => {
+  // const data = [
+  //   {
+  //     day: '16',
+  //     pv: 0.8,
+  //     amt: 2.5,
+  //   },
+  //   {
+  //     day: '17',
+  //     pv: 1.3,
+  //     amt: 2.5,
+  //   },
+  //   {
+  //     day: '18',
+  //     pv: 0.5,
+  //     amt: 2.5,
+  //   },
+  //   {
+  //     day: '19',
+  //     pv: 1.8,
+  //     amt: 2.5,
+  //   },
+  //   {
+  //     day: '20',
+  //     pv: 1.3,
+  //     amt: 2.5,
+  //   },
+  //   {
+  //     day: '21',
+  //     pv: 2,
+  //     amt: 2.5,
+  //   },
+  //   {
+  //     day: '22',
+  //     pv: 1.6,
+  //     amt: 2.5,
+  //   },
+  // ];
 
   return (
     <div className={css.container}>
@@ -53,7 +53,7 @@ const StatisticsSchedule = () => {
         width={604}
         height={340}
         data={data}
-        margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
       >
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
@@ -63,7 +63,7 @@ const StatisticsSchedule = () => {
         </defs>
         <XAxis dataKey="day" tickLine={false} axisLine={false} />
         <YAxis
-          dataKey="amt"
+          dataKey="dailyRequirement"
           tickLine={false}
           axisLine={false}
           tickCount="6"
@@ -73,7 +73,7 @@ const StatisticsSchedule = () => {
         <Tooltip />
         <Area
           type="basic"
-          dataKey="pv"
+          dataKey="volume"
           stroke="#9be1a0"
           fillOpacity={1}
           fill="url(#colorPv)"

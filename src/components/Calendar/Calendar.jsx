@@ -8,22 +8,9 @@ const Calendar = ({
   today,
   searchDate,
   onChangeDate,
-  monthData,
+  daysArray,
   isCurrentMonth,
 }) => {
-  const daysInMonth = new Date(
-    searchDate.year,
-    searchDate.month + 1,
-    0
-  ).getDate();
-  const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
-    return { day: i + 1, percentage: '0%' };
-  });
-
-  monthData.map(item => {
-    daysArray[parseInt(item.date) - 1].percentage = item.percentage;
-  });
-
   const dispatch = useDispatch();
 
   useEffect(() => {
