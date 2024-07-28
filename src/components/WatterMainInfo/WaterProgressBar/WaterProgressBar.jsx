@@ -12,6 +12,7 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
     padding: '0',
     height: '8px',
     width: '100%',
+    transition: 'width 0.5s ease-in-out',
   };
 
   const trackStyle = {
@@ -19,6 +20,7 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
     height: 8,
     borderRadius: 9,
     padding: 0,
+    transition: 'width 0.5s ease-in-out',
   };
 
   const railStyle = {
@@ -37,6 +39,7 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
     borderRadius: '100%',
     zIndex: 2,
     boxShadow: 'none',
+    transition: 'left 0.5s ease-in-out',
   };
   const { t } = useTranslation();
 

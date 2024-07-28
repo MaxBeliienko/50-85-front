@@ -16,6 +16,7 @@ const WaterModal = ({ operationType, onCloseModal, waterItem }) => {
   if (operationType === 'edit') title = t('description.waterModal.editWater');
 
   const handleSubmit = data => {
+    // console.log('onCloseModal:', onCloseModal);
     const volume = Number(data.volume);
     const time = data.time;
 
