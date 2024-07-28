@@ -8,6 +8,7 @@ const MonthInfo = ({
   searchDate,
   monthNames,
   isCurrentMonth,
+  handleClick,
 }) => {
   return (
     <div className={css.container}>
@@ -18,6 +19,7 @@ const MonthInfo = ({
         searchDate={searchDate}
         monthNames={monthNames}
         isCurrentMonth={isCurrentMonth}
+        handleClick={handleClick}
       />
     </div>
   );
