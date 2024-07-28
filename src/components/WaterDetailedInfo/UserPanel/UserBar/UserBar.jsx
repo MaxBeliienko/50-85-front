@@ -68,6 +68,7 @@ const UserBar = () => {
                   userBar.avatar ||
                   'https://cdn-icons-png.flaticon.com/512/6596/6596121.png'
                 }
+                alt='user profile picture'
                 className={css.userPhoto}
               />
 
