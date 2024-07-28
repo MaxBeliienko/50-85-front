@@ -9,43 +9,6 @@ import {
 } from 'recharts';
 
 const StatisticsSchedule = ({ data }) => {
-  // const data = [
-  //   {
-  //     day: '16',
-  //     pv: 0.8,
-  //     amt: 2.5,
-  //   },
-  //   {
-  //     day: '17',
-  //     pv: 1.3,
-  //     amt: 2.5,
-  //   },
-  //   {
-  //     day: '18',
-  //     pv: 0.5,
-  //     amt: 2.5,
-  //   },
-  //   {
-  //     day: '19',
-  //     pv: 1.8,
-  //     amt: 2.5,
-  //   },
-  //   {
-  //     day: '20',
-  //     pv: 1.3,
-  //     amt: 2.5,
-  //   },
-  //   {
-  //     day: '21',
-  //     pv: 2,
-  //     amt: 2.5,
-  //   },
-  //   {
-  //     day: '22',
-  //     pv: 1.6,
-  //     amt: 2.5,
-  //   },
-  // ];
 
   return (
     <div className={css.container}>
