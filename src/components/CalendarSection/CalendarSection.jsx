@@ -30,47 +30,6 @@ const CalendarSection = ({
     }
   }
 
-  // const handleNextMonth = () => {
-  //   onChangeMonth(prevState => {
-  //     const nextMonth = (prevState.month + 1) % 12;
-  //     const nextYear = prevState.year + Math.floor((prevState.month + 1) / 12);
-  //     console.log(nextMonth, nextYear);
-  //     onChangeMonth(nextYear, nextMonth);
-  // if (nextYear === searchDate.year && nextMonth === searchDate.month) {
-  //   return {
-  //     ...searchDate,
-  //   };
-  // } else {
-  //   return {
-  //     year: nextYear,
-  //     month: nextMonth,
-  //   };
-  // }
-  //   });
-  // };
-
-  // const handlePreviousMonth = () => {
-  //   onChangeMonth(prevState => {
-  //     const previousMonth = (prevState.month - 1 + 12) % 12;
-  //     const previousYear =
-  //       prevState.year + Math.floor((prevState.month - 1) / 12);
-  //     onChangeMonth(previousYear, previousMonth);
-
-  // if (
-  //   previousYear === searchDate.year &&
-  //   previousMonth === searchDate.month
-  // ) {
-  //   return {
-  //     ...searchDate,
-  //   };
-  // } else {
-  //   return {
-  //     year: previousYear,
-  //     month: previousMonth,
-  //   };
-  // }
-  //   });
-  // };
   return (
     <>
       <div className={css.title}>
