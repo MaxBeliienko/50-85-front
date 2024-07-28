@@ -1,6 +1,8 @@
+@import '../../../../../../../../utils/variables.css';
+
 .settingsForm {
     display: grid;
-    gap: 20px;
+    gap: calc(var(--spacing) * 5);
     grid-template-columns: 1fr;
 }
 
@@ -13,7 +15,7 @@
 .gridItem {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: calc(var(--spacing) * 6);
 
     @media (min-width: 768px) {
         &:last-child {
@@ -24,22 +26,21 @@
 
 .formGroup {
     width: 100%;
-    border-radius: 15px;
+    border-radius: var(--radius-sm);
     border: 1px solid transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 14px;
+    gap: calc(var(--spacing) * 3.5);
 
     p {
 
         span {
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 22.4px;
+            font-size: var(--font-body2-size);
+            font-weight: var(--font-body2-weight);
+            line-height: var(--font-body2-line-height);
             text-align: left;
-
-            color: #9BE1A0;
+            color: var(--light-green);
         }
     }
 }
@@ -48,27 +49,27 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: calc(var(--spacing) * 3.5);
     width: 100%;
 
     .dailyNormaGroup {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: calc(var(--spacing) * 3);
 
         @media (min-width: 768px) {
-            gap: 28px;
+            gap: calc(var(--spacing) * 7);
         }
     }
 
     div {
         p {
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 24px;
+            font-size: var(--font-h6-size);
+            font-weight: var(--font-h6-weight);
+            line-height: var(--font-h6-line-height);
             letter-spacing: -0.01em;
             text-align: left;
-            color: #9BE1A0;
+            color: var(--light-green);
         }
     }
 
@@ -86,17 +87,17 @@
     height: 46px;
 
     border: 1px solid rgba(47, 47, 47, 0.15);
-    border-radius: 15px;
+    border-radius: var(--radius-sm);
     outline: none;
     padding-left: 16px;
     padding-top: 14px;
     padding-bottom: 14px;
 
-    font-weight: 400;
+    font-weight: var(--font-body1-weight);
     font-size: 14px;
     line-height: 1.28571;
     letter-spacing: -0.01em;
-    color: #2f2f2f;
+    color: var(--black);
 
     @media (min-width: 648px) {
         height: 56px;
@@ -109,8 +110,8 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid rgba(155, 225, 160, 1);
-    background-color: #fff;
+    border: 2px solid var(--light-green);
+    background-color: var(--white);
     cursor: pointer;
     position: relative;
 }
@@ -123,7 +124,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: rgba(155, 225, 160, 1);
+    background-color: var(--light-green);
 }
 
 .formGroup input[type="radio"]:focus {
@@ -136,26 +137,26 @@
 
 .formGroupLabel {
     font-family: inherit;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: var(--font-h5-size);
+    font-weight: var(--font-h5-weight);
+    line-height: var(--font-h5-line-height);
     letter-spacing: -0.01em;
-    color: rgba(50, 63, 71, 1);
+    color: var(--light-black);
 }
 
 .light {
-    font-weight: 400;
-    color: #2F2F2F;
+    font-weight: var(--font-body1-weight);
+    color: var(--black);
 }
 
 .radioGroup {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: calc(var(--spacing) * 2.5);
 
     label {
         display: flex;
-        gap: 10px;
+        gap: calc(var(--spacing) * 2.5);
         margin-bottom: 0;
     }
 
@@ -169,12 +170,12 @@
     width: fit-content;
     margin-top: 20px;
     padding: 14px 40px;
-    background-color: rgba(155, 225, 160, 1);
-    font-size: 16px;
-    font-weight: 700;
-    color: #323F47;
+    background-color: var(--light-green);
+    font-size: var(--font-h6-size);
+    font-weight: var(--font-h6-weight);
+    color: var(--light-black);
     border: none;
-    border-radius: 30px;
+    border-radius: var(--radius-md);
     cursor: pointer;
 
     @media (min-width: 648px) {
@@ -183,11 +184,11 @@
 }
 
 .saveButton:hover {
-    background-color: rgba(135, 210, 141, 1);
+    background-color: var(--hover-light-green);
 }
 
 .errorMessage {
-    color: red;
-    font-size: 12px;
+    color: var(--light-red);
+    font-size: var(--font-caption-size);
     margin-top: 4px;
 }

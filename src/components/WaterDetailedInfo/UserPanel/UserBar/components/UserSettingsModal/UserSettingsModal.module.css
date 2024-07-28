@@ -1,14 +1,16 @@
+@import '../../../../.../../.../../../../utils/variables.css';
+
 .settingsModal {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: calc(var(--spacing) * 10);
     max-width: 920px;
     max-height: 700px;
-    padding: 40px 20px;
+    padding: calc(var(--spacing) * 10) calc(var(--spacing) * 5);
     overflow-y: auto;
 
     @media (min-width: 768px) {
-        padding: 40px;
+        padding: calc(var(--spacing) * 10);
     }
 }
 
@@ -17,23 +19,23 @@
 }
 
 .settingsModal::-webkit-scrollbar-track {
-    background: rgb(255, 255, 255);
-    border-radius: 30px 0px 0px 0px;
+    background: var(--white);
+    border-radius: var(--radius-md) 0 0 0;
 }
 
 .settingsModal::-webkit-scrollbar-thumb {
-    background: rgba(240, 239, 244, 1);
-    border-radius: 30px;
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
 }
 
 .settingsModal::-webkit-scrollbar-thumb:hover {
-    background: #ffffff;
+    background: var(--white);
 }
 
 .settingsModalTitle {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 24px;
+    font-size: var(--font-h3-size);
+    font-weight: var(--font-h3-weight);
+    line-height: var(--font-h3-line-height);
     letter-spacing: -0.01em;
-    color: rgba(50, 63, 71, 1);
+    color: var(--light-black);
 }
