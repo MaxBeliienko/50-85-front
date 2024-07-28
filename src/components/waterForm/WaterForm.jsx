@@ -23,8 +23,9 @@ const WaterForm = ({ submit, waterItem }) => {
     const currentDate = new Date();
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
+    const formattedHours = hours < 10 ? `0${hours}` : hours;
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    return `${hours}:${formattedMinutes}`;
+    return `${formattedHours}:${formattedMinutes}`;
   };
 
   function defaulVolume(item) {
