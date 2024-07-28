@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Modal from "../../../../../Modal";
-import CustomImageUploading from "../CustomImageUploading/CustomImageUploading";
-import styles from "./UserSettingsModal.module.css";
-import { userValidationSchema } from "./schema";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Modal from '../../../../../Modal';
+import CustomImageUploading from '../CustomImageUploading/CustomImageUploading';
+import styles from './UserSettingsModal.module.css';
+import { userValidationSchema } from './schema';
 import {
   getUserProfile,
   updateUserProfile,
-} from "../../../../../../redux/user/operations";
-import { selectUserProfile } from "../../../../../../redux/user/selectors";
-import { useTranslation } from "react-i18next";
-import LocalizationSwitcher from "../../../../../LocalizationSwitcher/LocalizationSwitcher";
+} from '../../../../../../redux/user/operations';
+import { selectUserProfile } from '../../../../../../redux/user/selectors';
+import { useTranslation } from 'react-i18next';
+import LocalizationSwitcher from '../../../../../LocalizationSwitcher/LocalizationSwitcher';
 
 const UserSettingsModal = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
@@ -28,13 +28,13 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
   } = useForm({
     resolver: yupResolver(userValidationSchema),
     defaultValues: {
-      gender: user.gender || t("description.settings.female"),
-      name: user.name || "",
-      email: user.email || "",
-      weight: user.weight || "",
-      activityLevel: user.activityLevel || "",
+      gender: user.gender || t('description.settings.female'),
+      name: user.name || '',
+      email: user.email || '',
+      weight: user.weight || '',
+      activityLevel: user.activityLevel || '',
       dailyRequirement: user.dailyRequirement || 2000,
-      photo: user.photo || "",
+      photo: user.photo || '',
     },
   });
 
@@ -47,18 +47,18 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
   useEffect(() => {
     if (user) {
       reset({
-        gender: user.gender || t("description.settings.female"),
-        name: user.name || "",
-        email: user.email || "",
-        weight: user.weight || "",
-        activityLevel: user.activityLevel || "",
+        gender: user.gender || t('description.settings.female'),
+        name: user.name || '',
+        email: user.email || '',
+        weight: user.weight || '',
+        activityLevel: user.activityLevel || '',
         dailyRequirement: user.dailyRequirement || 2000,
-        photo: user.photo || "",
+        photo: user.photo || '',
       });
     }
   }, [user, reset, t]);
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     const cleanedData = {
       ...data,
       weight: Number(data.weight),
@@ -68,26 +68,45 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
       .then(() => {
         reset(cleanedData);
       })
-      .catch((error) => {
-        console.error("Error updating profile:", error);
+      .catch(error => {
+        console.error('Error updating profile:', error);
       });
   };
 
-  const handleImageChange = (imageFile) => {
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    fetch("https://api.cloudinary.com/v1_1/dg0i4l440/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const imageUrl = data.secure_url;
-        setValue("photo", imageUrl);
-      })
-      .catch((error) => {
-        console.error("Error uploading image:", error);
-      });
+  const handleImageChange = async imageBlobUrl => {
+    try {
+      // Отримуємо blob за URL
+      const response = await fetch(imageBlobUrl);
+      const blob = await response.blob();
+
+      // Створюємо файл з blob
+      const imageFile = new File([blob], 'image.jpg', { type: blob.type });
+
+      // Створюємо FormData для завантаження на Cloudinary
+      const formData = new FormData();
+      formData.append('file', imageFile);
+      formData.append('upload_preset', 'ml_default');
+
+      // Надсилаємо файл на Cloudinary
+      const uploadResponse = await fetch(
+        'https://api.cloudinary.com/v1_1/dcyohn4j5/image/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      const data = await uploadResponse.json();
+
+      if (data.secure_url) {
+        // Зберігаємо URL зображення в полі форми
+        setValue('photo', data.secure_url);
+      } else {
+        throw new Error('Failed to upload image');
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   };
 
   return (
@@ -100,7 +119,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
     >
       <div className={styles.settingsModal}>
         <p className={styles.settingsModalTitle}>
-          {t("description.settings.title")}
+          {t('description.settings.title')}
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <CustomImageUploading
@@ -111,35 +130,35 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
             <div className={styles.gridItem}>
               <div className={styles.formGroup}>
                 <label className={styles.formGroupLabel}>
-                  {t("description.settings.language")}
+                  {t('description.settings.language')}
                 </label>
                 <LocalizationSwitcher isSettings={true} />
                 <label className={styles.formGroupLabel}>
-                  {t("description.settings.gender")}
+                  {t('description.settings.gender')}
                 </label>
                 <div className={styles.radioGroup}>
                   <label>
                     <input
                       type="radio"
                       value="female"
-                      {...register("gender")}
+                      {...register('gender')}
                     />
-                    {t("description.settings.woman")}
+                    {t('description.settings.woman')}
                   </label>
                   <label>
-                    <input type="radio" value="male" {...register("gender")} />
-                    {t("description.settings.man")}
+                    <input type="radio" value="male" {...register('gender')} />
+                    {t('description.settings.man')}
                   </label>
                 </div>
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.formGroupLabel}>
-                  {t("description.settings.name")}
+                  {t('description.settings.name')}
                 </label>
                 <input
                   type="text"
                   id="name"
-                  {...register("name")}
+                  {...register('name')}
                   className={styles.formControl}
                 />
                 {errors.name && (
@@ -148,12 +167,12 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="email" className={styles.formGroupLabel}>
-                  {t("description.settings.email")}
+                  {t('description.settings.email')}
                 </label>
                 <input
                   type="email"
                   id="email"
-                  {...register("email")}
+                  {...register('email')}
                   className={styles.formControl}
                 />
                 {errors.email && (
@@ -163,28 +182,28 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
 
               <div className={styles.formGroupDailyNorma}>
                 <label htmlFor="dailyNorma" className={styles.formGroupLabel}>
-                  {t("description.settings.requirement")}
+                  {t('description.settings.requirement')}
                 </label>
                 <div className={styles.dailyNormaGroup}>
                   <div>
                     <label htmlFor="dailyNorma">
-                      {t("description.settings.forWoman")}
+                      {t('description.settings.forWoman')}
                     </label>
-                    <p>{t("description.settings.womanFormula")}</p>
+                    <p>{t('description.settings.womanFormula')}</p>
                   </div>
 
                   <div>
                     <label htmlFor="dailyNorma">
-                      {t("description.settings.forMan")}
+                      {t('description.settings.forMan')}
                     </label>
-                    <p>{t("description.settings.manFormula")}</p>
+                    <p>{t('description.settings.manFormula')}</p>
                   </div>
                 </div>
                 <p>
-                  <span>*</span> {t("description.settings.formulaExplanation")}
+                  <span>*</span> {t('description.settings.formulaExplanation')}
                 </p>
                 <p>
-                  <span>!</span> {t("description.settings.activeTimeHour")}
+                  <span>!</span> {t('description.settings.activeTimeHour')}
                 </p>
               </div>
             </div>
@@ -192,12 +211,12 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
             <div className={styles.gridItem}>
               <div className={styles.formGroup}>
                 <label htmlFor="weight" className={styles.formGroupLabel}>
-                  {t("description.settings.weight")}
+                  {t('description.settings.weight')}
                 </label>
                 <input
                   type="number"
                   id="weight"
-                  {...register("weight")}
+                  {...register('weight')}
                   className={styles.formControl}
                 />
                 {errors.weight && (
@@ -209,12 +228,12 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   htmlFor="activityLevel"
                   className={styles.formGroupLabel}
                 >
-                  {t("description.settings.activeTime")}
+                  {t('description.settings.activeTime')}
                 </label>
                 <input
                   type="text"
                   id="activityLevel"
-                  {...register("activityLevel")}
+                  {...register('activityLevel')}
                   className={styles.formControl}
                 />
                 {errors.activityLevel && (
@@ -225,21 +244,21 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
               </div>
               <div className={styles.formGroup}>
                 <p>
-                  {t("description.settings.requiredWater")}{" "}
+                  {t('description.settings.requiredWater')}{' '}
                   <span>
-                    {user.dailyWaterIntake} {t("description.settings.liter")}
+                    {user.dailyWaterIntake} {t('description.settings.liter')}
                   </span>
                 </p>
                 <label
                   htmlFor="dailyRequirement"
                   className={styles.formGroupLabel}
                 >
-                  {t("description.settings.waterToDrink")}
+                  {t('description.settings.waterToDrink')}
                 </label>
                 <input
                   type="text"
                   id="dailyRequirement"
-                  {...register("dailyRequirement")}
+                  {...register('dailyRequirement')}
                   className={styles.formControl}
                 />
                 {errors.dailyRequirement && (
@@ -251,7 +270,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
             </div>
           </div>
           <button type="submit" className={styles.saveButton}>
-            {t("description.settings.save")}
+            {t('description.settings.save')}
           </button>
         </form>
       </div>
