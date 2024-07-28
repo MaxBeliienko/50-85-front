@@ -33,6 +33,21 @@ const CalendarPagination = ({
     }
   }
 
+  const daysInMonth = new Date(
+    searchDate.year,
+    searchDate.month + 1,
+    0
+  ).getDate();
+  const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
+    return { day: i + 1, percentage: '0%' };
+  });
+
+  monthData.map(item => {
+    daysArray[parseInt(item.date) - 1].percentage = item.percentage;
+    daysArray[parseInt(item.date) - 1].volume = item.volume;
+    daysArray[parseInt(item.date) - 1].dailyRequirement = item.dailyRequirement;
+  });
+
   const [activeComponent, setActiveComponent] = useState(true);
 
   const handleClick = () => {
@@ -42,7 +57,9 @@ const CalendarPagination = ({
   return (
     <>
       <div className={css.titlecomtainer}>
-        <h2 className={css.month}>{activeComponent ? 'Month' : 'Statistics'}</h2>
+        <h2 className={css.month}>
+          {activeComponent ? 'Month' : 'Statistics'}
+        </h2>
         <div className={css.blockcalendar}>
           <button
             className={css.btn}
@@ -86,11 +103,11 @@ const CalendarPagination = ({
           searchDate={searchDate}
           onChangeDate={onChangeDate}
           today={today}
-          monthData={monthData}
+          daysArray={daysArray}
           isCurrentMonth={isCurrentMonth}
         />
       ) : (
-        <StatisticsSchedule />
+        <StatisticsSchedule data={daysArray} />
       )}
     </>
   );
