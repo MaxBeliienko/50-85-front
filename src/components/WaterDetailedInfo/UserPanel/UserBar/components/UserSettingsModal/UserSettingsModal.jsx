@@ -19,16 +19,22 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
   const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
 
-  const { register, handleSubmit, setValue, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(userValidationSchema),
     defaultValues: {
-      gender: t("description.settings.female"),
-      name: "",
-      email: "",
-      weight: "",
-      activityLevel: "",
-      dailyRequirement: 2000,
-      photo: "",
+      gender: user.gender || t("description.settings.female"),
+      name: user.name || "",
+      email: user.email || "",
+      weight: user.weight || "",
+      activityLevel: user.activityLevel || "",
+      dailyRequirement: user.dailyRequirement || 2000,
+      photo: user.photo || "",
     },
   });
 
@@ -40,21 +46,36 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
 
   useEffect(() => {
     if (user) {
-      const { ...cleanedUser } = user;
-      reset(cleanedUser);
+      reset({
+        gender: user.gender || t("description.settings.female"),
+        name: user.name || "",
+        email: user.email || "",
+        weight: user.weight || "",
+        activityLevel: user.activityLevel || "",
+        dailyRequirement: user.dailyRequirement || 2000,
+        photo: user.photo || "",
+      });
     }
-  }, [user, reset]);
+  }, [user, reset, t]);
 
   const onSubmit = (data) => {
-    const { ...cleanedData } = data;
-    console.log("Cleaned Data: ", cleanedData);
-    dispatch(updateUserProfile(cleanedData));
+    const cleanedData = {
+      ...data,
+      weight: Number(data.weight),
+      dailyRequirement: Number(data.dailyRequirement),
+    };
+    dispatch(updateUserProfile(cleanedData))
+      .then(() => {
+        reset(cleanedData);
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
   };
 
   const handleImageChange = (imageFile) => {
     const formData = new FormData();
     formData.append("file", imageFile);
-    formData.append("upload_preset");
     fetch("https://api.cloudinary.com/v1_1/dg0i4l440/image/upload", {
       method: "POST",
       body: formData,
@@ -121,6 +142,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("name")}
                   className={styles.formControl}
                 />
+                {errors.name && (
+                  <p className={styles.errorMessage}>{errors.name.message}</p>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="email" className={styles.formGroupLabel}>
@@ -132,6 +156,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("email")}
                   className={styles.formControl}
                 />
+                {errors.email && (
+                  <p className={styles.errorMessage}>{errors.email.message}</p>
+                )}
               </div>
 
               <div className={styles.formGroupDailyNorma}>
@@ -173,6 +200,9 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("weight")}
                   className={styles.formControl}
                 />
+                {errors.weight && (
+                  <p className={styles.errorMessage}>{errors.weight.message}</p>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <label
@@ -187,6 +217,11 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("activityLevel")}
                   className={styles.formControl}
                 />
+                {errors.activityLevel && (
+                  <p className={styles.errorMessage}>
+                    {errors.activityLevel.message}
+                  </p>
+                )}
               </div>
               <div className={styles.formGroup}>
                 <p>
@@ -207,6 +242,11 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
                   {...register("dailyRequirement")}
                   className={styles.formControl}
                 />
+                {errors.dailyRequirement && (
+                  <p className={styles.errorMessage}>
+                    {errors.dailyRequirement.message}
+                  </p>
+                )}
               </div>
             </div>
           </div>
