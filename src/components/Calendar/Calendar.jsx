@@ -2,8 +2,15 @@ import { useDispatch } from 'react-redux';
 import css from './Calendar.module.css';
 import { fetchMonthWater } from '../../redux/water/operations';
 import { useEffect } from 'react';
+import CalendarItem from '../CalendarItem/CalendarItem';
 
-const Calendar = ({ today, searchDate, onChangeDate, monthData }) => {
+const Calendar = ({
+  today,
+  searchDate,
+  onChangeDate,
+  monthData,
+  isCurrentMonth,
+}) => {
   const daysInMonth = new Date(
     searchDate.year,
     searchDate.month + 1,
@@ -28,15 +35,15 @@ const Calendar = ({ today, searchDate, onChangeDate, monthData }) => {
   return (
     <ul className={css.calendar}>
       {daysArray.map(({ day, percentage }) => (
-        <li key={day}>
-          <button
-            className={day === today.day ? css.currentday : css.calendarday}
-            disabled={day > today.day}
-            onClick={() => onChangeDate(searchDate.year, searchDate.month, day)}
-          >
-            {day}
-          </button>
-          <p className={css.percent}> {percentage}</p>
+        <li key={day} className={css.item}>
+          <CalendarItem
+            percentage={percentage}
+            day={day}
+            searchDate={searchDate}
+            today={today}
+            onChangeDate={onChangeDate}
+            isCurrentMonth={isCurrentMonth}
+          />
         </li>
       ))}
     </ul>

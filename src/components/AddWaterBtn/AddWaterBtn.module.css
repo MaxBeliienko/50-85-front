@@ -1,0 +1,34 @@
+.btncontainer {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  background-color: #9be1a0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg {
+  stroke-width: 1.5px;
+  stroke: black;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #323f47;
+
+  .svg {
+    stroke: white;
+  }
+}

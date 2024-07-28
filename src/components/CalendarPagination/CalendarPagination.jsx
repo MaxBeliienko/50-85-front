@@ -1,15 +1,16 @@
 import Calendar from '../Calendar/Calendar';
-import css from './CalendarSection.module.css';
+import css from './CalendarPagination.module.css';
 import Iconsvg from '../Icon';
 import { selectMonthWater } from '../../redux/water/selectors';
 import { useSelector } from 'react-redux';
 
-const CalendarSection = ({
+const CalendarPagination = ({
   searchDate,
   monthNames,
   onChangeDate,
   onChangeMonth,
   today,
+  isCurrentMonth,
 }) => {
   const currentMonthName = monthNames[Number(searchDate.month) - 1];
   const monthData = useSelector(selectMonthWater);
@@ -32,8 +33,8 @@ const CalendarSection = ({
 
   return (
     <>
-      <div className={css.title}>
-        <h2>Month</h2>
+      <div className={css.titlecomtainer}>
+        <h2 className={css.month}>Month</h2>
         <div className={css.blockcalendar}>
           <button
             className={css.btn}
@@ -43,8 +44,8 @@ const CalendarSection = ({
           >
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
           </button>
-          <p>
-            {currentMonthName},{searchDate.year}
+          <p className={css.date}>
+            {currentMonthName}, {searchDate.year}
           </p>
 
           <button
@@ -77,9 +78,10 @@ const CalendarSection = ({
         onChangeDate={onChangeDate}
         today={today}
         monthData={monthData}
+        isCurrentMonth={isCurrentMonth}
       />
     </>
   );
 };
 
-export default CalendarSection;
+export default CalendarPagination;
