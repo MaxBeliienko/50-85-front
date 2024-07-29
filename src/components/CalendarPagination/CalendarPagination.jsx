@@ -33,11 +33,7 @@ const CalendarPagination = ({
     }
   }
 
-  const daysInMonth = new Date(
-    searchDate.year,
-    searchDate.month + 1,
-    0
-  ).getDate();
+  const daysInMonth = new Date(searchDate.year, searchDate.month, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
     return { day: i + 1, percentage: '0%' };
   });
@@ -45,7 +41,8 @@ const CalendarPagination = ({
   monthData.map(item => {
     daysArray[parseInt(item.date) - 1].percentage = item.percentage;
     daysArray[parseInt(item.date) - 1].volume = item.volume / 1000;
-    daysArray[parseInt(item.date) - 1].dailyRequirement = item.dailyRequirement / 1000;
+    daysArray[parseInt(item.date) - 1].dailyRequirement =
+      item.dailyRequirement / 1000;
   });
 
   const [activeComponent, setActiveComponent] = useState(true);
