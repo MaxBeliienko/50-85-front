@@ -3,7 +3,8 @@
   --mobile: 375px;
   --tablet: 768px;
   --desktop: 1440px;
-  /* colors */
+
+  /* Colors */
   --light-gray: #f0eff4;
   --white: #ffffff;
   --black: #2f2f2f;
@@ -11,4 +12,52 @@
   --light-green: #9be1a0;
   --hover-light-green: #87d28d;
   --light-red: #ef5050;
+
+  /* Radii */
+  --radius-sm: 15px;
+  --radius-md: 30px;
+  --radius-lg: 50%;
+
+  /* Spacing */
+  --spacing: 4px;
+
+  /* Typography */
+  --font-h1-size: 80px;
+  --font-h1-line-height: 76px;
+  --font-h1-weight: 700;
+
+  --font-h2-size: 36px;
+  --font-h2-line-height: 38px;
+  --font-h2-weight: 700;
+
+  --font-h2-light-weight: 400;
+
+  --font-h3-size: 28px;
+  --font-h3-line-height: 32px;
+  --font-h3-weight: 700;
+
+  --font-h4-size: 24px;
+  --font-h4-line-height: 24px;
+  --font-h4-weight: 700;
+  --font-h4-text-transform: uppercase;
+
+  --font-h5-size: 18px;
+  --font-h5-line-height: 24px;
+  --font-h5-weight: 700;
+
+  --font-h6-size: 16px;
+  --font-h6-line-height: 24px;
+  --font-h6-weight: 700;
+
+  --font-body1-size: 16px;
+  --font-body1-line-height: 24px;
+  --font-body1-weight: 400;
+
+  --font-body2-size: 15px;
+  --font-body2-line-height: 22.4px;
+  --font-body2-weight: 700;
+
+  --font-caption-size: 12px;
+  --font-caption-line-height: 22.4px;
+  --font-caption-weight: 400;
 }
