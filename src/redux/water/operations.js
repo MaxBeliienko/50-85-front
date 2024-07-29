@@ -34,7 +34,7 @@ export const addWater = createAsyncThunk(
   async ({ volume, time }, thunkAPI) => {
     try {
       const response = await apiClient.post('/water', { volume, time });
-      return response.data;
+      return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -57,10 +57,9 @@ export const editWater = createAsyncThunk(
   'water/editWater',
   async ({ id, volume, time }, thunkAPI) => {
     try {
-      console.log('operation edit', id, volume, time);
       const response = await apiClient.patch(`/water/${id}`, { volume, time });
-      console.log('response', response);
-      return response.data;
+      console.log('response.data', response.data.data);
+      return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

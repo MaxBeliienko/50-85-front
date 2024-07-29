@@ -71,6 +71,7 @@ const CalendarPagination = ({
           </p>
 
           <button
+            disabled={isCurrentMonth}
             className={css.btn}
             id="nextMonth"
             aria-label="get next month"
