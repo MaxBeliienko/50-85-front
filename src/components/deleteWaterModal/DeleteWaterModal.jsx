@@ -9,7 +9,6 @@ const DeleteWaterModal = ({ closeModal, id }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    console.log(id);
     dispatch(deleteWater(id));
     toast.success(t('description.deleteWater.succesDelete'));
     closeModal();

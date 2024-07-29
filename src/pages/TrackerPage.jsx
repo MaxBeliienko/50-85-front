@@ -86,7 +86,7 @@ const TrackerPage = () => {
 
   return (
     <div className={css.container}>
-      <WaterMainInfo />
+      <WaterMainInfo today={today} />
       <WaterDetailedInfo
         today={today}
         searchDate={searchDate}
