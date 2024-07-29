@@ -22,14 +22,14 @@ const MainWaterInfo = () => {
   const dailyWaterArray = useSelector(selectDailyWater);
   const dailyNorma = 1.5;
 
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const year = today.getFullYear();
-  //   const month = today.getMonth() + 1;
-  //   const day = today.getDate();
-  //   // console.log('Fetching data for date:', { year, month, day });
-  //   dispatch(fetchDailyWater({ year, month, day }));
-  // }, [dispatch]);
+  useEffect(() => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    // console.log('Fetching data for date:', { year, month, day });
+    dispatch(fetchDailyWater({ year, month, day }));
+  }, [dispatch]);
 
   // console.log('dailyWaterArray:', dailyWaterArray);
 
