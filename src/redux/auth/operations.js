@@ -1,15 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
-// axios.defaults.baseURL = 'https://aquatrack-backend.onrender.com';
+axios.defaults.baseURL = 'import.meta.env.VITE_API_BASE_URL;';
 
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
 
 const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   try {
@@ -48,6 +48,20 @@ export const logIn = createAsyncThunk(
   })
 );
 
+export const loginGoogle = createAsyncThunk(
+  'auth/google',
+  async ({ token }, thunkAPI) => {
+    try {
+      const response = await axios.post('/auth/google', { token });
+      Cookies.set('refreshToken', response.data.refreshToken);
+      setAuthToken(response.data.accessToken);
+      return response.token;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logOut = createAsyncThunk(
   'auth/logout',
   asyncThunkWrapper(async () => {
@@ -83,3 +97,25 @@ export const refreshUser = createAsyncThunk(
     }
   })
 );
+
+// function App() {
+//   const handleSuccess = response => {
+//     console.log('Login Success: currentUser:', response);
+//     // Тут можна відправити `response` на ваш сервер для подальшої обробки
+//   };
+
+//   const handleError = () => {
+//     console.log('Login Failed');
+//   };
+
+//   return (
+//     <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
+//       <div className="App">
+//         <h3>Авторизація через Google</h3>
+//         <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+//       </div>
+//     </GoogleOAuthProvider>
+//   );
+// }
+
+// export default App;
