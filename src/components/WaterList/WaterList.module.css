@@ -25,3 +25,15 @@
   max-width: 100%;
   overflow-x: auto;
 }
+
+.list::-webkit-scrollbar {
+  background-color: white;
+  height: 8px;
+  border-radius: 30px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #323f47;
+  border-radius: 30px;
+  height: 8px;
+}
