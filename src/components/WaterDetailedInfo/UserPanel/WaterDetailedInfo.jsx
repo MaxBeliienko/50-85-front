@@ -2,30 +2,14 @@ import DailyInfo from '../../DailyInfo/DailyInfo';
 import MonthInfo from '../../MonthInfo/MonthInfo';
 import css from './WaterDetailedInfo.module.css';
 import UserPanel from './UserPanel';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import {
-  fetchDailyWater,
-  fetchMonthWater,
-} from '../../../redux/water/operations';
-import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
-const WaterDetailedInfo = () => {
-  const date = new Date();
-  const today = {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-  };
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const searchDate = {
-    year: formatNumber(searchParams.get('year') || today.year),
-    month: formatNumber(searchParams.get('month') || today.month),
-    day: formatNumber(searchParams.get('day') || today.day),
-  };
-
+const WaterDetailedInfo = ({
+  today,
+  searchDate,
+  onChangeDate,
+  onChangeMonth,
+}) => {
   const isToday =
     Number(today.day) === Number(searchDate.day) &&
     Number(today.month) === Number(searchDate.month) &&
@@ -35,81 +19,21 @@ const WaterDetailedInfo = () => {
     Number(today.month) === Number(searchDate.month) &&
     Number(today.year) === Number(searchDate.year);
 
-  const [isChangeMonth, setIsCgangeMonth] = useState(true);
-
+  const { t } = useTranslation();
   const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    t('description.tracker.month1'),
+    t('description.tracker.month2'),
+    t('description.tracker.month3'),
+    t('description.tracker.month4'),
+    t('description.tracker.month5'),
+    t('description.tracker.month6'),
+    t('description.tracker.month7'),
+    t('description.tracker.month8'),
+    t('description.tracker.month9'),
+    t('description.tracker.month10'),
+    t('description.tracker.month11'),
+    t('description.tracker.month12'),
   ];
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isChangeMonth) {
-      dispatch(
-        fetchDailyWater({
-          year: searchDate.year,
-          month: searchDate.month,
-          day: searchDate.day,
-        })
-      );
-      dispatch(
-        fetchMonthWater({
-          year: searchDate.year,
-          month: searchDate.month,
-        })
-      );
-    }
-    if (!isChangeMonth) {
-      dispatch(
-        fetchDailyWater({
-          year: searchDate.year,
-          month: searchDate.month,
-          day: searchDate.day,
-        })
-      );
-    }
-  }, [
-    dispatch,
-    searchDate.year,
-    searchDate.month,
-    searchDate.day,
-    isChangeMonth,
-  ]);
-
-  function formatNumber(str) {
-    let num = parseInt(str, 10);
-    let formattedNum = num.toString().padStart(2, '0');
-    return formattedNum;
-  }
-
-  const onChangeDate = (year, month, day) => {
-    setSearchParams({
-      year: formatNumber(year),
-      month: formatNumber(month),
-      day: formatNumber(day),
-    });
-    setIsCgangeMonth(false);
-  };
-
-  const onChangeMonth = (year, month) => {
-    setSearchParams({
-      year: formatNumber(year),
-      month: formatNumber(month),
-      day: '01',
-    });
-    setIsCgangeMonth(true);
-  };
 
   return (
     <div className={css.waterCalendarcontainer}>

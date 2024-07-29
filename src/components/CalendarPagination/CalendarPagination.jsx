@@ -5,6 +5,7 @@ import { selectMonthWater } from '../../redux/water/selectors';
 import { useSelector } from 'react-redux';
 import StatisticsSchedule from '../StatisticsSchedule/StatisticsSchedule';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const CalendarPagination = ({
   searchDate,
@@ -51,11 +52,15 @@ const CalendarPagination = ({
     setActiveComponent(!activeComponent);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <div className={css.titlecomtainer}>
         <h2 className={css.month}>
-          {activeComponent ? 'Month' : 'Statistics'}
+          {activeComponent
+            ? t('description.tracker.month')
+            : t('description.tracker.statistics')}
         </h2>
         <div className={css.blockcalendar}>
           <button
