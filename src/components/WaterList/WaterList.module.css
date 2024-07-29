@@ -21,7 +21,6 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 32px;
-  margin-bottom: 72px;
   max-width: 100%;
   overflow-x: auto;
 }

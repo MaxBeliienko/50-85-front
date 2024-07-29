@@ -4,6 +4,7 @@ import Modal from '../Modal';
 import { useState } from 'react';
 import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
+import { useTranslation } from 'react-i18next';
 
 const WaterItem = ({ waterItem }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,7 @@ const WaterItem = ({ waterItem }) => {
     setShowEditModal(false);
   };
 
+  const { t } = useTranslation();
   return (
     <>
       <Modal
@@ -52,7 +54,9 @@ const WaterItem = ({ waterItem }) => {
           width={38}
         />
         <div className={css.data}>
-          <p className={css.text}>{waterItem.volume} ml</p>
+          <p className={css.text}>
+            {waterItem.volume} {t('description.tracker.ml')}
+          </p>
           <p className={css.text}>
             <span>{waterItem.time} AM</span>
           </p>
