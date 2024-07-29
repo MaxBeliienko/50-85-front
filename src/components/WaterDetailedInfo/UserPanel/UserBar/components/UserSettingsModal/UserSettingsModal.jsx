@@ -52,7 +52,7 @@ const UserSettingsModal = ({ showModal, closeModal }) => {
           </div>
         </div>
 
-        <UserSettingsForm />
+        <UserSettingsForm closeModal={closeModal} />
       </div>
     </Modal>
   );
