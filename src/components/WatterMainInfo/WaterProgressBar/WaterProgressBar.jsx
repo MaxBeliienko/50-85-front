@@ -4,9 +4,7 @@ import css from './WaterProgressBar.module.css';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 
-const WaterProgressBar = ({ consumed, dailyNorma }) => {
-  const progress = (consumed / dailyNorma) * 100;
-
+const WaterProgressBar = ({ percentage }) => {
   const sliderStyle = {
     margin: '0',
     padding: '0',
@@ -53,7 +51,7 @@ const WaterProgressBar = ({ consumed, dailyNorma }) => {
       <div className={css.today}>{t('description.tracker.todayText')}</div>
       <div className={css.progressContainer}>
         <Slider
-          value={progress}
+          value={percentage}
           trackStyle={trackStyle}
           railStyle={railStyle}
           handleStyle={handleStyle}

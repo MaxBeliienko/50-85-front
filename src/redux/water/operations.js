@@ -58,7 +58,6 @@ export const editWater = createAsyncThunk(
   async ({ id, volume, time }, thunkAPI) => {
     try {
       const response = await apiClient.patch(`/water/${id}`, { volume, time });
-      console.log('response.data', response.data.data);
       return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

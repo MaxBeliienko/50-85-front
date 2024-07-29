@@ -13,53 +13,27 @@ import bottle2t from '../../../public/images/bottle/bottle2t.png';
 import bottle1d from '../../../public/images/bottle/bottle1d.png';
 import bottle2d from '../../../public/images/bottle/bottle2d.png';
 import Modal from '../../Modal.jsx';
-// import { fetchDailyWater } from '../../../redux/water/operations.js';
-import { selectDailyWater } from '../../../redux/water/selectors.js';
+import { selectMonthWater } from '../../../redux/water/selectors.js';
 
-const WaterMainInfo = () => {
+const WaterMainInfo = ({ today }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const dispatch = useDispatch();
-  const dailyWaterArray = useSelector(selectDailyWater);
+  const monthData = useSelector(selectMonthWater);
 
-  const dailyNorma = 1.5;
-
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const year = today.getFullYear();
-  //   const month = today.getMonth() + 1;
-  //   const day = today.getDate();
-  //   console.log('Fetching data for date:', { year, month, day });
-  //   dispatch(fetchDailyWater({ year, month, day }));
-  // }, [dispatch]);
-
-  // console.log('dailyWaterArray:', dailyWaterArray);
-
-  const consumed = dailyWaterArray.reduce((acc, item) => {
-    if (item.data && item.data.volume) {
-      return acc + item.data.volume;
-    }
-    return acc;
-  }, 0);
-
-  // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1', consumed);
+  const findTodayData = ({ day, month, year }) => {
+    const todayStringFormat = `${day < 10 ? `0${day}` : day}.${
+      month < 10 ? `0${month}` : month
+    }.${year}`;
+    const data = monthData.find(day => day.date === todayStringFormat) || {
+      dailyRequirement: 0,
+      percentage: '0%',
+    };
+    return data;
+  };
+  const { dailyRequirement, percentage } = findTodayData(today);
+  const dailyNorma = dailyRequirement / 1000;
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
-  // const handleAddWater = volume => {
-  //   const today = new Date();
-  //   const time = today.toISOString();
-  //   dispatch(addWater({ volume, time })).then(() => {
-  //     closeModal();
-  //     dispatch(
-  //       fetchDailyWater({
-  //         year: today.getFullYear(),
-  //         month: today.getMonth() + 1,
-  //         day: today.getDate(),
-  //       })
-  //     );
-  //   });
-  // };
 
   return (
     <>
@@ -74,7 +48,7 @@ const WaterMainInfo = () => {
         <Logo />
         <div className={css.content}>
           <WaterDailyNorma dailyNorma={dailyNorma} />
-          <WaterProgressBar consumed={consumed} dailyNorma={dailyNorma} />
+          <WaterProgressBar percentage={parseInt(percentage)} />
           <AddWaterBtn onAddWater={openModal} />
         </div>
       </div>
