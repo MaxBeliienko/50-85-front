@@ -55,19 +55,18 @@ const WaterDetailedInfo = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!searchDate.year || !searchDate.month) return;
     if (isChangeMonth) {
-      dispatch(
-        fetchMonthWater({
-          year: searchDate.year,
-          month: searchDate.month,
-        })
-      );
       dispatch(
         fetchDailyWater({
           year: searchDate.year,
           month: searchDate.month,
           day: searchDate.day,
+        })
+      );
+      dispatch(
+        fetchMonthWater({
+          year: searchDate.year,
+          month: searchDate.month,
         })
       );
     }
