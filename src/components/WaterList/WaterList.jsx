@@ -6,7 +6,7 @@ import WaterModal from '../waterModal/WaterModal';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../redux/water/selectors';
 import { Hourglass } from 'react-loader-spinner';
-import { selectIsLoading } from '../../redux/user/selectors';
+import { selectIsLoading } from '../../redux/auth/selectors';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import ChooseDate from '../ChooseDate/ChooseDate';
 
