@@ -7,7 +7,7 @@ const ChooseDate = ({ isToday, searchDate, currentMonthName }) => {
     <h2 className={css.title}>
       {isToday
         ? t('description.tracker.todayText')
-        : `${searchDate.day}, ${t(`description.months.${currentMonthName}`)}`}
+        : `${searchDate.day}, ${currentMonthName}`}
     </h2>
   );
 };
