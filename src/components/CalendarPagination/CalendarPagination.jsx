@@ -71,7 +71,7 @@ const CalendarPagination = ({
             <Iconsvg iconName={'left'} width={5} height={9} styles={css.btn} />
           </button>
           <p className={css.date}>
-            {t(`description.months.${currentMonthName}`)}, {searchDate.year}
+            {currentMonthName}, {searchDate.year}
           </p>
 
           <button
