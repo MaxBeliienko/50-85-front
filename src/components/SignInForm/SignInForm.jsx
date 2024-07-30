@@ -4,7 +4,7 @@ import styles from './SignInForm.module.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Iconsvg from '../Icon';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import { logIn } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import LocalizationSwitcher from '../LocalizationSwitcher/LocalizationSwitcher';
+import GoogleButtonLogin from '../GoogleButtonLogin/GoogleButtonLogin';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -23,7 +24,7 @@ const SignInForm = () => {
   const pwdFieldId = useId();
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -56,6 +57,12 @@ const SignInForm = () => {
     }
   };
   const { t } = useTranslation();
+
+  const LoginSuccess = user => {
+    localStorage.setItem('accessToken', user.accessToken);
+    localStorage.setItem('refreshToken', user.refreshToken);
+    navigate('/host');
+  };
 
   return (
     <>
@@ -115,6 +122,7 @@ const SignInForm = () => {
             {t('description.signIn.SignInLink')}
           </NavLink>
         </p>
+        <GoogleButtonLogin onSuccess={LoginSuccess} />
       </div>
     </>
   );

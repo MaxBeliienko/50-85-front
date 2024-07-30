@@ -4,6 +4,7 @@ import {
   logIn,
   logOut,
   refreshUser,
+  loginGoogle,
   getUserProfile,
   updateUserProfile,
 } from './operations';
@@ -68,6 +69,10 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
+      })
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        state.token = action.payload.data.accessToken;
+        state.isLoggedIn = true;
       })
       .addCase(getUserProfile.pending, handlePending)
       .addCase(getUserProfile.fulfilled, (state, action) => {

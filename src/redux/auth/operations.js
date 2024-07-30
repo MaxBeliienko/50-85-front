@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
-// axios.defaults.baseURL = 'https://aquatrack-backend.onrender.com';
+// axios.defaults.baseURL = 'import.meta.env.VITE_API_BASE_URL;';
 
 // const setAuthHeader = token => {
 //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -38,7 +38,6 @@ export const registerUser = createAsyncThunk(
     return data;
   })
 );
-
 export const logIn = createAsyncThunk(
   'auth/login',
   asyncThunkWrapper(async user => {
@@ -46,6 +45,20 @@ export const logIn = createAsyncThunk(
     setAuthHeader(data.data.accessToken);
     return data;
   })
+);
+
+export const loginGoogle = createAsyncThunk(
+  'auth/google',
+  async ({ token }, thunkAPI) => {
+    try {
+      const response = await apiClient.post('/auth/google', { token });
+      // Cookies.set('refreshToken', response.data.refreshToken);
+      // setAuthToken(response.data.accessToken);
+      return response.token;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );
 
 export const logOut = createAsyncThunk(
@@ -99,3 +112,4 @@ export const updateUserProfile = createAsyncThunk(
     return data;
   })
 );
+
