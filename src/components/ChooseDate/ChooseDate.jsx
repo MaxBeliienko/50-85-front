@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import css from './ChooseDate.module.css';
-import { useTranslation } from 'react-i18next';
 
 const ChooseDate = ({ isToday, searchDate, currentMonthName }) => {
   const { t } = useTranslation();
