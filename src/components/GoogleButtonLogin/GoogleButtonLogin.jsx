@@ -15,9 +15,10 @@ const GoogleButtonLogin = () => {
 
     try {
       const result = await dispatch(loginGoogle({ token })).unwrap();
-      localStorage.setItem('accessToken', result.accessToken);
-      localStorage.setItem('refreshToken', result.refreshToken);
+      //   localStorage.setItem('accessToken', result.accessToken);
+      //   localStorage.setItem('refreshToken', result.refreshToken);
       navigate('/host');
+      result();
     } catch (error) {
       console.error('Invalid Google login:', error);
       toast.error(`Invalid Google login: ${error}`);

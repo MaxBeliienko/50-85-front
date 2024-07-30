@@ -1,15 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
-axios.defaults.baseURL = 'import.meta.env.VITE_API_BASE_URL;';
+// axios.defaults.baseURL = 'import.meta.env.VITE_API_BASE_URL;';
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// const setAuthHeader = token => {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
 
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
+// const clearAuthHeader = () => {
+//   axios.defaults.headers.common.Authorization = '';
+// };
 
 const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   try {
@@ -52,9 +52,9 @@ export const loginGoogle = createAsyncThunk(
   'auth/google',
   async ({ token }, thunkAPI) => {
     try {
-      const response = await axios.post('/auth/google', { token });
-      Cookies.set('refreshToken', response.data.refreshToken);
-      setAuthToken(response.data.accessToken);
+      const response = await apiClient.post('/auth/google', { token });
+      // Cookies.set('refreshToken', response.data.refreshToken);
+      // setAuthToken(response.data.accessToken);
       return response.token;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
