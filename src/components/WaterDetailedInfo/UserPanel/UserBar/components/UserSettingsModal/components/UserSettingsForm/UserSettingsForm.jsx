@@ -16,25 +16,24 @@ const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
-  console.log(user);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const {
     register,
     handleSubmit,
-    // setValue,
+    watch,
     reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(userValidationSchema),
     defaultValues: {
       gender: user.gender || t('description.settings.female'),
-      name: user.name || '',
-      email: user.email || '',
-      weight: user.weight || '',
-      activityLevel: user.activityLevel || '',
+      name: user.name,
+      email: user.email,
+      weight: user.weight,
+      activityLevel: user.activityLevel,
       dailyRequirement: user.dailyRequirement || 2000,
-      photo: user.photo || '',
+      photo: user.photo,
     },
   });
 
@@ -42,12 +41,12 @@ const UserSettingsForm = ({ closeModal }) => {
     if (user) {
       reset({
         gender: user.gender || t('description.settings.female'),
-        name: user.name || '',
-        email: user.email || '',
-        weight: user.weight || '',
-        activityLevel: user.activityLevel || '',
+        name: user.name,
+        email: user.email,
+        weight: user.weight,
+        activityLevel: user.activityLevel,
         dailyRequirement: user.dailyRequirement || 2000,
-        photo: user.photo || '',
+        photo: user.photo,
       });
     }
   }, [user, reset, t]);
@@ -70,9 +69,14 @@ const UserSettingsForm = ({ closeModal }) => {
   // };
 
   const onSubmit = data => {
+    const cleanedData = {
+      ...data,
+      weight: Number(data.weight),
+      dailyRequirement: Number(data.dailyRequirement) * 1000,
+    };
     const formData = new FormData();
-    Object.keys(data).forEach(key => {
-      formData.append(key, data[key]);
+    Object.keys(cleanedData).forEach(key => {
+      formData.append(key, cleanedData[key]);
     });
     if (selectedFile) {
       formData.append('photo', selectedFile); // Додавання файлу до formData
@@ -80,6 +84,33 @@ const UserSettingsForm = ({ closeModal }) => {
     dispatch(updateUserProfile(formData));
     closeModal();
   };
+
+  // function dailyNormaOnline(gender, activityLevel, weight) {
+  //   if (gender === 'female') {
+  //     return weight * 0.03 + activityLevel * 0.04;
+  //   }
+  //   if (gender === 'male') {
+  //     return weight * 0.04 + activityLevel * 0.06;
+  //   }
+  // }
+  const [dailyNorma, setDailyNorma] = useState(1.8);
+
+  const weight = watch('weight');
+  const activityLevel = watch('activityLevel');
+  const gender = watch('gender');
+
+  useEffect(() => {
+    if (weight >= 1 && activityLevel >= 0) {
+      if (gender === 'female') {
+        const result = weight * 0.03 + activityLevel * 0.04;
+        setDailyNorma(result.toFixed(1));
+      }
+      if (gender === 'male') {
+        const result = weight * 0.04 + activityLevel * 0.06;
+        setDailyNorma(result.toFixed(1));
+      }
+    }
+  }, [weight, activityLevel, gender]);
 
   return (
     <>
@@ -216,9 +247,7 @@ const UserSettingsForm = ({ closeModal }) => {
             <div className={styles.formGroup}>
               <p>
                 {t('description.settings.requiredWater')}{' '}
-                <span>
-                  {user.dailyWaterIntake} {t('description.settings.liter')}
-                </span>
+                <span>{`${dailyNorma} L`}</span>
               </p>
               <label
                 htmlFor="dailyRequirement"
@@ -231,6 +260,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 id="dailyRequirement"
                 {...register('dailyRequirement')}
                 className={styles.formControl}
+                placeholder="Please enter volume (Liters)"
               />
               {errors.dailyRequirement && (
                 <p className={styles.errorMessage}>

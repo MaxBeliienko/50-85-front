@@ -8,7 +8,6 @@ import defaultAvatar from '../../../../../public/customers/defaultAvatar.png';
 
 const UserBar = () => {
   const user = useSelector(selectUserProfile);
-  console.log('user', user);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const togglePopup = () => {
