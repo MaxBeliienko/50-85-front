@@ -32,6 +32,7 @@
   border: none;
   outline: none;
   cursor: pointer;
+  padding: 0;
 
   svg {
     width: 8px;
@@ -42,7 +43,6 @@
   .schedule {
     width: 20px;
     height: 20px;
-    margin-left: 16px;
   }
 }
 
