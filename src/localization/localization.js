@@ -146,9 +146,11 @@ export const userBarText = {
 export const calendarText = {
   en: {
     monthText: 'Month',
+    statistics: 'Statistics',
   },
   ukr: {
     monthText: 'Місяць',
+    statistics: 'Статистика',
   },
 };
 
