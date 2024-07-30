@@ -14,7 +14,7 @@ const CalendarItem = ({
         className={
           day === today.day && isCurrentMonth ? css.currentday : css.calendarday
         }
-        // disabled={day > today.day && isCurrentMonth}
+        disabled={day > today.day && isCurrentMonth}
         onClick={() => onChangeDate(searchDate.year, searchDate.month, day)}
       >
         {day}

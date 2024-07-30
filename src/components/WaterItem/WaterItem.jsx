@@ -4,9 +4,9 @@ import Modal from '../Modal';
 import { useState } from 'react';
 import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
+import { useTranslation } from 'react-i18next';
 
 const WaterItem = ({ waterItem }) => {
-
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
@@ -23,6 +23,7 @@ const WaterItem = ({ waterItem }) => {
     setShowEditModal(false);
   };
 
+  const { t } = useTranslation();
   return (
     <>
       <Modal
@@ -49,11 +50,13 @@ const WaterItem = ({ waterItem }) => {
         <Iconsvg
           iconName={'water-glass'}
           styles={css.svg}
-          height={36}
-          width={32}
+          height={38}
+          width={38}
         />
         <div className={css.data}>
-          <p className={css.text}>{waterItem.volume} ml</p>
+          <p className={css.text}>
+            {waterItem.volume} {t('description.tracker.ml')}
+          </p>
           <p className={css.text}>
             <span>{waterItem.time} AM</span>
           </p>
@@ -62,7 +65,7 @@ const WaterItem = ({ waterItem }) => {
           <button className={css.btn} onClick={openShowEditModal}>
             <Iconsvg
               iconName={'pencil'}
-              styles={css.pencil}
+              styles={css.icons}
               height={16}
               width={16}
             />
@@ -70,7 +73,7 @@ const WaterItem = ({ waterItem }) => {
           <button className={css.btn} onClick={openModal}>
             <Iconsvg
               iconName={'trash'}
-              styles={css.trash}
+              styles={css.icons}
               height={16}
               width={16}
             />

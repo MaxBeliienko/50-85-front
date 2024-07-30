@@ -5,6 +5,7 @@ import { selectMonthWater } from '../../redux/water/selectors';
 import { useSelector } from 'react-redux';
 import StatisticsSchedule from '../StatisticsSchedule/StatisticsSchedule';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const CalendarPagination = ({
   searchDate,
@@ -33,11 +34,7 @@ const CalendarPagination = ({
     }
   }
 
-  const daysInMonth = new Date(
-    searchDate.year,
-    searchDate.month + 1,
-    0
-  ).getDate();
+  const daysInMonth = new Date(searchDate.year, searchDate.month, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
     return { day: i + 1, percentage: '0%' };
   });
@@ -45,7 +42,8 @@ const CalendarPagination = ({
   monthData.map(item => {
     daysArray[parseInt(item.date) - 1].percentage = item.percentage;
     daysArray[parseInt(item.date) - 1].volume = item.volume / 1000;
-    daysArray[parseInt(item.date) - 1].dailyRequirement = item.dailyRequirement / 1000;
+    daysArray[parseInt(item.date) - 1].dailyRequirement =
+      item.dailyRequirement / 1000;
   });
 
   const [activeComponent, setActiveComponent] = useState(true);
@@ -54,11 +52,15 @@ const CalendarPagination = ({
     setActiveComponent(!activeComponent);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <div className={css.titlecomtainer}>
         <h2 className={css.month}>
-          {activeComponent ? 'Month' : 'Statistics'}
+          {activeComponent
+            ? t(`description.calendar.monthText`)
+            : t(`description.calendar.statistics`)}
         </h2>
         <div className={css.blockcalendar}>
           <button
@@ -74,6 +76,7 @@ const CalendarPagination = ({
           </p>
 
           <button
+            disabled={isCurrentMonth}
             className={css.btn}
             id="nextMonth"
             aria-label="get next month"

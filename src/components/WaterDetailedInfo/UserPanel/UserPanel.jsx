@@ -1,6 +1,6 @@
 import css from './UserPanel.module.css';
 import UserBar from './UserBar/UserBar';
-import { selectUserProfile } from '../../../redux/user/selectors';
+import { selectUserProfile } from '../../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
