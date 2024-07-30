@@ -5,6 +5,7 @@ import {
   editWater,
   fetchDailyWater,
   fetchMonthWater,
+  fetchTodayWater,
 } from './operations';
 import { logOut } from '../auth/operations';
 
@@ -20,6 +21,7 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
+    todayWater: [],
     dailyWater: [],
     monthWater: [],
     loading: false,
@@ -41,6 +43,13 @@ const waterSlice = createSlice({
         state.dailyWater = action.payload;
       })
       .addCase(fetchDailyWater.rejected, handleRejected)
+      .addCase(fetchTodayWater.pending, handlePending)
+      .addCase(fetchTodayWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.todayWater = action.payload;
+      })
+      .addCase(fetchTodayWater.rejected, handleRejected)
       .addCase(addWater.pending, handlePending)
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;

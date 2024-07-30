@@ -29,6 +29,29 @@ export const fetchDailyWater = createAsyncThunk(
   }
 );
 
+export const fetchTodayWater = createAsyncThunk(
+  'water/today',
+  async (_, thunkAPI) => {
+    const date = new Date();
+    const today = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+    };
+    const month = today.month < 10 ? `0${today.month}` : today.month;
+    const day = today.day < 10 ? `0${today.day}` : today.day;
+
+    try {
+      const res = await apiClient.get('/water/daily', {
+        params: { year: today.year, month, day },
+      });
+      return res.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addWater = createAsyncThunk(
   'water/addWater',
   async ({ volume, time }, thunkAPI) => {

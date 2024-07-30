@@ -3,8 +3,17 @@ import 'rc-slider/assets/index.css';
 import css from './WaterProgressBar.module.css';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectTodayWater } from '../../../redux/water/selectors';
 
-const WaterProgressBar = ({ percentage }) => {
+const WaterProgressBar = ({ dailyNorma }) => {
+  const todayWaterArray = useSelector(selectTodayWater);
+  const totalVolume = todayWaterArray.reduce(
+    (sum, waterItem) => sum + waterItem.volume,
+    0
+  );
+  const percentage = Math.round((totalVolume / dailyNorma) * 100);
+
   const sliderStyle = {
     margin: '0',
     padding: '0',

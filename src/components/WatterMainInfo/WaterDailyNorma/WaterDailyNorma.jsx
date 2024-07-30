@@ -6,7 +6,9 @@ const WaterDailyNorma = ({ dailyNorma }) => {
   return (
     <div className={css.dailyNorma}>
       <div className={css.waterDailyNorma}>
-        <span className={css.highlight}>{dailyNorma} L</span>
+        <span className={css.highlight}>
+          {dailyNorma / 1000} {t('description.dailyNorma.litr')}
+        </span>
         <p>{t('description.dailyNorma.normaText')}</p>
       </div>
     </div>
