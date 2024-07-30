@@ -4,20 +4,36 @@
   /* display: grid;
     gap: calc(var(--spacing) * 5);
     grid-template-columns: 1fr; */
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 @media (min-width: 768px) {
   .settingsForm {
-    grid-template-columns: 1fr 1fr;
+    /* column-count: 2;
+    column-gap: 24px; */
+    /* grid-template-columns: 1fr 1fr; */
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .settingsForm {
+    column-count: 2;
+    column-gap: 20px;
+  }
+
+  .formGroup {
+    /* width: calc((100% - 40px) / 2); */
+    /* margin-top: 10px; */
   }
 }
 
 .gridItem {
   display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing) * 6);
+  /* flex-direction: column;
+  gap: calc(var(--spacing) * 6); */
+  gap: 14px 40px;
+  flex-wrap: wrap;
 
   @media (min-width: 768px) {
     &:last-child {
@@ -27,13 +43,15 @@
 }
 
 .formGroup {
-  width: 100%;
   border-radius: var(--radius-sm);
-  border: 1px solid transparent;
+  margin-bottom: 24px;
+
+  /* border: 1px solid transparent;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: calc(var(--spacing) * 3.5);
+  justify-content: center; */
+  /* gap: calc(var(--spacing) * 3.5); */
+  /* border: 3px solid red; */
 
   p {
     span {

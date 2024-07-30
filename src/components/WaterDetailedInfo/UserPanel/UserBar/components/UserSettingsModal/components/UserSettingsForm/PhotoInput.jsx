@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import css from './PhotoInput.module.css';
-import defaultAvatar from '../../../../../../../../../public/customers/defaultAvatar.png';
+import defaultAvatar from '../../../../../../../../public/images/defaultAvatar.png';
 import Iconsvg from '../../../../../../../Icon';
 
 const PhotoInput = ({ user, setSelectedFile, register }) => {

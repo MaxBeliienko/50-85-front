@@ -31,13 +31,24 @@
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
-  display: flex;
   gap: 8px;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
+  color: var(--light-black);
+  text-align: center;
 }
 
 .input {
   display: none;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .img {
+    width: 100px;
+    height: 100px;
+  }
 }
