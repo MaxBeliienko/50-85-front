@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import css from './UserBar.module.css';
 import Iconsvg from '../../../Icon';
-import { selectUserProfile } from '../../../../redux/user/selectors';
+import { selectUserProfile } from '../../../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import UserBarPopover from '../../../UserBarPopover/UserBarPopover';
 
@@ -10,13 +10,11 @@ const UserBar = () => {
   console.log(userBar);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
 
-  
   const onClosePopup = useCallback(e => {
     const elem = e.target.closest('[data-popup]');
     if (elem) return;
@@ -34,15 +32,12 @@ const UserBar = () => {
     }
   }, [isPopupOpen, onClosePopup]);
 
-
   return (
     <>
       <div className={css.userButtonContainer} data-popup="true">
         <button className={css.userButton} onClick={togglePopup}>
           <div className={css.buttonContainer}>
-            <span className={css.userName}>
-              {userBar.name || 'User'}
-            </span>
+            <span className={css.userName}>{userBar.name || 'User'}</span>
 
             <div className={css.userWpapper}>
               <img
@@ -50,7 +45,7 @@ const UserBar = () => {
                   userBar.avatar ||
                   'https://cdn-icons-png.flaticon.com/512/6596/6596121.png'
                 }
-                alt='user profile picture'
+                alt="user profile picture"
                 className={css.userPhoto}
               />
 
@@ -65,7 +60,7 @@ const UserBar = () => {
             </div>
           </div>
         </button>
-        <UserBarPopover isPopupOpen={isPopupOpen}/>
+        <UserBarPopover isPopupOpen={isPopupOpen} />
       </div>
     </>
   );

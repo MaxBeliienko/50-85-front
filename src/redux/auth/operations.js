@@ -38,7 +38,6 @@ export const registerUser = createAsyncThunk(
     return data;
   })
 );
-
 export const logIn = createAsyncThunk(
   'auth/login',
   asyncThunkWrapper(async user => {
@@ -98,24 +97,19 @@ export const refreshUser = createAsyncThunk(
   })
 );
 
-// function App() {
-//   const handleSuccess = response => {
-//     console.log('Login Success: currentUser:', response);
-//     // Тут можна відправити `response` на ваш сервер для подальшої обробки
-//   };
+export const getUserProfile = createAsyncThunk(
+  'users/user-profile',
+  asyncThunkWrapper(async () => {
+    const { data } = await apiClient.get('/users/user-profile');
+    return data.data;
+  })
+);
 
-//   const handleError = () => {
-//     console.log('Login Failed');
-//   };
+export const updateUserProfile = createAsyncThunk(
+  'users/user-update',
+  asyncThunkWrapper(async user => {
+    const { data } = await apiClient.patch('/users/user-profile', user);
+    return data;
+  })
+);
 
-//   return (
-//     <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
-//       <div className="App">
-//         <h3>Авторизація через Google</h3>
-//         <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
-//       </div>
-//     </GoogleOAuthProvider>
-//   );
-// }
-
-// export default App;

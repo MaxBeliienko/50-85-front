@@ -1,7 +1,4 @@
-import { useDispatch } from 'react-redux';
 import css from './Calendar.module.css';
-import { fetchMonthWater } from '../../redux/water/operations';
-import { useEffect } from 'react';
 import CalendarItem from '../CalendarItem/CalendarItem';
 
 const Calendar = ({
@@ -11,14 +8,6 @@ const Calendar = ({
   daysArray,
   isCurrentMonth,
 }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(
-      fetchMonthWater({ year: searchDate.year, month: searchDate.month })
-    );
-  }, [dispatch, searchDate.year, searchDate.month]);
-
   return (
     <ul className={css.calendar}>
       {daysArray.map(({ day, percentage }) => (

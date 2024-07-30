@@ -16,22 +16,16 @@ const WaterModal = ({ operationType, onCloseModal, waterItem }) => {
   if (operationType === 'edit') title = t('description.waterModal.editWater');
 
   const handleSubmit = data => {
-    // console.log('onCloseModal:', onCloseModal);
     const volume = Number(data.volume);
     const time = data.time;
 
     if (operationType === 'add') {
-      console.log('add', volume, time);
-
       dispatch(addWater({ volume, time }));
       toast.success(t('description.waterModal.succesAdd'));
       onCloseModal();
     } else {
-      console.log('edit water modal', waterItem._id, volume, time);
-
       dispatch(editWater({ id: waterItem._id, volume, time }));
       toast.success(t('description.waterModal.succesEdit'));
-
       onCloseModal();
     }
   };
