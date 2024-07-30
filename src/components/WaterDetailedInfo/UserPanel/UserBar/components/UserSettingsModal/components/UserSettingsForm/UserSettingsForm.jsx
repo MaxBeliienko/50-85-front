@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 import Iconsvg from '../../../../../../../Icon';
 
-const UserSettingsForm = () => {
+const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
@@ -59,6 +59,7 @@ const UserSettingsForm = () => {
     dispatch(updateUserProfile(cleanedData))
       .then(() => {
         reset(cleanedData);
+        closeModal();
       })
       .catch(error => {
         console.error('Error updating profile:', error);

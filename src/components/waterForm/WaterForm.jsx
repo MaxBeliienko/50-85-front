@@ -7,19 +7,23 @@ import styles from './WaterForm.module.css';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-const timeSchema = /^([01]\d|2[0-3]):([0-5]\d)$/;
-const validationSchema = Yup.object().shape({
-  volume: Yup.number().min(0).max(5000).integer().required('Required'),
-  time: Yup.string()
-    .matches(timeSchema, 'Time must be in hh:mm format')
-    .required('Required'),
-});
-
 const WaterForm = ({ submit, waterItem, operationType }) => {
   const [waterAmount, setWaterAmount] = useState(
     waterItem ? waterItem.volume : 50
   );
 
+  const { t } = useTranslation();
+  const timeSchema = /^([01]\d|2[0-3]):([0-5]\d)$/;
+  const validationSchema = Yup.object().shape({
+    volume: Yup.number()
+      .min(0)
+      .max(5000)
+      .integer()
+      .required(t('description.waterForm.required')),
+    time: Yup.string()
+      .matches(timeSchema, t('description.waterForm.warningTime'))
+      .required(t('description.waterForm.required')),
+  });
   const getTime = () => {
     const currentDate = new Date();
     const hours = currentDate.getHours();
@@ -28,14 +32,6 @@ const WaterForm = ({ submit, waterItem, operationType }) => {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes}`;
   };
-
-  // function defaulVolume(item) {
-  //   if (item) {
-  //     return item.volume;
-  //   } else {
-  //     return waterAmount;
-  //   }
-  // }
 
   function defaultTime(item) {
     if (item) {
@@ -69,8 +65,6 @@ const WaterForm = ({ submit, waterItem, operationType }) => {
   const handleWaterBtnPlus = () => {
     setWaterAmount(prevWaterAmount => Math.min(prevWaterAmount + 50, 5000));
   };
-
-  const { t } = useTranslation();
 
   const handleWater = e => {
     const { value } = e.target;

@@ -53,6 +53,7 @@ const CalendarPagination = ({
   };
 
   const { t } = useTranslation();
+
   return (
     <>
       <div className={css.titlecomtainer}>
@@ -75,6 +76,7 @@ const CalendarPagination = ({
           </p>
 
           <button
+            disabled={isCurrentMonth}
             className={css.btn}
             id="nextMonth"
             aria-label="get next month"

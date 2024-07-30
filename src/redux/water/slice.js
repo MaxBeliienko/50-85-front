@@ -53,7 +53,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         const index = state.dailyWater.findIndex(
-          water => water._id === action.payload.id
+          water => water._id === action.payload._id
         );
         if (index >= 0) {
           state.dailyWater[index] = {
@@ -69,7 +69,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         const index = state.dailyWater.findIndex(
-          water => water.id === action.payload.id
+          water => water.id === action.payload._id
         );
         state.dailyWater.splice(index, 1);
       })
