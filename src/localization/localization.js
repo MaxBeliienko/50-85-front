@@ -85,11 +85,11 @@ export const welcomeText = {
 export const dailyNormaText = {
   en: {
     normaText: 'My daily norma',
-    ml: 'ml',
+    litr: 'L',
   },
   ukr: {
     normaText: 'Моя денна норма',
-    ml: 'мл',
+    litr: 'Л',
   },
 };
 
