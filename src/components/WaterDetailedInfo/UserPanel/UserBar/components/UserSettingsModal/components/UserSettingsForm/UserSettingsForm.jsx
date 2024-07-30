@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import CustomImageUploading from './components/CustomImageUploading/CustomImageUploading';
 import styles from './UserSettingsForm.module.css';
 import { userValidationSchema } from './schema';
 import { updateUserProfile } from '../../../../../../../../redux/auth/operations';
@@ -11,16 +10,19 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 import Iconsvg from '../../../../../../../Icon';
+import PhotoInput from './PhotoInput';
 
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
+  console.log(user);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const {
     register,
     handleSubmit,
-    setValue,
+    // setValue,
     reset,
     formState: { errors },
   } = useForm({
@@ -50,66 +52,44 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   }, [user, reset, t]);
 
+  // const onSubmit = data => {
+  //   const cleanedData = {
+  //     ...data,
+  //     weight: Number(data.weight),
+  //     dailyRequirement: Number(data.dailyRequirement),
+  //   };
+
+  //   dispatch(updateUserProfile(cleanedData))
+  //     .then(() => {
+  //       reset(cleanedData);
+  //       closeModal();
+  //     })
+  //     .catch(error => {
+  //       console.error('Error updating profile:', error);
+  //     });
+  // };
+
   const onSubmit = data => {
-    const cleanedData = {
-      ...data,
-      weight: Number(data.weight),
-      dailyRequirement: Number(data.dailyRequirement),
-    };
-    dispatch(updateUserProfile(cleanedData))
-      .then(() => {
-        reset(cleanedData);
-        closeModal();
-      })
-      .catch(error => {
-        console.error('Error updating profile:', error);
-      });
-  };
-
-  const handleImageChange = async imageBlobUrl => {
-    try {
-      // Отримуємо blob за URL
-      const response = await fetch(imageBlobUrl);
-      const blob = await response.blob();
-
-      // Створюємо файл з blob
-      const imageFile = new File([blob], 'image.jpg', { type: blob.type });
-
-      // Створюємо FormData для завантаження на Cloudinary
-      const formData = new FormData();
-      formData.append('file', imageFile);
-      formData.append('upload_preset', 'ml_default');
-
-      // Надсилаємо файл на Cloudinary
-      const uploadResponse = await fetch(
-        'https://api.cloudinary.com/v1_1/dcyohn4j5/image/upload',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
-
-      const data = await uploadResponse.json();
-
-      if (data.secure_url) {
-        // Зберігаємо URL зображення в полі форми
-        setValue('photo', data.secure_url);
-      } else {
-        throw new Error('Failed to upload image');
-      }
-    } catch (error) {
-      console.error('Error uploading image:', error);
+    const formData = new FormData();
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
+    });
+    if (selectedFile) {
+      formData.append('photo', selectedFile); // Додавання файлу до formData
     }
+    dispatch(updateUserProfile(formData));
+    closeModal();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CustomImageUploading
-          initialPhoto={user.photo}
-          onImageChange={handleImageChange}
-        />
         <div className={styles.settingsForm}>
+          <PhotoInput
+            setSelectedFile={setSelectedFile}
+            user={user}
+            register={register}
+          />
           <div className={styles.gridItem}>
             <div className={styles.formGroup}>
               <label className={styles.formGroupLabel}>
@@ -196,7 +176,6 @@ const UserSettingsForm = ({ closeModal }) => {
               </p>
             </div>
           </div>
-
           <div className={styles.gridItem}>
             <div className={styles.formGroup}>
               <label

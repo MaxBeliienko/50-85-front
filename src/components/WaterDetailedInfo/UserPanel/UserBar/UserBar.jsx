@@ -4,11 +4,11 @@ import Iconsvg from '../../../Icon';
 import { selectUserProfile } from '../../../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import UserBarPopover from '../../../UserBarPopover/UserBarPopover';
+import defaultAvatar from '../../../../../public/customers/defaultAvatar.png';
 
 const UserBar = () => {
-  const userBar = useSelector(selectUserProfile);
-  // console.log(userBar);
-
+  const user = useSelector(selectUserProfile);
+  console.log('user', user);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const togglePopup = () => {
@@ -37,14 +37,11 @@ const UserBar = () => {
       <div className={css.userButtonContainer} data-popup="true">
         <button className={css.userButton} onClick={togglePopup}>
           <div className={css.buttonContainer}>
-            <span className={css.userName}>{userBar.name || 'User'}</span>
+            <span className={css.userName}>{user.name || 'User'}</span>
 
             <div className={css.userWpapper}>
               <img
-                src={
-                  userBar.avatar ||
-                  'https://cdn-icons-png.flaticon.com/512/6596/6596121.png'
-                }
+                src={user.photo || defaultAvatar}
                 alt="user profile picture"
                 className={css.userPhoto}
               />

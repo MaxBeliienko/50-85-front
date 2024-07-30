@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 const UserPanel = () => {
-  const userBar = useSelector(selectUserProfile);
+  const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
   return (
     <div className={css.userPanelWrap}>
@@ -14,7 +14,7 @@ const UserPanel = () => {
           {t('description.userBar.helloText')}
         </span>
         <span className={css.fontGilroyBolt}>
-          ,{userBar.name || t('description.userBar.userText')}!
+          ,{user.name || t('description.userBar.userText')}!
         </span>
       </h3>
       <UserBar />

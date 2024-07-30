@@ -1,21 +1,20 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
 import Modal from '../../../../../Modal';
 import styles from './UserSettingsModal.module.css';
-import { getUserProfile } from '../../../../../../redux/auth/operations';
+// import { getUserProfile } from '../../../../../../redux/auth/operations';
 import { useTranslation } from 'react-i18next';
 import LocalizationSwitcher from '../../../../../LocalizationSwitcher/LocalizationSwitcher';
 import UserSettingsForm from './components/UserSettingsForm/UserSettingsForm';
 
 const UserSettingsModal = ({ showModal, closeModal }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (showModal) {
-      dispatch(getUserProfile());
-    }
-  }, [dispatch, showModal]);
+  // useEffect(() => {
+  //   if (showModal) {
+  //     dispatch(getUserProfile());
+  //   }
+  // }, [dispatch, showModal]);
 
   return (
     <Modal
