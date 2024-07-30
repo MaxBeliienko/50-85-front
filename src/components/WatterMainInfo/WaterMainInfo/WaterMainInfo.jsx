@@ -29,8 +29,7 @@ const WaterMainInfo = ({ today }) => {
     };
     return data;
   };
-  const { dailyRequirement, percentage } = findTodayData(today);
-  const dailyNorma = dailyRequirement / 1000;
+  const { percentage } = findTodayData(today);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -47,7 +46,7 @@ const WaterMainInfo = ({ today }) => {
         />
         <Logo />
         <div className={css.content}>
-          <WaterDailyNorma dailyNorma={dailyNorma} />
+          <WaterDailyNorma />
           <WaterProgressBar percentage={parseInt(percentage)} />
           <AddWaterBtn onAddWater={openModal} />
         </div>

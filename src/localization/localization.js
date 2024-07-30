@@ -83,8 +83,14 @@ export const welcomeText = {
 };
 
 export const dailyNormaText = {
-  en: { normaText: 'My daily norma' },
-  ukr: { normaText: 'Моя денна норма' },
+  en: {
+    normaText: 'My daily norma',
+    ml: 'ml',
+  },
+  ukr: {
+    normaText: 'Моя денна норма',
+    ml: 'мл',
+  },
 };
 
 export const trackerText = {
