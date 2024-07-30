@@ -4,7 +4,7 @@ import Iconsvg from '../../../Icon';
 import { selectUserProfile } from '../../../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import UserBarPopover from '../../../UserBarPopover/UserBarPopover';
-import defaultAvatar from '../../../../../public/customers/defaultAvatar.png';
+import defaultAvatar from '../../../../public/images/defaultAvatar.png';
 
 const UserBar = () => {
   const user = useSelector(selectUserProfile);

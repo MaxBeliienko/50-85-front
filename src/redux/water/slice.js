@@ -50,6 +50,8 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, handleRejected)
       .addCase(editWater.pending, handlePending)
       .addCase(editWater.fulfilled, (state, action) => {
+        console.log('action!!!!!!', action);
+
         state.loading = false;
         state.error = null;
         const index = state.dailyWater.findIndex(
@@ -68,11 +70,18 @@ const waterSlice = createSlice({
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        console.log('action!!!!!!', action);
         const index = state.dailyWater.findIndex(
-          water => water.id === action.payload._id
+          item => item._id === action.meta.arg
+          // item => item._id === action.payload.id
         );
         state.dailyWater.splice(index, 1);
       })
+      // .addCase(deleteWater.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.error = null;
+      //   state.dailyWater.filter(item => item._id !== action.payload);
+      // })
       .addCase(deleteWater.rejected, handleRejected)
       .addCase(logOut.fulfilled, state => {
         state.dailyWater = [];

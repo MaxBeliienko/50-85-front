@@ -8,7 +8,6 @@ import { updateUserProfile } from '../../../../../../../../redux/auth/operations
 import { selectUserProfile } from '../../../../../../../../redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-
 import Iconsvg from '../../../../../../../Icon';
 import PhotoInput from './PhotoInput';
 
@@ -45,7 +44,7 @@ const UserSettingsForm = ({ closeModal }) => {
         email: user.email,
         weight: user.weight,
         activityLevel: user.activityLevel,
-        dailyRequirement: user.dailyRequirement || 2000,
+        dailyRequirement: user.dailyRequirement / 1000 || 2000,
         photo: user.photo,
       });
     }
@@ -79,20 +78,12 @@ const UserSettingsForm = ({ closeModal }) => {
       formData.append(key, cleanedData[key]);
     });
     if (selectedFile) {
-      formData.append('photo', selectedFile); // Додавання файлу до formData
+      formData.append('photo', selectedFile);
     }
     dispatch(updateUserProfile(formData));
     closeModal();
   };
 
-  // function dailyNormaOnline(gender, activityLevel, weight) {
-  //   if (gender === 'female') {
-  //     return weight * 0.03 + activityLevel * 0.04;
-  //   }
-  //   if (gender === 'male') {
-  //     return weight * 0.04 + activityLevel * 0.06;
-  //   }
-  // }
   const [dailyNorma, setDailyNorma] = useState(1.8);
 
   const weight = watch('weight');
@@ -115,98 +106,97 @@ const UserSettingsForm = ({ closeModal }) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.settingsForm}>
-          <PhotoInput
-            setSelectedFile={setSelectedFile}
-            user={user}
-            register={register}
-          />
-          <div className={styles.gridItem}>
-            <div className={styles.formGroup}>
-              <label className={styles.formGroupLabel}>
-                {t('description.settings.gender')}
-              </label>
-              <div className={styles.radioGroup}>
-                <label>
-                  <input type="radio" value="female" {...register('gender')} />
-                  {t('description.settings.woman')}
-                </label>
-                <label>
-                  <input type="radio" value="male" {...register('gender')} />
-                  {t('description.settings.man')}
-                </label>
-              </div>
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.formGroupLabel}>
-                {t('description.settings.name')}
-              </label>
-              <input
-                type="text"
-                id="name"
-                {...register('name')}
-                className={styles.formControl}
-              />
-              {errors.name && (
-                <p className={styles.errorMessage}>{errors.name.message}</p>
-              )}
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.formGroupLabel}>
-                {t('description.settings.email')}
-              </label>
-              <input
-                type="email"
-                id="email"
-                {...register('email')}
-                className={styles.formControl}
-              />
-              {errors.email && (
-                <p className={styles.errorMessage}>{errors.email.message}</p>
-              )}
-            </div>
-
-            <div className={styles.formGroupDailyNorma}>
-              <label htmlFor="dailyNorma" className={styles.formGroupLabel}>
-                {t('description.settings.requirement')}
-              </label>
-              <div className={styles.dailyNormaGroup}>
-                <div>
-                  <label htmlFor="dailyNorma">
-                    {t('description.settings.forWoman')}
-                  </label>
-                  <p>{t('description.settings.womanFormula')}</p>
-                </div>
-
-                <div>
-                  <label htmlFor="dailyNorma">
-                    {t('description.settings.forMan')}
-                  </label>
-                  <p>{t('description.settings.manFormula')}</p>
-                </div>
-              </div>
-              <p
-                style={{
-                  border: '1px solid rgba(47, 47, 47, 0.15)',
-                  borderRadius: '15px',
-                  padding: '16px',
-                  color: '#2F2F2F',
-                  fontWeight: '400',
-                }}
-              >
-                <span>*</span> {t('description.settings.formulaExplanation')}
-              </p>
-              <p
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Iconsvg width={22} height={22} iconName={'exclamation'} />
-                {t('description.settings.activeTimeHour')}
-              </p>
-            </div>
+        <PhotoInput
+          setSelectedFile={setSelectedFile}
+          user={user}
+          register={register}
+        />
+        <div>
+          <label className={styles.formGroupLabel}>
+            {t('description.settings.gender')}
+          </label>
+          <div className={styles.radioGroup}>
+            <label>
+              <input type="radio" value="female" {...register('gender')} />
+              {t('description.settings.woman')}
+            </label>
+            <label>
+              <input type="radio" value="male" {...register('gender')} />
+              {t('description.settings.man')}
+            </label>
           </div>
+        </div>
+        <div className={styles.settingsForm}>
+          <div className={styles.formGroup}>
+            <label htmlFor="name" className={styles.formGroupLabel}>
+              {t('description.settings.name')}
+            </label>
+            <input
+              type="text"
+              id="name"
+              {...register('name')}
+              className={styles.formControl}
+            />
+            {errors.name && (
+              <p className={styles.errorMessage}>{errors.name.message}</p>
+            )}
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="email" className={styles.formGroupLabel}>
+              {t('description.settings.email')}
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register('email')}
+              className={styles.formControl}
+            />
+            {errors.email && (
+              <p className={styles.errorMessage}>{errors.email.message}</p>
+            )}
+          </div>
+
+          <div className={styles.formGroupDailyNorma}>
+            <label htmlFor="dailyNorma" className={styles.formGroupLabel}>
+              {t('description.settings.requirement')}
+            </label>
+            <div className={styles.dailyNormaGroup}>
+              <div>
+                <label htmlFor="dailyNorma">
+                  {t('description.settings.forWoman')}
+                </label>
+                <p>{t('description.settings.womanFormula')}</p>
+              </div>
+
+              <div>
+                <label htmlFor="dailyNorma">
+                  {t('description.settings.forMan')}
+                </label>
+                <p>{t('description.settings.manFormula')}</p>
+              </div>
+            </div>
+            <p
+              style={{
+                border: '1px solid rgba(47, 47, 47, 0.15)',
+                borderRadius: '15px',
+                padding: '16px',
+                color: '#2F2F2F',
+                fontWeight: '400',
+              }}
+            >
+              <span>*</span> {t('description.settings.formulaExplanation')}
+            </p>
+            <p
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Iconsvg width={22} height={22} iconName={'exclamation'} />
+              {t('description.settings.activeTimeHour')}
+            </p>
+          </div>
+
           <div className={styles.gridItem}>
             <div className={styles.formGroup}>
               <label
@@ -233,7 +223,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 {t('description.settings.activeTime')}
               </label>
               <input
-                type="text"
+                type="number"
                 id="activityLevel"
                 {...register('activityLevel')}
                 className={styles.formControl}
