@@ -4,7 +4,10 @@ import css from './WaterList.module.css';
 import Modal from '../Modal';
 import WaterModal from '../waterModal/WaterModal';
 import { useSelector } from 'react-redux';
-import { selectDailyWater } from '../../redux/water/selectors';
+import {
+  selectDailyWater,
+  selectTodayWater,
+} from '../../redux/water/selectors';
 import { Hourglass } from 'react-loader-spinner';
 import { selectIsLoading } from '../../redux/auth/selectors';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
@@ -12,7 +15,11 @@ import ChooseDate from '../ChooseDate/ChooseDate';
 
 const WaterList = ({ searchDate, monthNames, isToday }) => {
   const [showModal, setShowModal] = useState(false);
+
+  const todayWaterArray = useSelector(selectTodayWater);
   const dailyWaterArray = useSelector(selectDailyWater);
+  const choosedWaterArray = isToday ? todayWaterArray : dailyWaterArray;
+
   const loading = useSelector(selectIsLoading);
 
   const openModal = () => {
@@ -55,7 +62,7 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
         />
       )}
       <ul className={css.list}>
-        {dailyWaterArray.map(wateritem => {
+        {choosedWaterArray.map(wateritem => {
           return (
             <li key={wateritem._id} className={css.item}>
               <WaterItem waterItem={wateritem} />
