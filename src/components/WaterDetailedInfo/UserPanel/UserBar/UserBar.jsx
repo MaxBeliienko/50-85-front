@@ -7,7 +7,7 @@ import UserBarPopover from '../../../UserBarPopover/UserBarPopover';
 
 const UserBar = () => {
   const userBar = useSelector(selectUserProfile);
-  console.log(userBar);
+  // console.log(userBar);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 

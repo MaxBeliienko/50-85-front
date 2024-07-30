@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma.jsx';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar.jsx';
 import AddWaterBtn from '../AddWaterBtn/AddWaterbtn.jsx';
@@ -13,27 +12,28 @@ import bottle2t from '../../../public/images/bottle/bottle2t.png';
 import bottle1d from '../../../public/images/bottle/bottle1d.png';
 import bottle2d from '../../../public/images/bottle/bottle2d.png';
 import Modal from '../../Modal.jsx';
-import { selectMonthWater } from '../../../redux/water/selectors.js';
 
-const WaterMainInfo = ({ today }) => {
+const WaterMainInfo = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const monthData = useSelector(selectMonthWater);
 
-  const findTodayData = ({ day, month, year }) => {
-    const todayStringFormat = `${day < 10 ? `0${day}` : day}.${
-      month < 10 ? `0${month}` : month
-    }.${year}`;
-    const data = monthData.find(day => day.date === todayStringFormat) || {
-      dailyRequirement: 0,
-      percentage: '0%',
-    };
-    return data;
-  };
-  const { percentage } = findTodayData(today);
+  // const monthData = useSelector(selectMonthWater);
+
+  // const findTodayData = ({ day, month, year }) => {
+  //   const todayStringFormat = `${day < 10 ? `0${day}` : day}.${
+  //     month < 10 ? `0${month}` : month
+  //   }.${year}`;
+  //   const data = monthData.find(day => day.date === todayStringFormat) || {
+  //     dailyRequirement: 0,
+  //     percentage: '0%',
+  //   };
+  //   return data;
+  // };
+  // const { percentage } = findTodayData(today);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const percentage = 10;
   return (
     <>
       <div className={css.mainWaterInfo}>
