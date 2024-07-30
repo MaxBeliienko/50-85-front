@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+  margin-bottom: 42px;
+}
+
+.wrapper {
+  width: 75px;
+  height: 75px;
+  margin-bottom: 10px;
+}
+
+.svg {
+  stroke: #2f2f2f;
+  transform: rotate(-90deg);
+  stroke-width: 1.8px;
+}
+
+.img {
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.input {
+  display: none;
+}
