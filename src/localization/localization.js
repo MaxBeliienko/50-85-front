@@ -216,6 +216,7 @@ export const waterForm = {
     warningAmount: 'Amount of water could be from interwal ',
     warningTime: 'Time must be in hh:mm format',
     required: 'вимагається',
+    ml: 'ml',
   },
   ukr: {
     chooseValue: 'Виберіть значення:',
@@ -227,6 +228,7 @@ export const waterForm = {
     warningAmount: 'Кількість води може бути з проміжку ',
     warningTime: 'Час повинен бути у форматі гг:хх',
     required: 'вимагається',
+    ml: 'мл',
   },
 };
 
