@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from './redux/store';
 import { updateToken } from './redux/auth/slice';
+import { logOut } from './redux/auth/operations';
 
 const apiClient = axios.create({
   baseURL: 'https://aquatrack-backend.onrender.com',
@@ -61,7 +62,8 @@ apiClient.interceptors.response.use(
       } catch (err) {
         isRefreshing = false;
         refreshSubscribers = [];
-        return Promise.reject(err);
+        store.dispatch(logOut());
+        clearAuthHeader();
       }
     }
     return Promise.reject(error);
