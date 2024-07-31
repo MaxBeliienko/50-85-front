@@ -49,21 +49,21 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
         />
         {isToday && <AddWaterBtn openModal={openModal} />}
       </div>
-      {/* {choosedWaterArray.length > 0 ? ( */}
-      <ul className={css.list}>
-        {choosedWaterArray.map(wateritem => {
-          return (
-            <li key={wateritem._id} className={css.item}>
-              <WaterItem waterItem={wateritem} />
-            </li>
-          );
-        })}
-      </ul>
-      {/* ) : (
+      {choosedWaterArray.length > 0 ? (
+        <ul className={css.list}>
+          {choosedWaterArray.map(wateritem => {
+            return (
+              <li key={wateritem._id} className={css.item}>
+                <WaterItem waterItem={wateritem} />
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
         <div className={css.datacontainer}>
           <p className={css.data}> {t('description.tracker.noData')}</p>
         </div>
-      )} */}
+      )}
     </>
   );
 };
