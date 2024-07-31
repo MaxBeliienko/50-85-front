@@ -7,14 +7,15 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 const StatisticsSchedule = ({ data }) => {
-
+  const { t } = useTranslation();
   return (
     <div className={css.container}>
       <AreaChart
         width={2600}
-        height={340}
+        height={303}
         data={data}
         margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
       >
@@ -30,7 +31,7 @@ const StatisticsSchedule = ({ data }) => {
           tickLine={false}
           axisLine={false}
           tickCount="6"
-          unit=" L"
+          unit={t('description.dailyNorma.litr')}
         />
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
