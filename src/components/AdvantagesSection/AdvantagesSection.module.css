@@ -9,6 +9,16 @@
   position: relative;
 }
 
+.responsiveImage.customer1 {
+  content: url('../../../public/customers/customer1.png');
+}
+.responsiveImage.customer2 {
+  content: url('../../../public/customers/customer2.png');
+}
+.responsiveImage.customer3 {
+  content: url('../../../public/customers/customer3.png');
+}
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .backgroundPhoto {
     background-image: url('../../public/images/homePage/hero@2.jpg');
@@ -125,6 +135,8 @@
     flex-wrap: wrap;
     margin: 8px 0 0 5px;
     gap: 4px;
+    left: 0px;
+    top: 255px;
   }
 }
 
@@ -132,6 +144,16 @@
   .backgroundPhoto {
     width: 343px;
     height: 353px;
+  }
+
+  .hashtagsWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 265px;
+    left: 129px;
+    gap: 4px;
   }
 }
 

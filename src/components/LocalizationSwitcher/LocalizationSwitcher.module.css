@@ -8,12 +8,18 @@
   cursor: pointer;
   background-color: transparent;
   color: var(--black);
-  margin-left: 84px;
+  margin-left: 29px;
   outline: none;
 }
 
 .noMargin {
   margin: 0 !important;
+}
+
+@media (min-width: 375px) {
+  .select {
+    margin-left: 84px;
+  }
 }
 
 @media (min-width: 768px) {
