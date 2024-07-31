@@ -14,6 +14,14 @@ const WaterProgressBar = ({ dailyNorma }) => {
   );
   const percentage = Math.round((totalVolume / dailyNorma) * 100);
 
+  const showPercentage = percentage => {
+    return (
+      (percentage >= 10 && percentage <= 39) ||
+      (percentage >= 57 && percentage <= 85)
+    );
+  };
+  console.log(showPercentage(percentage));
+
   const sliderStyle = {
     margin: '0',
     padding: '0',
@@ -73,6 +81,17 @@ const WaterProgressBar = ({ dailyNorma }) => {
         <span className={css.label}>0%</span>
         <span className={css.label}>50%</span>
         <span className={css.label}>100%</span>
+        {showPercentage(percentage) && (
+          <span
+            className={css.progressLabel}
+            style={{
+              left: `${percentage}%`,
+              transition: 'left 0.5s ease-in-out',
+            }}
+          >
+            {percentage}%
+          </span>
+        )}
       </div>
     </div>
   );
