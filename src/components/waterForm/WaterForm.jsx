@@ -110,7 +110,9 @@ const WaterForm = ({ submit, waterItem, operationType }) => {
             styles={'minusBtn'}
           />
         </button>
-        <div className={styles.amountValue}>{waterAmount} ml</div>
+        <div className={styles.amountValue}>
+          {waterAmount} {t('description.waterForm.ml')}
+        </div>
         <button
           type="button"
           className={styles.waterBtn}
