@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useId } from "react";
 import styles from "./SignInForm.module.css";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import {
@@ -136,6 +137,8 @@ const SignInForm = () => {
           </div>
           <GoogleButtonLogin onSuccess={LoginSuccess} />
         </div> */}
+
+        <Link to="/privacy-policy">Політика конфіденційності</Link>
       </div>
     </>
   );
