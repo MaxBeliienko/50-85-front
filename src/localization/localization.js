@@ -98,6 +98,7 @@ export const dailyNormaText = {
 export const trackerText = {
   en: {
     todayText: 'Today',
+    noData: 'No data...',
     addWaterText: 'Add water',
     month: 'Month',
     statistics: 'Statistics',
@@ -117,6 +118,7 @@ export const trackerText = {
   },
   ukr: {
     todayText: 'Сьогодні',
+    noData: 'Немає даних...',
     addWaterText: 'Додати воду',
     month: 'Місяць',
     statistics: 'Статистика',
