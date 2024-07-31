@@ -8,10 +8,9 @@ import {
   selectDailyWater,
   selectTodayWater,
 } from '../../redux/water/selectors';
-import { Hourglass } from 'react-loader-spinner';
-import { selectIsLoading } from '../../redux/auth/selectors';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import ChooseDate from '../ChooseDate/ChooseDate';
+import { useTranslation } from 'react-i18next';
 
 const WaterList = ({ searchDate, monthNames, isToday }) => {
   const [showModal, setShowModal] = useState(false);
@@ -19,8 +18,6 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
   const todayWaterArray = useSelector(selectTodayWater);
   const dailyWaterArray = useSelector(selectDailyWater);
   const choosedWaterArray = isToday ? todayWaterArray : dailyWaterArray;
-
-  const loading = useSelector(selectIsLoading);
 
   const openModal = () => {
     setShowModal(true);
@@ -30,6 +27,8 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
   };
 
   const currentMonthName = monthNames[Number(searchDate.month) - 1];
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -50,17 +49,7 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
         />
         {isToday && <AddWaterBtn openModal={openModal} />}
       </div>
-      {loading && (
-        <Hourglass
-          visible={true}
-          height="40"
-          width="40"
-          ariaLabel="hourglass-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          colors={['#9BE1A0', '#72a1ed']}
-        />
-      )}
+      {/* {choosedWaterArray.length > 0 ? ( */}
       <ul className={css.list}>
         {choosedWaterArray.map(wateritem => {
           return (
@@ -70,6 +59,11 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
           );
         })}
       </ul>
+      {/* ) : (
+        <div className={css.datacontainer}>
+          <p className={css.data}> {t('description.tracker.noData')}</p>
+        </div>
+      )} */}
     </>
   );
 };
