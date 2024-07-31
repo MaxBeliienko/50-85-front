@@ -1,41 +1,48 @@
 @import '../../../../.../../.../../../../utils/variables.css';
 
 .settingsModal {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing) * 10);
-    max-width: 920px;
-    max-height: 700px;
-    padding: calc(var(--spacing) * 10) calc(var(--spacing) * 5);
-    overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 10);
+  max-width: 343px;
+  max-height: 500px;
+  padding: calc(var(--spacing) * 10) calc(var(--spacing) * 5);
+  overflow-y: auto;
 
-    @media (min-width: 768px) {
-        padding: calc(var(--spacing) * 10);
-    }
+  @media (min-width: 768px) {
+    padding: calc(var(--spacing) * 10);
+    max-width: 648px;
+    max-height: 500px;
+  }
+
+  @media (min-width: 1440px) {
+    max-width: 920px;
+    max-height: 600px;
+  }
 }
 
 .settingsModal::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .settingsModal::-webkit-scrollbar-track {
-    background: var(--white);
-    border-radius: var(--radius-md) 0 0 0;
+  background: var(--white);
+  border-radius: var(--radius-md) 0 0 0;
 }
 
 .settingsModal::-webkit-scrollbar-thumb {
-    background: var(--light-gray);
-    border-radius: var(--radius-md);
+  background: var(--light-gray);
+  border-radius: var(--radius-md);
 }
 
 .settingsModal::-webkit-scrollbar-thumb:hover {
-    background: var(--white);
+  background: var(--white);
 }
 
 .settingsModalTitle {
-    font-size: var(--font-h3-size);
-    font-weight: var(--font-h3-weight);
-    line-height: var(--font-h3-line-height);
-    letter-spacing: -0.01em;
-    color: var(--light-black);
+  font-size: var(--font-h3-size);
+  font-weight: var(--font-h3-weight);
+  line-height: var(--font-h3-line-height);
+  letter-spacing: -0.01em;
+  color: var(--light-black);
 }
