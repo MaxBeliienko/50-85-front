@@ -35,6 +35,7 @@ export const signInText = {
     MainButton: 'Sign In',
     AllreadyHaveAcc: 'Don`t have an account? ',
     SignInLink: 'Sign Up',
+    or: 'or',
   },
   ukr: {
     MainHeader: 'Вхід',
@@ -45,6 +46,7 @@ export const signInText = {
     MainButton: 'Увійти',
     AllreadyHaveAcc: 'Не маєте акаунту? ',
     SignInLink: 'Зареєструватися',
+    or: 'або',
   },
 };
 
