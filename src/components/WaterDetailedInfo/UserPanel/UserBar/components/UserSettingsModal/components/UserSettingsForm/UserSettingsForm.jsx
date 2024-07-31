@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './UserSettingsForm.module.css';
-import { userValidationSchema } from './schema';
+// import { userValidationSchema } from './schema';
 import { updateUserProfile } from '../../../../../../../../redux/auth/operations';
 import { selectUserProfile } from '../../../../../../../../redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import Iconsvg from '../../../../../../../Icon';
 import PhotoInput from './PhotoInput';
+import * as yup from 'yup';
 
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -17,38 +18,69 @@ const UserSettingsForm = ({ closeModal }) => {
   const { t } = useTranslation();
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const schema = yup.object().shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    name: yup.string().nullable(),
+    gender: yup.string().oneOf(['female', 'male']),
+    weight: yup
+      .number()
+      .nullable()
+      .transform((value, originalValue) =>
+        originalValue === '' ? null : value
+      ),
+    photo: yup.mixed(),
+    dailyRequirement: yup
+      .number()
+      .nullable()
+      .transform((value, originalValue) =>
+        originalValue === '' ? null : value
+      ),
+    activityLevel: yup
+      .number()
+      .min(0, 'Activity time must be at least 0')
+      .max(24, 'Activity time cannot exceed 24 hours')
+      .nullable()
+      .transform((value, originalValue) =>
+        originalValue === '' ? null : value
+      ),
+  });
+
+  // .transform((value, originalValue) => (originalValue === '' ? '' : value))
+
+  const defaultValues = {
+    gender: user.gender || t('description.settings.female'),
+    name: user.name || '',
+    email: user.email || '',
+    weight: user.weight || '0',
+    activityLevel: user.activityLevel || '0',
+    dailyRequirement: Number(user.dailyRequirement) / 1000 || 2,
+    photo: user.photo || '',
+  };
+
   const {
     register,
     handleSubmit,
     watch,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(userValidationSchema),
-    defaultValues: {
-      gender: user.gender || t('description.settings.female'),
-      name: user.name,
-      email: user.email,
-      weight: user.weight,
-      activityLevel: user.activityLevel,
-      dailyRequirement: user.dailyRequirement || 2000,
-      photo: user.photo,
-    },
+    defaultValues: defaultValues,
+    resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    if (user) {
-      reset({
-        gender: user.gender || t('description.settings.female'),
-        name: user.name,
-        email: user.email,
-        weight: user.weight,
-        activityLevel: user.activityLevel,
-        dailyRequirement: user.dailyRequirement / 1000 || 2000,
-        photo: user.photo,
-      });
-    }
-  }, [user, reset, t]);
+  // useEffect(() => {
+  //   if (user) {
+  //     reset({
+  //       gender: user.gender || t('description.settings.female'),
+  //       name: user.name,
+  //       email: user.email,
+  //       weight: user.weight,
+  //       activityLevel: user.activityLevel,
+  //       dailyRequirement: user.dailyRequirement / 1000 || 2000,
+  //       photo: user.photo,
+  //     });
+  //   }
+  // }, [user, reset, t]);
 
   // const onSubmit = data => {
   //   const cleanedData = {
@@ -68,12 +100,24 @@ const UserSettingsForm = ({ closeModal }) => {
   // };
 
   const onSubmit = data => {
+    if (data.name === '') {
+      delete data.name;
+    }
+    if (data.weight === '') {
+      data.weight = 0;
+    }
+    if (data.activityLevel === '') {
+      data.activityLevel = 0;
+    }
     const cleanedData = {
       ...data,
-      weight: Number(data.weight),
+      weight: data.weight || 0,
+      activityLevel: data.activityLevel || 0,
       dailyRequirement: Number(data.dailyRequirement) * 1000,
     };
+
     const formData = new FormData();
+
     Object.keys(cleanedData).forEach(key => {
       formData.append(key, cleanedData[key]);
     });
@@ -84,8 +128,7 @@ const UserSettingsForm = ({ closeModal }) => {
     closeModal();
   };
 
-  const [dailyNorma, setDailyNorma] = useState(1.8);
-
+  const [dailyNorma, setDailyNorma] = useState(2);
   const weight = watch('weight');
   const activityLevel = watch('activityLevel');
   const gender = watch('gender');
@@ -206,7 +249,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 {t('description.settings.weight')}
               </label>
               <input
-                type="number"
+                type="text"
                 id="weight"
                 {...register('weight')}
                 className={styles.formControl}
@@ -223,7 +266,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 {t('description.settings.activeTime')}
               </label>
               <input
-                type="number"
+                type="text"
                 id="activityLevel"
                 {...register('activityLevel')}
                 className={styles.formControl}
