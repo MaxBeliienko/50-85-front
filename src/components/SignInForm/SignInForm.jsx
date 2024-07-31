@@ -4,7 +4,10 @@ import styles from "./SignInForm.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { NavLink, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  // useNavigate
+} from "react-router-dom";
 import Logo from "../Logo/Logo";
 import Iconsvg from "../Icon";
 import { useDispatch } from "react-redux";
@@ -24,7 +27,7 @@ const SignInForm = () => {
   const pwdFieldId = useId();
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
