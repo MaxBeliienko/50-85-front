@@ -11,6 +11,7 @@ const TrackerPage = lazy(() => import("./pages/TrackerPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             }
           />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </SharedLayout>

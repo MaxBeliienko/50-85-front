@@ -138,7 +138,16 @@ const SignInForm = () => {
           <GoogleButtonLogin onSuccess={LoginSuccess} />
         </div> */}
 
-        <Link to="/privacy-policy">Політика конфіденційності</Link>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+          }}
+        >
+          <Link to="/privacy-policy">Політика конфіденційності</Link>
+          <Link to="/terms-of-service">Умови використання</Link>
+        </div>
       </div>
     </>
   );
