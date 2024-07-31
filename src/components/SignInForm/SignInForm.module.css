@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
 }
 
 .mainText {
@@ -11,7 +12,7 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--light-black);
-  margin: 172px 0 32px;
+  margin: 172px 0 0;
 }
 
 .labelText {
@@ -30,6 +31,7 @@
   margin-bottom: 16px;
   position: relative;
 }
+
 .inputField {
   font-family: inherit;
   line-height: 1.28571;
@@ -76,6 +78,7 @@
 .submitBtn:hover {
   background-color: #87d28d;
 }
+
 .dontHaveAcc {
   font-family: inherit;
   font-weight: 400;
@@ -85,6 +88,7 @@
   color: #2f2f2f99;
   text-align: center;
 }
+
 .navigate {
   font-family: inherit;
   font-weight: 700;
@@ -97,6 +101,38 @@
   top: 40px;
   right: 17px;
   cursor: pointer;
+}
+
+.googleAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.dividerText {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #2f2f2f99;
+  text-align: center;
+  flex-shrink: 0;
+  padding: 0 16px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background-color: #2f2f2f33;
 }
 
 @media (min-width: 768px) {
