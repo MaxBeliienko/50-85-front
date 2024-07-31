@@ -1,16 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiClient, setAuthHeader, clearAuthHeader } from '../../apiClient';
 
-// axios.defaults.baseURL = 'import.meta.env.VITE_API_BASE_URL;';
-
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
-
 const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   try {
     return await asyncFunction(args, thunkAPI);
@@ -73,23 +63,16 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   asyncThunkWrapper(async (_, thunkApi) => {
     const state = thunkApi.getState();
-    const persistedToken = state.auth.token || localStorage.getItem('token');
+    const persistedToken = state.auth.token;
 
     if (!persistedToken) {
-      // const refreshResult = await thunkApi.dispatch(refreshUser());
-
-      // if (refreshResult.error) {
-      //   return thunkApi.rejectWithValue(refreshResult.error.message);
-      // }
-      // const newToken = refreshResult.payload;
-      // setAuthHeader(newToken);
       return thunkApi.rejectWithValue('No token found');
     }
 
     setAuthHeader(persistedToken);
 
     try {
-      const { data } = await apiClient.get('/users/user-profile');
+      const { data } = await apiClient.post('/users/refresh-token');
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -112,4 +95,3 @@ export const updateUserProfile = createAsyncThunk(
     return data;
   })
 );
-
