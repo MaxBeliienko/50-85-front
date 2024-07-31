@@ -20,7 +20,6 @@ const WaterProgressBar = ({ dailyNorma }) => {
       (percentage >= 57 && percentage <= 85)
     );
   };
-  console.log(showPercentage(percentage));
 
   const sliderStyle = {
     margin: '0',
