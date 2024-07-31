@@ -12,7 +12,7 @@ import { logIn } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import LocalizationSwitcher from "../LocalizationSwitcher/LocalizationSwitcher";
-import GoogleButtonLogin from "../GoogleButtonLogin/GoogleButtonLogin";
+// import GoogleButtonLogin from "../GoogleButtonLogin/GoogleButtonLogin";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email!").required("Required"),
