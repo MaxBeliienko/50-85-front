@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { Hearts } from 'react-loader-spinner';
 import Loader from './loader/Loader';
 
 const SharedLayout = ({ children }) => {
