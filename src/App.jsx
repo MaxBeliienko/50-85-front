@@ -1,15 +1,16 @@
-import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './components/SharedLayout';
-import NotFound from './components/notFound/NotFound';
-import PrivateRoute from './components/PrivateRoute';
-import RestrictedRoute from './components/RestrictedRoute';
-import { Toaster } from 'react-hot-toast';
+import { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+import SharedLayout from "./components/SharedLayout";
+import NotFound from "./components/notFound/NotFound";
+import PrivateRoute from "./components/PrivateRoute";
+import RestrictedRoute from "./components/RestrictedRoute";
+import { Toaster } from "react-hot-toast";
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const TrackerPage = lazy(() => import('./pages/TrackerPage'));
-const SignInPage = lazy(() => import('./pages/SignInPage'));
-const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const TrackerPage = lazy(() => import("./pages/TrackerPage"));
+const SignInPage = lazy(() => import("./pages/SignInPage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </SharedLayout>
