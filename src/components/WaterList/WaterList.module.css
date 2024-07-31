@@ -27,6 +27,18 @@
   overflow-x: auto;
 }
 
+.data {
+  font-size: 20px;
+}
+
+.datacontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 122px;
+  margin-bottom: 40px;
+}
+
 ::-webkit-scrollbar {
   background-color: white;
   height: 8px;
