@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { store } from './redux/store';
+import { updateToken } from './redux/auth/slice';
 
 const apiClient = axios.create({
   baseURL: 'https://aquatrack-backend.onrender.com',
@@ -22,24 +24,6 @@ const onRefreshed = token => {
 
 const addRefreshSubscriber = callback => {
   refreshSubscribers.push(callback);
-};
-
-const updateTokenInLocalStorage = newToken => {
-  const authData = localStorage.getItem('persist:auth');
-  if (authData) {
-    let authObject = JSON.parse(authData);
-
-    // Парсимо значення 'token', якщо воно є у форматі JSON
-    if (authObject.token) {
-      authObject.token = JSON.parse(authObject.token);
-    }
-
-    // Оновлюємо токен
-    authObject.token = newToken;
-
-    // Зберігаємо назад у localStorage
-    localStorage.setItem('persist:auth', JSON.stringify(authObject));
-  }
 };
 
 apiClient.interceptors.response.use(
@@ -67,7 +51,7 @@ apiClient.interceptors.response.use(
         );
         const { accessToken } = response.data.data;
 
-        updateTokenInLocalStorage(accessToken);
+        store.dispatch(updateToken(accessToken));
         setAuthHeader(accessToken);
         isRefreshing = false;
         onRefreshed(accessToken);

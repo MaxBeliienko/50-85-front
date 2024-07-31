@@ -40,10 +40,14 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    updateToken(state, action) {
+      state.token = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
-        // state.user = action.payload.user;
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
@@ -90,4 +94,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { updateToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;
