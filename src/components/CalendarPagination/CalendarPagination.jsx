@@ -40,10 +40,12 @@ const CalendarPagination = ({
   });
 
   monthData.map(item => {
-    daysArray[parseInt(item.date) - 1].percentage = item.percentage;
-    daysArray[parseInt(item.date) - 1].volume = item.volume / 1000;
-    daysArray[parseInt(item.date) - 1].dailyRequirement =
-      item.dailyRequirement / 1000;
+    if (daysArray.length >= parseInt(item.date)) {
+      daysArray[parseInt(item.date) - 1].percentage = item.percentage;
+      daysArray[parseInt(item.date) - 1].volume = item.volume / 1000;
+      daysArray[parseInt(item.date) - 1].dailyRequirement =
+        item.dailyRequirement / 1000;
+    }
   });
 
   const [activeComponent, setActiveComponent] = useState(true);
