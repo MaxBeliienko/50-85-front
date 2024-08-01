@@ -3,7 +3,10 @@
   flex-direction: column;
   gap: 20px;
 }
-
+.userTitle {
+  max-width: 400px;
+  overflow: hidden;
+}
 .fontGilroy {
   font-family: 'Gilroy', sans-serif;
   font-weight: 400;
