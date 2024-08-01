@@ -190,7 +190,7 @@ input[type='radio']:focus {
 }
 
 .saveButton {
-  width: fit-content;
+  width: moz-fit-content;
   margin-top: 20px;
   padding: 14px 40px;
   background-color: var(--light-green);

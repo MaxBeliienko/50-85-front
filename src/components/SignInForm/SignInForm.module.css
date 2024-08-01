@@ -145,7 +145,7 @@
   color: var(--light-black);
   border-radius: 30px;
   padding: 16px 24px;
-  width: fit-content;
+  width: moz-fit-content;
   /* height: 50px; */
   border: 1px solid var(--light-black);
   background-color: var(--white);

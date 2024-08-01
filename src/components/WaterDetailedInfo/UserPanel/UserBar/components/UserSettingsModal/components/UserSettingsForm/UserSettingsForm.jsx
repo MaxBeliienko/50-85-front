@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './UserSettingsForm.module.css';
-// import { userValidationSchema } from './schema';
 import { updateUserProfile } from '../../../../../../../../redux/auth/operations';
 import { selectUserProfile } from '../../../../../../../../redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
@@ -45,8 +44,6 @@ const UserSettingsForm = ({ closeModal }) => {
       ),
   });
 
-  // .transform((value, originalValue) => (originalValue === '' ? '' : value))
-
   const defaultValues = {
     gender: user.gender || t('description.settings.female'),
     name: user.name || '',
@@ -61,43 +58,11 @@ const UserSettingsForm = ({ closeModal }) => {
     register,
     handleSubmit,
     watch,
-    // reset,
     formState: { errors },
   } = useForm({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
-
-  // useEffect(() => {
-  //   if (user) {
-  //     reset({
-  //       gender: user.gender || t('description.settings.female'),
-  //       name: user.name,
-  //       email: user.email,
-  //       weight: user.weight,
-  //       activityLevel: user.activityLevel,
-  //       dailyRequirement: user.dailyRequirement / 1000 || 2000,
-  //       photo: user.photo,
-  //     });
-  //   }
-  // }, [user, reset, t]);
-
-  // const onSubmit = data => {
-  //   const cleanedData = {
-  //     ...data,
-  //     weight: Number(data.weight),
-  //     dailyRequirement: Number(data.dailyRequirement),
-  //   };
-
-  //   dispatch(updateUserProfile(cleanedData))
-  //     .then(() => {
-  //       reset(cleanedData);
-  //       closeModal();
-  //     })
-  //     .catch(error => {
-  //       console.error('Error updating profile:', error);
-  //     });
-  // };
 
   const onSubmit = data => {
     if (data.name === '') {

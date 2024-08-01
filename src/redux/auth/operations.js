@@ -103,8 +103,12 @@ export const getUserProfile = createAsyncThunk(
 
 export const updateUserProfile = createAsyncThunk(
   'users/user-update',
-  asyncThunkWrapper(async user => {
-    const { data } = await apiClient.patch('/users/user-profile', user);
-    return data;
-  })
+  async (user, thunkAPI) => {
+    try {
+      const { data } = await apiClient.patch('/users/user-profile', user);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );

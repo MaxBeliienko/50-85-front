@@ -1,5 +1,5 @@
 .userButtonContainer {
-  width: fit-content;
+  width: moz-fit-content;
 
   display: flex;
   flex-direction: column;

@@ -91,7 +91,8 @@ const authSlice = createSlice({
         state.user = { ...state.user, ...action.payload };
         state.loading = false;
         state.error = null;
-      });
+      })
+      .addCase(updateUserProfile.rejected, handleRejected);
   },
 });
 
