@@ -20,6 +20,33 @@ const asyncThunkWrapper = asyncFunction => async (args, thunkAPI) => {
   }
 };
 
+export const getGoogleOAuthUrl = createAsyncThunk(
+  'auth/getGoogleOAuthUrl',
+  async (_, thunkAPI) => {
+    try {
+      const response = await apiClient.get('/users/get-oauth-url');
+      window.location.href = response.data.data.url;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const loginGoogle = createAsyncThunk(
+  'auth/google',
+  async ({ token }, thunkAPI) => {
+    try {
+      const response = await apiClient.post('/users/confirm-oauth', {
+        code: token,
+      });
+      setAuthHeader(response.data.data.accessToken);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const registerUser = createAsyncThunk(
   'auth/register',
   asyncThunkWrapper(async user => {
@@ -35,20 +62,6 @@ export const logIn = createAsyncThunk(
     setAuthHeader(data.data.accessToken);
     return data;
   })
-);
-
-export const loginGoogle = createAsyncThunk(
-  'auth/google',
-  async ({ token }, thunkAPI) => {
-    try {
-      const response = await apiClient.post('/auth/google', { token });
-      // Cookies.set('refreshToken', response.data.refreshToken);
-      // setAuthToken(response.data.accessToken);
-      return response.token;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
 );
 
 export const logOut = createAsyncThunk(

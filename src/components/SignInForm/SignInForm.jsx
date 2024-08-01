@@ -5,10 +5,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import {
-  NavLink,
-  // useNavigate
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import Iconsvg from "../Icon";
 import { useDispatch } from "react-redux";
@@ -16,7 +13,7 @@ import { logIn } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import LocalizationSwitcher from "../LocalizationSwitcher/LocalizationSwitcher";
-// import GoogleButtonLogin from "../GoogleButtonLogin/GoogleButtonLogin";
+import { getGoogleOAuthUrl } from "../../redux/auth/operations";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email!").required("Required"),
@@ -28,7 +25,6 @@ const SignInForm = () => {
   const pwdFieldId = useId();
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -62,11 +58,9 @@ const SignInForm = () => {
   };
   const { t } = useTranslation();
 
-  // const LoginSuccess = (user) => {
-  //   localStorage.setItem("accessToken", user.accessToken);
-  //   localStorage.setItem("refreshToken", user.refreshToken);
-  //   navigate("/host");
-  // };
+  const handleGoogleLogin = () => {
+    dispatch(getGoogleOAuthUrl());
+  };
 
   return (
     <>
@@ -129,14 +123,21 @@ const SignInForm = () => {
           </p>
         </div>
 
-        {/* <div className={styles.googleAuth}>
+        <div className={styles.googleAuth}>
           <div className={styles.divider}>
             <span className={styles.dividerText}>
               {t("description.signIn.or")}
             </span>
           </div>
-          <GoogleButtonLogin onSuccess={LoginSuccess} />
-        </div> */}
+
+          <button
+            onClick={handleGoogleLogin}
+            className={styles.googleAuthButton}
+          >
+            {t("description.signIn.loginGoogle")}{" "}
+            <Iconsvg width={65} height={20} iconName={"logos_google"} />
+          </button>
+        </div>
 
         <div
           style={{

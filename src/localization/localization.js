@@ -36,6 +36,7 @@ export const signInText = {
     AllreadyHaveAcc: 'Don`t have an account? ',
     SignInLink: 'Sign Up',
     or: 'or',
+    loginGoogle: 'Login with',
   },
   ukr: {
     MainHeader: 'Вхід',
@@ -47,6 +48,7 @@ export const signInText = {
     AllreadyHaveAcc: 'Не маєте акаунту? ',
     SignInLink: 'Зареєструватися',
     or: 'або',
+    loginGoogle: 'Увійти через',
   },
 };
 
