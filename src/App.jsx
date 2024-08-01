@@ -56,7 +56,7 @@ function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
-          <Route path="/confirm-google-auth" element={<ConfirmGoogleAuth />} />
+          <Route path="/confirm-oauth" element={<ConfirmGoogleAuth />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           <Route path="*" element={<NotFound />} />
