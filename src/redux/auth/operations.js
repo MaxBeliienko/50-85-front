@@ -36,13 +36,10 @@ export const loginGoogle = createAsyncThunk(
   'auth/google',
   async ({ token }, thunkAPI) => {
     try {
-      const response = await apiClient.post('/users/confirm-oauth', {
+      const response = await apiClient.post('/users/confirm-google-auth', {
         code: token,
       });
       setAuthHeader(response.data.data.accessToken);
-
-      window.location.href = response.data.data.redirectUrl;
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
