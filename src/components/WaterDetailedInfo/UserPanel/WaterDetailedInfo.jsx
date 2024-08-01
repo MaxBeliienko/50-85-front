@@ -11,6 +11,7 @@ const WaterDetailedInfo = ({
   onChangeDate,
   onChangeMonth,
   onEditWater,
+  onChangeUserData,
 }) => {
   const isCurrentMonth =
     Number(today.month) === Number(searchDate.month) &&
@@ -34,7 +35,7 @@ const WaterDetailedInfo = ({
 
   return (
     <div className={css.waterCalendarcontainer}>
-      <UserPanel />
+      <UserPanel onChangeUserData={onChangeUserData} />
       <DailyInfo
         monthNames={monthNames}
         searchDate={searchDate}

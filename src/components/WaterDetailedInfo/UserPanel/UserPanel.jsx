@@ -4,7 +4,7 @@ import { selectUserProfile } from '../../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-const UserPanel = () => {
+const UserPanel = ({ onChangeUserData }) => {
   const user = useSelector(selectUserProfile);
   const { t } = useTranslation();
   return (
@@ -17,7 +17,7 @@ const UserPanel = () => {
           ,{user.name || t('description.userBar.userText')}!
         </span>
       </h3>
-      <UserBar />
+      <UserBar onChangeUserData={onChangeUserData} />
     </div>
   );
 };

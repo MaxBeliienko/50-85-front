@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import UserBarPopover from '../../../UserBarPopover/UserBarPopover';
 import defaultAvatar from '../../../../public/images/defaultAvatar.png';
 
-const UserBar = () => {
+const UserBar = ({ onChangeUserData }) => {
   const user = useSelector(selectUserProfile);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -56,7 +56,10 @@ const UserBar = () => {
             </div>
           </div>
         </button>
-        <UserBarPopover isPopupOpen={isPopupOpen} />
+        <UserBarPopover
+          isPopupOpen={isPopupOpen}
+          onChangeUserData={onChangeUserData}
+        />
       </div>
     </>
   );

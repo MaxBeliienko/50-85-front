@@ -34,12 +34,16 @@ const TrackerPage = () => {
 
   const [isChangeMonth, setIsChangeMonth] = useState(true);
   const [isWaterEdited, setIsWaterEdited] = useState(true);
+  const [isUserDataChanged, setIsUserDataChanged] = useState(true);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserProfile());
-  }, [dispatch]);
+    if (isUserDataChanged) {
+      dispatch(getUserProfile());
+      setIsUserDataChanged(false);
+    }
+  }, [dispatch, isUserDataChanged]);
 
   useEffect(() => {
     dispatch(fetchTodayWater());
@@ -109,6 +113,9 @@ const TrackerPage = () => {
   const onEditWater = () => {
     setIsWaterEdited(true);
   };
+  const onChangeUserData = () => {
+    setIsUserDataChanged(true);
+  };
 
   return (
     <div className={css.container}>
@@ -120,6 +127,7 @@ const TrackerPage = () => {
         onChangeDate={onChangeDate}
         onChangeMonth={onChangeMonth}
         onEditWater={onEditWater}
+        onChangeUserData={onChangeUserData}
       />
     </div>
   );
