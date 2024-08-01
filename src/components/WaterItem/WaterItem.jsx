@@ -6,7 +6,7 @@ import DeleteWaterModal from '../deleteWaterModal/DeleteWaterModal';
 import WaterModal from '../waterModal/WaterModal';
 import { useTranslation } from 'react-i18next';
 
-const WaterItem = ({ waterItem, onEditWater }) => {
+const WaterItem = ({ waterItem, onEditWater, isToday }) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
@@ -40,7 +40,11 @@ const WaterItem = ({ waterItem, onEditWater }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <DeleteWaterModal closeModal={deleteWater} id={waterItem._id} />
+        <DeleteWaterModal
+          closeModal={deleteWater}
+          id={waterItem._id}
+          isToday={isToday}
+        />
       </Modal>
       <Modal
         showModal={showEditModal}

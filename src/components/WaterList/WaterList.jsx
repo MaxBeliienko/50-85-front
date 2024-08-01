@@ -58,7 +58,11 @@ const WaterList = ({ searchDate, monthNames, isToday, onEditWater }) => {
           {choosedWaterArray.map(wateritem => {
             return (
               <li key={wateritem._id} className={css.item}>
-                <WaterItem waterItem={wateritem} onEditWater={onEditWater} />
+                <WaterItem
+                  waterItem={wateritem}
+                  onEditWater={onEditWater}
+                  isToday={isToday}
+                />
               </li>
             );
           })}

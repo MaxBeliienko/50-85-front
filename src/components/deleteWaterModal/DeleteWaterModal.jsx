@@ -1,15 +1,15 @@
 import styles from './DeleteWaterModal.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteWater } from '../../redux/water/operations';
+import { deleteTodayWater, deleteWater } from '../../redux/water/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-const DeleteWaterModal = ({ closeModal, id }) => {
+const DeleteWaterModal = ({ closeModal, id, isToday }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteWater(id));
+    isToday ? dispatch(deleteTodayWater(id)) : dispatch(deleteWater(id));
     toast.success(t('description.deleteWater.succesDelete'));
     closeModal();
   };

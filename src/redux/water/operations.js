@@ -75,6 +75,17 @@ export const deleteWater = createAsyncThunk(
     }
   }
 );
+export const deleteTodayWater = createAsyncThunk(
+  'water/deleteTodayWater',
+  async (id, thunkAPI) => {
+    try {
+      const response = await apiClient.delete(`/water/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 export const editWater = createAsyncThunk(
   'water/editWater',
