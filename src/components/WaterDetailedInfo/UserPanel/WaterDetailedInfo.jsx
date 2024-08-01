@@ -10,6 +10,7 @@ const WaterDetailedInfo = ({
   searchDate,
   onChangeDate,
   onChangeMonth,
+  onEditWater,
 }) => {
   const isCurrentMonth =
     Number(today.month) === Number(searchDate.month) &&
@@ -39,6 +40,7 @@ const WaterDetailedInfo = ({
         searchDate={searchDate}
         today={today}
         isToday={isToday}
+        onEditWater={onEditWater}
       />
       <MonthInfo
         monthNames={monthNames}

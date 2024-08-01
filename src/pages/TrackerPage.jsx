@@ -33,6 +33,7 @@ const TrackerPage = () => {
     Number(today.year) === Number(searchDate.year);
 
   const [isChangeMonth, setIsChangeMonth] = useState(true);
+  const [isWaterEdited, setIsWaterEdited] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -70,6 +71,18 @@ const TrackerPage = () => {
     isToday,
   ]);
 
+  useEffect(() => {
+    if (isWaterEdited) {
+      dispatch(
+        fetchMonthWater({
+          year: searchDate.year,
+          month: searchDate.month,
+        })
+      );
+      setIsWaterEdited(false);
+    }
+  }, [dispatch, isWaterEdited, searchDate.year, searchDate.month]);
+
   function formatNumber(str) {
     let num = parseInt(str, 10);
     let formattedNum = num.toString().padStart(2, '0');
@@ -93,15 +106,20 @@ const TrackerPage = () => {
     setIsChangeMonth(true);
   };
 
+  const onEditWater = () => {
+    setIsWaterEdited(true);
+  };
+
   return (
     <div className={css.container}>
-      <WaterMainInfo />
+      <WaterMainInfo onEditWater={onEditWater} />
       <WaterDetailedInfo
         today={today}
         searchDate={searchDate}
         isToday={isToday}
         onChangeDate={onChangeDate}
         onChangeMonth={onChangeMonth}
+        onEditWater={onEditWater}
       />
     </div>
   );
