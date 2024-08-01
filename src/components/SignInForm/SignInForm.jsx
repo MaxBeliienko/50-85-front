@@ -146,8 +146,8 @@ const SignInForm = () => {
             textAlign: "center",
           }}
         >
-          <Link to="/privacy-policy">Політика конфіденційності</Link>
-          <Link to="/terms-of-service">Умови використання</Link>
+          <Link to="/privacy-policy">{t("description.useTerms.policy")}</Link>
+          <Link to="/terms-of-service">{t("description.useTerms.terms")}</Link>
         </div>
       </div>
     </>
