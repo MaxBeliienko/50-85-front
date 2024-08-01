@@ -16,6 +16,7 @@ import {
   waterForm,
   waterModalText,
   welcomeText,
+  useTermsText,
 } from './localization';
 
 i18n
@@ -42,6 +43,7 @@ i18n
             deleteWater: deleteWater.en,
             logOut: logOutModalText.en,
             settings: settingsModalText.en,
+            useTerms: useTermsText.en,
           },
         },
       },
@@ -62,6 +64,7 @@ i18n
             deleteWater: deleteWater.ukr,
             logOut: logOutModalText.ukr,
             settings: settingsModalText.ukr,
+            useTerms: useTermsText.ukr,
           },
         },
       },

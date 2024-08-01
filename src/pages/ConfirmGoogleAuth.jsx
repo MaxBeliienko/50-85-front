@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginGoogle } from "../redux/auth/operations";
+import { useTranslation } from "react-i18next";
 
 const ConfirmGoogleAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (code) {
@@ -22,7 +24,7 @@ const ConfirmGoogleAuth = () => {
     }
   }, [code, dispatch, navigate]);
 
-  return <div>Обробка Google OAuth...</div>;
+  return <div>{t("description.useTerms.message")}</div>;
 };
 
 export default ConfirmGoogleAuth;
