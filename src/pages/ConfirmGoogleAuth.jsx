@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginGoogle } from "../../redux/auth/operations";
+import { loginGoogle } from "../redux/auth/operations";
 
 const ConfirmGoogleAuth = () => {
   const dispatch = useDispatch();
