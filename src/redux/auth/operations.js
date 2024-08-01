@@ -40,6 +40,9 @@ export const loginGoogle = createAsyncThunk(
         code: token,
       });
       setAuthHeader(response.data.data.accessToken);
+
+      window.location.href = response.data.data.redirectUrl;
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
