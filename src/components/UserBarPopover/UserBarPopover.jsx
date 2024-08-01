@@ -1,34 +1,38 @@
-import { useState } from "react";
-import Modal from "../Modal";
+import { useState } from 'react';
+import Modal from '../Modal';
 import { useTranslation } from 'react-i18next';
-import Iconsvg from "../Icon";
-import LogOutModal from "../LogOutModal";
-import UserSettingsModal from "../WaterDetailedInfo/UserPanel/UserBar/components/UserSettingsModal/UserSettingsModal";
-import css from './UserBarPopover.module.css'
+import Iconsvg from '../Icon';
+import LogOutModal from '../LogOutModal';
+import UserSettingsModal from '../WaterDetailedInfo/UserPanel/UserBar/components/UserSettingsModal/UserSettingsModal';
+import css from './UserBarPopover.module.css';
 
-const UserBarPopover =({isPopupOpen})=>{
-    const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
+const UserBarPopover = ({ isPopupOpen, onChangeUserData }) => {
+  const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
   const [isUserSettingsModalOpen, setIsUserSettingsModalOpen] = useState(false);
 
-    const openUserSettingsModal = () => {
-        setIsUserSettingsModalOpen(true);
-        document.body.style.overflow = 'hidden';
-      };
-    
-      const closeUserSettingsModal = () => {
-        setIsUserSettingsModalOpen(false);
-        document.body.style.overflow = 'auto';
-      };
-    
-      const openLogOutModal = () => {
-        setIsLogOutModalOpen(true);
-      };
-      const closeLogOutModal = () => {
-        setIsLogOutModalOpen(false);
-      };
+  const openUserSettingsModal = () => {
+    setIsUserSettingsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
 
-    const { t } = useTranslation();
-    return<> {isPopupOpen && (
+  const closeUserSettingsModal = () => {
+    setIsUserSettingsModalOpen(false);
+    document.body.style.overflow = 'auto';
+    onChangeUserData();
+  };
+
+  const openLogOutModal = () => {
+    setIsLogOutModalOpen(true);
+  };
+  const closeLogOutModal = () => {
+    setIsLogOutModalOpen(false);
+  };
+
+  const { t } = useTranslation();
+  return (
+    <>
+      {' '}
+      {isPopupOpen && (
         <div className={css.popupMenu}>
           <div className={css.popupMenuWrap}>
             <button
@@ -56,9 +60,8 @@ const UserBarPopover =({isPopupOpen})=>{
             </button>
           </div>
         </div>
-        
       )}
-       <Modal
+      <Modal
         showModal={isLogOutModalOpen}
         closeModal={closeLogOutModal}
         buttonTop={20}
@@ -70,7 +73,8 @@ const UserBarPopover =({isPopupOpen})=>{
         showModal={isUserSettingsModalOpen}
         closeModal={closeUserSettingsModal}
       />
-      </>
-}
+    </>
+  );
+};
 
 export default UserBarPopover;

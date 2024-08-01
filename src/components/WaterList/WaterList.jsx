@@ -12,7 +12,7 @@ import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import { useTranslation } from 'react-i18next';
 
-const WaterList = ({ searchDate, monthNames, isToday }) => {
+const WaterList = ({ searchDate, monthNames, isToday, onEditWater }) => {
   const [showModal, setShowModal] = useState(false);
 
   const todayWaterArray = useSelector(selectTodayWater);
@@ -24,6 +24,10 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
   };
   const closeModal = () => {
     setShowModal(false);
+  };
+  const editWater = () => {
+    setShowModal(false);
+    onEditWater();
   };
 
   const currentMonthName = monthNames[Number(searchDate.month) - 1];
@@ -38,7 +42,7 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal operationType={'add'} onCloseModal={closeModal} />
+        <WaterModal operationType={'add'} onCloseModal={editWater} />
       </Modal>
 
       <div className={css.topcontainer}>
@@ -54,7 +58,11 @@ const WaterList = ({ searchDate, monthNames, isToday }) => {
           {choosedWaterArray.map(wateritem => {
             return (
               <li key={wateritem._id} className={css.item}>
-                <WaterItem waterItem={wateritem} />
+                <WaterItem
+                  waterItem={wateritem}
+                  onEditWater={onEditWater}
+                  isToday={isToday}
+                />
               </li>
             );
           })}

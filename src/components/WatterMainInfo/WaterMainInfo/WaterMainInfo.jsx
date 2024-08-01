@@ -15,25 +15,16 @@ import Modal from '../../Modal.jsx';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/selectors.js';
 
-const WaterMainInfo = () => {
+const WaterMainInfo = ({ onEditWater }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isWaterEdited, setIsWaterEdited] = useState(true);
   const userData = useSelector(selectUser);
   const dailyNorma = userData.dailyRequirement;
 
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   // if (isWaterEdited) {
-  //   dispatch(fetchTodayWater());
-  //   // setIsWaterEdited(false);
-  //   // }
-  // }, [dispatch]);
-
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => {
+  const closeModal = () => setIsModalOpen(false);
+  const editWater = () => {
     setIsModalOpen(false);
-    // setIsWaterEdited(true);
+    onEditWater();
   };
 
   return (
@@ -59,7 +50,7 @@ const WaterMainInfo = () => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal operationType="add" onCloseModal={closeModal} />
+        <WaterModal operationType="add" onCloseModal={editWater} />
       </Modal>
     </>
   );

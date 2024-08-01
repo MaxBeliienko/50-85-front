@@ -1,7 +1,7 @@
 import WaterList from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 
-const DailyInfo = ({ today, monthNames, searchDate, isToday }) => {
+const DailyInfo = ({ today, monthNames, searchDate, isToday, onEditWater }) => {
   return (
     <div className={css.container}>
       <WaterList
@@ -9,6 +9,7 @@ const DailyInfo = ({ today, monthNames, searchDate, isToday }) => {
         monthNames={monthNames}
         searchDate={searchDate}
         isToday={isToday}
+        onEditWater={onEditWater}
       />
     </div>
   );
