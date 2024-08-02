@@ -5,13 +5,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
-import Logo from '../Logo/Logo';
-import Iconsvg from '../Icon';
+import Logo from '../../Logo/Logo.jsx';
+import Iconsvg from '../../Icon.jsx';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../../redux/auth/operations.js';
+import { registerUser } from '../../../redux/auth/operations.js';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import LocalizationSwitcher from '../LocalizationSwitcher/LocalizationSwitcher.jsx';
+import LocalizationSwitcher from '../../LocalizationSwitcher/LocalizationSwitcher.jsx';
+import GoogleAuth from '../GoogleAuth/GoogleAuth.jsx';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -32,11 +33,11 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prevState => !prevState);
+    setShowPassword((prevState) => !prevState);
   };
 
   const togglePasswordCheckVisibility = () => {
-    setShowPasswordCheck(prevState => !prevState);
+    setShowPasswordCheck((prevState) => !prevState);
   };
 
   const {
@@ -68,10 +69,13 @@ const SignUpForm = () => {
   };
 
   const { t } = useTranslation();
+
   return (
     <>
-      <Logo />
-      <LocalizationSwitcher />
+      <div className={styles.signInHeader}>
+        <Logo />
+        <LocalizationSwitcher />
+      </div>
       <div className={styles.signUpWrapper}>
         <p className={styles.mainText}>{t('description.signUp.MainHeader')}</p>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -143,13 +147,16 @@ const SignUpForm = () => {
           <button type="submit" className={styles.submitBtn}>
             {t('description.signUp.MainButton')}
           </button>
+
+          <p className={styles.dontHaveAcc}>
+            {t('description.signUp.AllreadyHaveAcc')}
+            <NavLink to="/signin" className={styles.navigate}>
+              {t('description.signUp.SignInLink')}
+            </NavLink>
+          </p>
         </form>
-        <p className={styles.dontHaveAcc}>
-          {t('description.signUp.AllreadyHaveAcc')}
-          <NavLink to="/signin" className={styles.navigate}>
-            {t('description.signUp.SignInLink')}
-          </NavLink>
-        </p>
+
+        <GoogleAuth />
       </div>
     </>
   );

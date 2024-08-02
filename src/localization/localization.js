@@ -37,6 +37,7 @@ export const signInText = {
     SignInLink: 'Sign Up',
     or: 'or',
     loginGoogle: 'Login with',
+    signUpGoogle: 'Sign Up with',
   },
   ukr: {
     MainHeader: 'Вхід',
@@ -49,6 +50,7 @@ export const signInText = {
     SignInLink: 'Зареєструватися',
     or: 'або',
     loginGoogle: 'Увійти через',
+    signUpGoogle: 'Зареєструватися через',
   },
 };
 
