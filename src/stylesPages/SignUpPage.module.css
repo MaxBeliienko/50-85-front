@@ -21,7 +21,6 @@
 @media (min-width: 768px) {
   .formWrapper {
     padding: 32px 32px;
-    /* height: 960px; */
   }
 }
 
@@ -29,7 +28,6 @@
 @media (min-width: 1440px) {
   .formWrapper {
     width: 672px;
-    /* height: 840px; */
   }
 
   .disabled {
