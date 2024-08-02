@@ -41,7 +41,8 @@
 @media (min-width: 1440px) {
   .mainWaterInfo {
     min-width: 672px;
-    height: 736px;
+    min-height: 736px;
+    height: fit-content;
     padding-bottom: 40px;
   }
 

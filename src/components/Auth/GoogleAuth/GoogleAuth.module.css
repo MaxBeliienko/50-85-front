@@ -1,0 +1,61 @@
+.googleAuthWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.googleAuth {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.dividerText {
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28571;
+    letter-spacing: -0.01em;
+    color: #2f2f2f99;
+    text-align: center;
+    flex-shrink: 0;
+    padding: 0 16px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background-color: #2f2f2f33;
+}
+
+.googleAuthButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--light-black);
+    border-radius: 30px;
+    padding: 16px 24px;
+    width: fit-content;
+    border: 1px solid var(--light-black);
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.terms {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}

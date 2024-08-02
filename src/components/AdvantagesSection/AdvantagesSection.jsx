@@ -5,7 +5,7 @@ const AdvantagesSection = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.backgroundPhoto}>
+    <div className={`${styles.backgroundPhoto} ${styles.advantagesWrapper}`}>
       <div className={styles.customersWrapper}>
         <img
           className={`${styles.customer1} ${styles.responsiveImage}`}

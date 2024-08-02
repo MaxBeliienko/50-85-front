@@ -7,9 +7,17 @@
   padding: 24px 16px;
 }
 
+.mainWrapperHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .sectionWrap {
   margin-top: 74px;
 }
+
 .subtitle {
   margin-bottom: 16px;
   font-family: inherit;
@@ -83,6 +91,7 @@
     font-size: 16px;
     line-height: 1.5;
   }
+
   .title {
     font-size: 64px;
     width: 450px;
@@ -111,7 +120,8 @@
 @media (min-width: 1440px) {
   .mainWrapper {
     max-width: 672px;
-    height: 736px;
+    min-height: 736px;
+    height: fit-content;
   }
 
   .sectionWrap {
