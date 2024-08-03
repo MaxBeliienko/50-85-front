@@ -1,4 +1,11 @@
-.signinWrapper {
+.signInHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.signUpWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +19,6 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--light-black);
-  /* margin: 172px 0 0; */
 }
 
 .labelText {
@@ -66,7 +72,7 @@
   letter-spacing: -0.01em;
   color: var(--light-black);
   border-radius: 30px;
-  padding: 16px 129px;
+  padding: 16px;
   width: 311px;
   height: 50px;
   border: none;
@@ -103,58 +109,9 @@
   cursor: pointer;
 }
 
-.googleAuth {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.dividerText {
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.28571;
-  letter-spacing: -0.01em;
-  color: #2f2f2f99;
-  text-align: center;
-  flex-shrink: 0;
-  padding: 0 16px;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex-grow: 1;
-  height: 1px;
-  background-color: #2f2f2f33;
-}
-
-.googleAuthButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--light-black);
-  border-radius: 30px;
-  padding: 16px 24px;
-  width: fit-content;
-  /* height: 50px; */
-  border: 1px solid var(--light-black);
-  background-color: var(--white);
-  cursor: pointer;
-}
-
 @media (min-width: 768px) {
   .mainText {
-    margin-top: 100px;
+    margin-top: 32px;
     font-size: 36px;
     line-height: 1.05556;
   }
@@ -183,7 +140,7 @@
     margin: 12px 0 16px;
     font-size: 16px;
     line-height: 1.5;
-    padding: 18px 191px;
+    padding: 18px;
     width: 436px;
     height: 60px;
   }
@@ -195,13 +152,5 @@
 
   .eyeIcon {
     top: 50px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .mainText {
-    margin-top: 32px;
-    font-size: 36px;
-    line-height: 1.05556;
   }
 }

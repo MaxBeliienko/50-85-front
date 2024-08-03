@@ -4,7 +4,6 @@
   background-position: center;
   width: 288px;
   height: 300px;
-  background-size: 170%;
   border-radius: 30px;
   position: relative;
 }
@@ -12,14 +11,17 @@
 .responsiveImage.customer1 {
   content: url('../../../public/customers/customer1.png');
 }
+
 .responsiveImage.customer2 {
   content: url('../../../public/customers/customer2.png');
 }
+
 .responsiveImage.customer3 {
   content: url('../../../public/customers/customer3.png');
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
   .backgroundPhoto {
     background-image: url('../../public/images/homePage/hero@2.jpg');
   }
@@ -30,7 +32,8 @@
     background-image: url('../../public/images/homePage/hero.webp');
   }
 
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
     .backgroundPhoto {
       background-image: url('../../public/images/homePage/hero@2.webp');
     }
@@ -54,12 +57,14 @@
   top: 10px;
   z-index: 3;
 }
+
 .customer2 {
   position: absolute;
   left: 32px;
   top: 10px;
   z-index: 2;
 }
+
 .customer3 {
   position: absolute;
   left: 48px;
@@ -103,6 +108,7 @@
   line-height: 1;
   letter-spacing: -0.01em;
 }
+
 .habit {
   background-color: var(--black);
   color: var(--white);
@@ -161,15 +167,16 @@
   .backgroundPhoto {
     width: 704px;
     height: 446px;
-    background-size: 105%;
   }
 
   .responsiveImage.customer1 {
     content: url('../../../public/customers/customerPC1.png');
   }
+
   .responsiveImage.customer2 {
     content: url('../../../public/customers/customerPC2.png');
   }
+
   .responsiveImage.customer3 {
     content: url('../../../public/customers/customerPC3.png');
   }
@@ -184,9 +191,11 @@
   .customer1 {
     left: 20px;
   }
+
   .customer2 {
     left: 48px;
   }
+
   .customer3 {
     left: 76px;
   }
@@ -227,10 +236,16 @@
 }
 
 @media (min-width: 1440px) {
+  .advantagesWrapper {
+    min-height: 736px;
+    height: fit-content;
+  }
+
   .backgroundPhoto {
     width: 672px;
-    height: 736px;
-    background-size: 165%;
+    height: 100%;
+    object-fit: contain;
+    background-repeat: no-repeat;
   }
 
   .hashtagsWrapper {

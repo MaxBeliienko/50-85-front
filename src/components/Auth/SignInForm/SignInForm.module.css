@@ -1,7 +1,15 @@
-.signUpWrapper {
+.signInHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.signinWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
 }
 
 .mainText {
@@ -11,7 +19,7 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--light-black);
-  margin: 126px 0 32px;
+  /* margin: 172px 0 0; */
 }
 
 .labelText {
@@ -30,6 +38,7 @@
   margin-bottom: 16px;
   position: relative;
 }
+
 .inputField {
   font-family: inherit;
   line-height: 1.28571;
@@ -64,7 +73,7 @@
   letter-spacing: -0.01em;
   color: var(--light-black);
   border-radius: 30px;
-  padding: 16px;
+  padding: 16px 129px;
   width: 311px;
   height: 50px;
   border: none;
@@ -76,6 +85,7 @@
 .submitBtn:hover {
   background-color: #87d28d;
 }
+
 .dontHaveAcc {
   font-family: inherit;
   font-weight: 400;
@@ -85,6 +95,7 @@
   color: #2f2f2f99;
   text-align: center;
 }
+
 .navigate {
   font-family: inherit;
   font-weight: 700;
@@ -101,7 +112,6 @@
 
 @media (min-width: 768px) {
   .mainText {
-    margin-top: 171px;
     font-size: 36px;
     line-height: 1.05556;
   }
@@ -130,7 +140,7 @@
     margin: 12px 0 16px;
     font-size: 16px;
     line-height: 1.5;
-    padding: 18px;
+    padding: 18px 191px;
     width: 436px;
     height: 60px;
   }
@@ -147,6 +157,7 @@
 
 @media (min-width: 1440px) {
   .mainText {
-    margin-top: 74px;
+    font-size: 36px;
+    line-height: 1.05556;
   }
 }

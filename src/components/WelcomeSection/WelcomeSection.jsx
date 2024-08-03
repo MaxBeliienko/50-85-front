@@ -9,8 +9,10 @@ const WelcomeSection = () => {
 
   return (
     <div className={styles.mainWrapper}>
-      <Logo />
-      <LocalizationSwitcher />
+      <div className={styles.mainWrapperHeader}>
+        <Logo />
+        <LocalizationSwitcher />
+      </div>
       <div className={styles.sectionWrap}>
         <h2 className={styles.subtitle}>
           {t('description.welcome.subtitleText')}

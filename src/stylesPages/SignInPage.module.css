@@ -5,6 +5,9 @@
 }
 
 .formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   border-radius: 30px;
   border: none;
   background-color: var(--light-gray);
@@ -23,11 +26,14 @@
     height: 960px;
   }
 }
+
 @media (min-width: 1440px) {
   .formWrapper {
     width: 672px;
-    height: 736px;
+    min-height: 736px;
+    height: fit-content;
   }
+
   .disabled {
     display: block;
   }
