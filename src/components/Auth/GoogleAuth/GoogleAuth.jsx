@@ -5,7 +5,7 @@ import Iconsvg from '../../Icon';
 import { getGoogleOAuthUrl } from '../../../redux/auth/operations';
 import styles from './GoogleAuth.module.css';
 
-const GoogleAuth = () => {
+const GoogleAuth = ({ operationType}) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -22,8 +22,7 @@ const GoogleAuth = () => {
           </span>
         </div>
 
-        <button onClick={handleGoogleLogin} className={styles.googleAuthButton}>
-          {t('description.signIn.signUpGoogle')}{' '}
+        <button onClick={handleGoogleLogin} className={styles.googleAuthButton}>{operationType === "SignUp" ? t('description.signUp.MainHeader')  :  t('description.signIn.MainHeader') }
           <Iconsvg width={65} height={20} iconName={'logos_google'} />
         </button>
       </div>

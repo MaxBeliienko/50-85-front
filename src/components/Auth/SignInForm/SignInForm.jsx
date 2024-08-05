@@ -119,7 +119,7 @@ const SignInForm = () => {
             </NavLink>
           </p>
         </div>
-        <GoogleAuth />
+        <GoogleAuth operationType={"SignIn"} />
       </div>
     </>
   );
