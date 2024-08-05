@@ -7,6 +7,7 @@ import WaterModal from '../waterModal/WaterModal';
 import { useTranslation } from 'react-i18next';
 
 const WaterItem = ({ waterItem, onEditWater, isToday }) => {
+  
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);

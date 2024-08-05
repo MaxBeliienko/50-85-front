@@ -156,7 +156,7 @@ const SignUpForm = () => {
           </p>
         </form>
 
-        <GoogleAuth />
+        <GoogleAuth operationType={"SignUp"} />
       </div>
     </>
   );
