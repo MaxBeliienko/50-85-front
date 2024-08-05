@@ -119,7 +119,11 @@ const TrackerPage = () => {
 
   return (
     <div className={css.container}>
-      <WaterMainInfo onEditWater={onEditWater} />
+      <WaterMainInfo onEditWater={onEditWater} today={today} searchDate={{
+    year: formatNumber(today.year),
+    month: formatNumber(today.month),
+    day: formatNumber(today.day),
+  }} />
       <WaterDetailedInfo
         today={today}
         searchDate={searchDate}

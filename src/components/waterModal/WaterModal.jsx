@@ -5,12 +5,15 @@ import { addWater, editWater } from '../../redux/water/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-const WaterModal = ({ operationType, onCloseModal, waterItem }) => {
+const WaterModal = ({ operationType, onCloseModal, waterItem, searchDate }) => {
   const { t } = useTranslation();
 
   let title;
 
   const dispatch = useDispatch();
+
+
+  const addDate = `${searchDate.day}.${searchDate.month}.${searchDate.year}`
 
   if (operationType === 'add') title = t('description.tracker.addWaterText');
   if (operationType === 'edit') title = t('description.waterModal.editWater');
@@ -20,7 +23,7 @@ const WaterModal = ({ operationType, onCloseModal, waterItem }) => {
     const time = data.time;
 
     if (operationType === 'add') {
-      dispatch(addWater({ volume, time }));
+      dispatch(addWater({ volume, time, date :  addDate}));
       toast.success(t('description.waterModal.succesAdd'));
       onCloseModal();
     } else {

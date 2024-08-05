@@ -15,7 +15,7 @@ import Modal from '../../Modal.jsx';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/selectors.js';
 
-const WaterMainInfo = ({ onEditWater }) => {
+const WaterMainInfo = ({ onEditWater, searchDate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userData = useSelector(selectUser);
   const dailyNorma = userData.dailyRequirement;
@@ -41,7 +41,7 @@ const WaterMainInfo = ({ onEditWater }) => {
         <div className={css.content}>
           <WaterDailyNorma dailyNorma={dailyNorma} />
           <WaterProgressBar dailyNorma={dailyNorma} />
-          <AddWaterBtn onAddWater={openModal} />
+          <AddWaterBtn onAddWater={openModal}  />
         </div>
       </div>
       <Modal
@@ -50,7 +50,7 @@ const WaterMainInfo = ({ onEditWater }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal operationType="add" onCloseModal={editWater} />
+        <WaterModal operationType="add" onCloseModal={editWater} searchDate={ searchDate} />
       </Modal>
     </>
   );

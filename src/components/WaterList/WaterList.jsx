@@ -42,7 +42,7 @@ const WaterList = ({ searchDate, monthNames, isToday, onEditWater }) => {
         buttonTop={20}
         buttonRight={20}
       >
-        <WaterModal operationType={'add'} onCloseModal={editWater} />
+        <WaterModal operationType={'add'} onCloseModal={editWater} searchDate={ searchDate} />
       </Modal>
 
       <div className={css.topcontainer}>
@@ -51,7 +51,7 @@ const WaterList = ({ searchDate, monthNames, isToday, onEditWater }) => {
           searchDate={searchDate}
           isToday={isToday}
         />
-        {isToday && <AddWaterBtn openModal={openModal} />}
+        <AddWaterBtn openModal={openModal} />
       </div>
       {choosedWaterArray.length > 0 ? (
         <ul className={css.list}>

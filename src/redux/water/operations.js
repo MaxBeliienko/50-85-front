@@ -54,9 +54,9 @@ export const fetchTodayWater = createAsyncThunk(
 
 export const addWater = createAsyncThunk(
   'water/addWater',
-  async ({ volume, time }, thunkAPI) => {
+  async ({ volume, time, date }, thunkAPI) => {
     try {
-      const response = await apiClient.post('/water', { volume, time });
+      const response = await apiClient.post('/water', { volume, time, date });
       return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
